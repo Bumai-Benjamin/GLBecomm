@@ -1,7 +1,7 @@
-# GLBecom — Static Ecommerce Demo
+# Give Love Back — Ecommerce Demo
 
 
-This repository is a small React + Vite ecommerce demo with a hero page (Three.js animated background), store, contact page, and a mini-cart.
+This is a minimal, high-contrast ecommerce experience built with React + Vite. It features a typographic hero with a subtle particle background, an auto-rotating gallery, a clean store grid, and a lightweight mini-cart.
 
 Run locally
 -----------
@@ -18,6 +18,16 @@ npm run dev
 ```
 
 Open http://localhost:5173
+
+Design tokens
+-------------
+Global design tokens live in `src/styles.css` under `:root`:
+
+- `--bg`, `--fg`, `--muted`, `--line`, `--card`
+- `--accent`, `--accent-contrast`
+- `--radius`, `--shadow-*`, `--trans-*`
+
+Adjusting these will propagate through the app’s components. Static pages (`store.html`, `contact.html`) use the mirrored tokens in the root `styles.css`.
 
 Assets
 ------
@@ -37,4 +47,5 @@ Notes
 -----
 - The cart state is stored in `localStorage`.
 - Checkout/payment is not implemented — it's a demo.
+ - Page transitions are powered by Framer Motion; the rotating gallery uses Swiper.
 

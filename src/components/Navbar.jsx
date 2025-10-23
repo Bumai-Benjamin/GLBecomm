@@ -6,11 +6,10 @@ export default function Navbar(){
   return (
     <header className="site-header navbar">
       <div className="nav-left">
-        <Link className="logo" to="/">GLBecom</Link>
+        <Link className="logo" to="/">Give Love Back</Link>
       </div>
       <nav className="nav-center">
         <Link to="/store">Store</Link>
-        <Link to="/store">Collections</Link>
         <Link to="/contact">Contact</Link>
       </nav>
       <div className="nav-right">

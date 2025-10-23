@@ -1,7 +1,9 @@
 import React, {useEffect, useRef} from 'react'
 import * as THREE from 'three'
+import { useNavigate } from 'react-router-dom'
 
-export default function Hero({onShop}){
+export default function Hero(){
+  const navigate = useNavigate()
   const canvasRef = useRef(null)
   useEffect(()=>{
     const canvas = canvasRef.current
@@ -20,27 +22,27 @@ export default function Hero({onShop}){
       positions[i*3+2] = (Math.random()-0.5)*20
     }
     geom.setAttribute('position', new THREE.BufferAttribute(positions,3))
-    const material = new THREE.PointsMaterial({size:0.08, color:0xff6bcb, transparent:true, opacity:0.9})
+    const material = new THREE.PointsMaterial({size:0.06, color:0xffffff, transparent:true, opacity:0.25})
     const points = new THREE.Points(geom, material)
     scene.add(points)
     let t=0
     function resize(){const w=window.innerWidth,h=window.innerHeight;renderer.setSize(w,h);camera.aspect=w/h;camera.updateProjectionMatrix()}
     window.addEventListener('resize', resize)
-    function animate(){t+=0.005;points.rotation.y=t*0.6;points.rotation.x=Math.sin(t*0.3)*0.1;material.color.setHSL((Math.sin(t*0.2)+1)/4+0.2,0.9,0.6);renderer.render(scene,camera);requestAnimationFrame(animate)}
+    function animate(){t+=0.004;points.rotation.y=t*0.5;points.rotation.x=Math.sin(t*0.25)*0.08;renderer.render(scene,camera);requestAnimationFrame(animate)}
     animate()
     return ()=>{window.removeEventListener('resize', resize);renderer.dispose()}
   },[])
 
   return (
-    <main className="hero">
+    <section className="hero dark">
       <canvas ref={canvasRef} className="bg-canvas" />
       <div className="hero-content">
-        <h1>Good vibes. Great merch.</h1>
-        <p>Limited edition tees and accessories in BestiePink and BestiePurple.</p>
+        <h1>Give Love Back</h1>
+        <p>Purposeful goods made to spark everyday generosity. Minimal by design. Maximum in impact.</p>
         <div className="hero-ctas">
-          <button className="btn primary" onClick={onShop}>Shop Now</button>
+          <button className="btn primary" onClick={()=>navigate('/store')}>Explore Store</button>
         </div>
       </div>
-    </main>
+    </section>
   )
 }

@@ -1,4 +1,5 @@
 import React, {useMemo, useState} from 'react'
+import Page from '../components/Page'
 import ProductCard from '../components/ProductCard'
 import { PRODUCTS } from '../data/products'
 
@@ -11,14 +12,16 @@ export default function Store(){
   },[q])
 
   return (
-    <main className="store">
-      <h1>Store</h1>
-      <div style={{marginBottom:12}}>
-        <input placeholder="Search products" value={q} onChange={e=>setQ(e.target.value)} style={{padding:8,borderRadius:8}} />
-      </div>
-      <div className="products">
-        {filtered.map(p=> <ProductCard key={p.id} p={p} />)}
-      </div>
-    </main>
+    <Page>
+      <main className="store">
+        <h1>Store</h1>
+        <div style={{marginBottom:12}}>
+          <input placeholder="Search products" value={q} onChange={e=>setQ(e.target.value)} style={{padding:12,borderRadius:10,border:'1px solid var(--line)'}} />
+        </div>
+        <div className="products">
+          {filtered.map(p=> <ProductCard key={p.id} p={p} />)}
+        </div>
+      </main>
+    </Page>
   )
 }

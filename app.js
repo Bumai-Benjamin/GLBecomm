@@ -158,7 +158,7 @@ function initBackground(){
     positions[i*3+2] = (Math.random()-0.5)*20;
   }
   geom.setAttribute('position', new THREE.BufferAttribute(positions,3));
-  const material = new THREE.PointsMaterial({size:0.08, color:0xff6bcb, transparent:true, opacity:0.9});
+  const material = new THREE.PointsMaterial({size:0.06, color:0xffffff, transparent:true, opacity:0.25});
   const points = new THREE.Points(geom, material);
   scene.add(points);
 
@@ -173,8 +173,7 @@ function initBackground(){
     t += 0.005;
     points.rotation.y = t*0.6;
     points.rotation.x = Math.sin(t*0.3)*0.1;
-    // color shift
-    material.color.setHSL((Math.sin(t*0.2)+1)/4+0.2, 0.9, 0.6);
+  // neutral palette — no hue shift
     renderer.render(scene, camera);
     requestAnimationFrame(animate);
   }
