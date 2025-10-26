@@ -16,14 +16,23 @@ export default function Contact(){
   }
   return (
     <Page>
-      <main className="contact" style={{padding:'40px 24px'}}>
-        <h1>Contact</h1>
+      <main className="contact" style={{padding:'120px 40px 60px',minHeight:'100vh'}}>
+        <h1>GET IN TOUCH</h1>
         <form id="contact-form" onSubmit={onSubmit}>
-          <label>Name<input name="name" required /></label>
-          <label>Email<input name="email" type="email" required /></label>
-          <label>Message<textarea name="message" rows="6" required></textarea></label>
+          <label>
+            NAME
+            <input name="name" required />
+          </label>
+          <label>
+            EMAIL
+            <input name="email" type="email" required />
+          </label>
+          <label>
+            MESSAGE
+            <textarea name="message" rows="8" required></textarea>
+          </label>
           <div className="form-actions">
-            <button className="btn primary" type="submit">Send</button>
+            <button className="btn primary" type="submit">Send Message</button>
           </div>
         </form>
       </main>

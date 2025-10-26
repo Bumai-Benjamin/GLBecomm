@@ -10,27 +10,74 @@ export default function ProductDetails({ params }){
   const { id } = params
   const p = PRODUCTS.find(x=>x.id===id)
   const { add } = useCart()
-  if(!p) return <main style={{padding:20}}><h2>Product not found</h2></main>
+  if(!p) return <main style={{padding:'120px 40px',textAlign:'center'}}><h2 style={{fontFamily:'Anton',fontSize:'40px',color:'var(--accent)'}}>PRODUCT NOT FOUND</h2></main>
   return (
     <Page>
-      <main style={{padding:'40px 24px'}}>
-        <div style={{display:'grid',gridTemplateColumns:'minmax(260px,420px) 1fr',gap:32, alignItems:'start'}}>
-          <img src={`/assets/${p.file}`} alt={p.name} style={{width:'100%',borderRadius:12,border:'1px solid var(--line)'}} />
+      <main style={{padding:'120px 40px 60px',minHeight:'100vh'}}>
+        <div style={{display:'grid',gridTemplateColumns:'minmax(300px,500px) 1fr',gap:60, alignItems:'start',maxWidth:1400,margin:'0 auto'}}>
+          <div style={{position:'sticky',top:120}}>
+            <img 
+              src={`/assets/${p.file}`} 
+              alt={p.name} 
+              style={{
+                width:'100%',
+                border:'3px solid var(--accent)',
+                clipPath:'polygon(0 0, 95% 0, 100% 5%, 100% 100%, 5% 100%, 0 95%)',
+                boxShadow:'var(--shadow-glow), var(--shadow-hard)',
+                filter:'grayscale(20%) contrast(1.1)'
+              }} 
+            />
+          </div>
           <div>
-            <h1 style={{margin:'0 0 12px'}}>{p.name}</h1>
-            <div style={{display:'flex',alignItems:'baseline',gap:12, marginBottom:16}}>
-              <span className="price" style={{fontSize:22}}>${p.price.toFixed(2)}</span>
-              <span style={{color:'var(--muted)'}}>Tax included</span>
+            <h1 style={{
+              fontFamily:'Anton',
+              fontSize:'clamp(36px, 6vw, 64px)',
+              textTransform:'uppercase',
+              letterSpacing:'4px',
+              margin:'0 0 20px',
+              background:'linear-gradient(135deg, var(--accent) 0%, var(--accent-secondary) 100%)',
+              WebkitBackgroundClip:'text',
+              WebkitTextFillColor:'transparent',
+              backgroundClip:'text'
+            }}>{p.name}</h1>
+            <div style={{display:'flex',alignItems:'baseline',gap:20, marginBottom:30,flexWrap:'wrap'}}>
+              <span style={{
+                fontFamily:'Anton',
+                fontSize:'48px',
+                color:'var(--accent)',
+                textShadow:'0 0 10px rgba(255,51,102,0.3)'
+              }}>${p.price.toFixed(2)}</span>
+              <span style={{
+                fontFamily:'Oswald',
+                fontSize:'14px',
+                color:'var(--muted)',
+                textTransform:'uppercase',
+                letterSpacing:'2px'
+              }}>Tax included</span>
             </div>
-            <p style={{color:'var(--muted)', marginBottom:16}}>{p.description}</p>
-            <div style={{display:'flex', gap:12, marginBottom:24}}>
-              <button className="btn primary" onClick={()=>add(p.id)}>Add to cart</button>
-              <Link className="btn" href="/store">Back to store</Link>
+            <p style={{
+              fontFamily:'Oswald',
+              fontSize:'18px',
+              color:'var(--muted)', 
+              marginBottom:40,
+              lineHeight:1.6,
+              letterSpacing:'1px'
+            }}>{p.description}</p>
+            <div style={{display:'flex', gap:20, marginBottom:50,flexWrap:'wrap'}}>
+              <button className="btn primary" onClick={()=>add(p.id)}>Add to Cart</button>
+              <Link className="btn ghost" href="/store">Back to Collection</Link>
             </div>
 
             {Array.isArray(p.specs) && p.specs.length>0 && (
               <section>
-                <h3 style={{margin:'24px 0 12px'}}>Specifications</h3>
+                <h3 style={{
+                  fontFamily:'Anton',
+                  fontSize:'32px',
+                  textTransform:'uppercase',
+                  letterSpacing:'3px',
+                  margin:'0 0 30px',
+                  color:'var(--accent-secondary)'
+                }}>Specifications</h3>
                 <div className="specs">
                   {p.specs.map((s,i)=> (
                     <div className="spec" key={i}>
@@ -42,9 +89,22 @@ export default function ProductDetails({ params }){
               </section>
             )}
 
-            <section style={{marginTop:24, color:'var(--muted)'}}>
-              <div style={{borderTop:'1px solid var(--line)', paddingTop:16}}>
+            <section style={{
+              marginTop:50, 
+              padding:30,
+              border:'2px solid var(--line)',
+              clipPath:'polygon(0 0, 98% 0, 100% 2%, 100% 100%, 2% 100%, 0 98%)',
+              background:'var(--bg-secondary)'
+            }}>
+              <div style={{
+                fontFamily:'Oswald',
+                fontSize:'16px',
+                color:'var(--muted)',
+                letterSpacing:'1px',
+                lineHeight:1.8
+              }}>
                 Ships in 2–4 business days. Free exchanges within 30 days.
+                <br/>100% authentic streetwear. Limited edition pieces.
               </div>
             </section>
           </div>

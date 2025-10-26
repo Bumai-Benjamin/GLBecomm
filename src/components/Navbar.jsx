@@ -10,11 +10,11 @@ export default function Navbar(){
   return (
     <header className="site-header navbar">
       <div className="nav-left">
-        <Link className="logo" href="/">Give Love Back</Link>
+        <Link className="logo" href="/">GLB</Link>
       </div>
       <nav className="nav-center">
-        <Link href="/store" className={pathname === '/store' ? 'active' : undefined}>Store</Link>
-        <Link href="/contact" className={pathname === '/contact' ? 'active' : undefined}>Contact</Link>
+        <Link href="/store" className={pathname?.startsWith('/store') ? 'active' : ''}>Store</Link>
+        <Link href="/contact" className={pathname === '/contact' ? 'active' : ''}>Contact</Link>
       </nav>
       <div className="nav-right">
         <CartWidget />
