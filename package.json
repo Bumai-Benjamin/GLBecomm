@@ -10,15 +10,20 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@react-three/drei": "^9.118.6",
+    "@react-three/fiber": "^9.0.0-rc.1",
+    "gsap": "^3.12.5",
     "framer-motion": "^12.23.24",
     "next": "^15.0.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
-    "swiper": "^12.0.3",
-    "three": "^0.152.2"
+    "three": "^0.165.0"
   },
   "devDependencies": {
+    "autoprefixer": "^10.4.20",
     "eslint": "^8.57.0",
-    "eslint-config-next": "^15.0.0"
+    "eslint-config-next": "^15.0.0",
+    "postcss": "^8.4.38",
+    "tailwindcss": "^3.4.14"
   }
 }
