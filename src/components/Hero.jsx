@@ -1,9 +1,11 @@
+'use client'
+
 import React, {useEffect, useRef} from 'react'
 import * as THREE from 'three'
-import { useNavigate } from 'react-router-dom'
+import { useRouter } from 'next/navigation'
 
 export default function Hero(){
-  const navigate = useNavigate()
+  const router = useRouter()
   const canvasRef = useRef(null)
   useEffect(()=>{
     const canvas = canvasRef.current
@@ -40,7 +42,7 @@ export default function Hero(){
         <h1>Give Love Back</h1>
         <p>Purposeful goods made to spark everyday generosity. Minimal by design. Maximum in impact.</p>
         <div className="hero-ctas">
-          <button className="btn primary" onClick={()=>navigate('/store')}>Explore Store</button>
+          <button className="btn primary" onClick={()=>router.push('/store')}>Explore Store</button>
         </div>
       </div>
     </section>

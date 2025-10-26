@@ -1,7 +1,9 @@
+'use client'
+
 import React, {useMemo, useState} from 'react'
-import Page from '../components/Page'
-import ProductCard from '../components/ProductCard'
-import { PRODUCTS } from '../data/products'
+import Page from '../../src/components/Page'
+import ProductCard from '../../src/components/ProductCard'
+import { PRODUCTS } from '../../src/data/products'
 
 export default function Store(){
   const [q, setQ] = useState('')

@@ -1,6 +1,8 @@
+'use client'
+
 import React, {useEffect} from 'react'
-import mountCart from '../components/CartUI'
-import Page from '../components/Page'
+import mountCart from '../../src/components/CartUI'
+import Page from '../../src/components/Page'
 
 export default function Contact(){
   useEffect(()=>{mountCart()},[])
