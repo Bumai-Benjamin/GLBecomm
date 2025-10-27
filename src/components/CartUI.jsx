@@ -1,3 +1,4 @@
+import Image from 'next/image'
 import React, {useEffect, useState} from 'react'
 import { createRoot } from 'react-dom/client'
 import { useCart } from '../state/CartContext'
@@ -28,7 +29,9 @@ function MiniCart({visible, onClose}){
           if(!p) return null
           return (
             <div className="mini-cart-item" key={it.id}>
-              <img src={`/assets/${p.file}`} alt={p.name} />
+              <div style={{position:'relative', width:64, height:64, overflow:'hidden', borderRadius:12}}>
+                <Image src={`/assets/${p.file}`} alt={p.name} fill sizes="64px" style={{objectFit:'cover'}} />
+              </div>
               <div style={{flex:1}}>
                 <div>{p.name}</div>
                 <div className="price">${(p.price*it.qty).toFixed(2)}</div>

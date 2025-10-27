@@ -1,3 +1,4 @@
+import Image from 'next/image'
 import React from 'react'
 import { Swiper, SwiperSlide } from 'swiper/react'
 import { Autoplay } from 'swiper/modules'
@@ -29,8 +30,14 @@ export default function RotatingGallery(){
         >
           {GALLERY.map((file, i)=> (
             <SwiperSlide key={i}>
-              <div className="gallery-item">
-                <img src={`/assets/${file}`} alt="Lookbook still" />
+              <div className="gallery-item relative">
+                <Image
+                  src={`/assets/${file}`}
+                  alt="Lookbook still"
+                  fill
+                  sizes="(min-width: 1280px) 260px, (min-width: 768px) 220px, 180px"
+                  className="object-cover"
+                />
               </div>
             </SwiperSlide>
           ))}
