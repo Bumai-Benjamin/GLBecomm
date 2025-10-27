@@ -18,9 +18,9 @@ const grotesk = Space_Grotesk({
 })
 
 export const metadata = {
-  title: 'GLB E-Comm',
+  title: 'Give Love Back — Create with Purpose. Impact with Heart.',
   description:
-    'Modern fashion drops with immersive storytelling, interactive visuals, and elevated shopping flows.',
+    'Give Love Back is a creative brand blending design, compassion, and purpose. Discover visual experiences that inspire kindness, creativity, and human connection.',
 }
 
 export default function RootLayout({ children }) {

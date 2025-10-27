@@ -5,12 +5,12 @@ export default function Contact() {
     <main className="mx-auto flex max-w-4xl flex-col gap-10 px-6 pb-24 pt-32 sm:px-10 sm:pt-36">
       <header className="space-y-6">
         <span className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-4 py-1 text-[0.65rem] font-semibold uppercase tracking-[0.4em] text-flare/80">
-          Contact // Studio
+          Contact
         </span>
-        <h1 className="font-display text-4xl tracking-tight text-sand sm:text-5xl">Get in touch</h1>
+        <h1 className="font-display text-4xl tracking-tight text-sand sm:text-5xl">Let&rsquo;s Build Something Meaningful</h1>
         <p className="max-w-2xl text-sm leading-relaxed text-clay/75">
-          Partnerships, wholesale questions, or styling requests—we aim to reply within 48 hours. Drop your details and
-          the crew will route your message to the right specialist.
+          Whether you&rsquo;re here to collaborate, inquire, or just share an idea, we&rsquo;d love to hear from you. Let&rsquo;s create
+          something beautiful that makes an impact.
         </p>
       </header>
 
