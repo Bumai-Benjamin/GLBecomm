@@ -1,60 +1,60 @@
 "use client";
 
-import { useMemo, useState } from "react";
-
-import ProductCard from "../../src/components/ProductCard";
-import { PRODUCTS } from "../../src/data/products";
+import Link from "next/link";
 
 export default function Store() {
-  const [query, setQuery] = useState("");
-
-  const filteredProducts = useMemo(() => {
-    const term = query.trim().toLowerCase();
-    if (!term) return PRODUCTS;
-    return PRODUCTS.filter((product) => {
-      const haystack = `${product.name} ${product.description ?? ""}`.toLowerCase();
-      return haystack.includes(term);
-    });
-  }, [query]);
-
   return (
-    <main className="mx-auto max-w-6xl px-6 pb-24 pt-32 sm:px-10 sm:pt-36">
-      <header className="flex flex-col gap-6 border-b border-white/5 pb-10">
-        <div>
-          <span className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-4 py-1 text-[0.65rem] font-semibold uppercase tracking-[0.4em] text-flare/80">
-            Store // Editions
-          </span>
-          <h1 className="mt-4 font-display text-4xl tracking-tight text-sand sm:text-5xl">
-            Streetwear collection engineered for night runs.
-          </h1>
-          <p className="mt-3 max-w-2xl text-sm leading-relaxed text-clay/75">
-            Filter the drop to lock in your kit. Every style is built in limited batches with thermal-reactive detailing,
-            recycled blends, and movement-focused cuts.
-          </p>
-        </div>
-        <div className="flex flex-wrap items-center gap-4">
-          <label className="flex w-full flex-col gap-2 text-xs uppercase tracking-[0.35em] text-clay/60 sm:w-auto sm:flex-1">
-            Search The Collection
-            <input
-              value={query}
-              onChange={(event) => setQuery(event.target.value)}
-              placeholder="Type product name or detail"
-              className="w-full rounded-full border border-white/10 bg-black/40 px-5 py-3 text-sm text-sand placeholder:text-clay/50 focus:border-flare/60 focus:outline-none"
-            />
-          </label>
-        </div>
-      </header>
+    <main className="mx-auto flex min-h-[80vh] max-w-4xl flex-col items-center justify-center px-6 pb-24 pt-32 text-center sm:px-10 sm:pt-36">
+      <div className="space-y-8">
+        <span className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-4 py-2 text-[0.65rem] font-semibold uppercase tracking-[0.4em] text-flare/80">
+          Store
+        </span>
 
-      <section className="mt-12 grid gap-8 md:grid-cols-2 xl:grid-cols-3">
-        {filteredProducts.length === 0 && (
-          <p className="col-span-full rounded-[28px] border border-white/10 bg-white/5 p-10 text-center text-xs uppercase tracking-[0.4em] text-clay/60">
-            No products match that filter.
-          </p>
-        )}
-        {filteredProducts.map((product) => (
-          <ProductCard key={product.id} p={product} />
-        ))}
-      </section>
+        <h1 className="font-display text-5xl tracking-tight text-sand sm:text-6xl lg:text-7xl">
+          Coming Soon
+        </h1>
+
+        <p className="mx-auto max-w-xl text-base leading-relaxed text-clay/80 md:text-lg">
+          We&rsquo;re curating something special. Our store will launch soon with thoughtfully designed products that
+          give back with purpose.
+        </p>
+
+        <div className="flex flex-wrap items-center justify-center gap-4 pt-4">
+          <Link
+            href="/events"
+            className="inline-flex items-center gap-3 rounded-full bg-gradient-to-r from-flare via-pulse to-flare px-8 py-3 text-sm font-semibold uppercase tracking-[0.3em] text-ink shadow-[0_18px_32px_rgba(255,107,61,0.32)] transition hover:shadow-[0_22px_40px_rgba(255,107,61,0.42)]"
+          >
+            View Events
+          </Link>
+          <Link
+            href="/contact"
+            className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/10 px-7 py-3 text-sm font-semibold uppercase tracking-[0.28em] text-sand transition hover:bg-white/20"
+          >
+            Get Notified
+          </Link>
+        </div>
+
+        <div className="mt-16 grid gap-6 pt-8 text-left sm:grid-cols-3">
+          <div className="rounded-3xl border border-white/10 bg-white/5 p-6 backdrop-blur">
+            <h3 className="font-display text-xl text-sand">Purposeful Design</h3>
+            <p className="mt-3 text-xs leading-relaxed text-clay/75">
+              Every product tells a story of care, creativity, and impact.
+            </p>
+          </div>
+          <div className="rounded-3xl border border-white/10 bg-white/5 p-6 backdrop-blur">
+            <h3 className="font-display text-xl text-sand">Limited Editions</h3>
+            <p className="mt-3 text-xs leading-relaxed text-clay/75">
+              Curated collections built with intention, not mass production.
+            </p>
+          </div>
+          <div className="rounded-3xl border border-white/10 bg-white/5 p-6 backdrop-blur">
+            <h3 className="font-display text-xl text-sand">Give Love Back</h3>
+            <p className="mt-3 text-xs leading-relaxed text-clay/75">
+              Each purchase supports meaningful causes and creative initiatives.
+            </p>
+          </div>
+        </div>
+      </div>
     </main>
   );
 }

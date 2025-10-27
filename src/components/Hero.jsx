@@ -9,19 +9,19 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger'
 
 const introStats = [
   {
-    label: 'Drop 05',
-    value: 'Nightshift',
-    text: 'Limited release engineered for after-dark velocity with thermal-reactive overlays.',
+    label: 'Our Purpose',
+    value: 'In Every Design',
+    text: 'We create work that speaks to meaning, not just appearance.',
   },
   {
-    label: 'Fabric Grade',
-    value: 'Urban Exo',
-    text: 'Reinforced eco-nylon blend tuned for multi-directional flex and abrasion resistance.',
+    label: 'Our Approach',
+    value: 'Creativity with Impact',
+    text: 'Design that centers human connection and thoughtful giving.',
   },
   {
-    label: 'Access Code',
-    value: '#GLB25',
-    text: 'Scan-to-unlock invites for rooftop drops and private fittings across the grid.',
+    label: 'Our Mission',
+    value: 'Built to Inspire',
+    text: 'Every project is an invitation to give love back.',
   },
 ]
 
@@ -92,8 +92,8 @@ export default function Hero() {
             className="relative h-[540px] w-[420px] overflow-hidden rounded-[36px] border border-white/10 bg-black/20 shadow-xl"
           >
             <Image
-              src="/assets/IMG-20250919-WA0043.jpg"
-              alt="Nightshift collection model"
+              src="/assets/hero.jpg"
+              alt="Give Love Back creative work"
               fill
               priority
               className="object-cover object-center"
@@ -110,7 +110,7 @@ export default function Hero() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.1, duration: 0.6, ease: [0.17, 0.67, 0.36, 0.99] }}
         >
-          Season 25 • Nightshift Series
+          Create with Purpose • Impact with Heart
         </motion.span>
 
         <motion.h1
@@ -119,7 +119,7 @@ export default function Hero() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.2, duration: 0.65, ease: [0.17, 0.67, 0.36, 0.99] }}
         >
-          Nightshift Vanguard built for relentless city movement.
+          Design that gives back.
         </motion.h1>
 
         <motion.p
@@ -128,8 +128,7 @@ export default function Hero() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.35, duration: 0.65, ease: 'easeOut' }}
         >
-          Modular layers with reflective carbon prints, temperature-reactive fabric tech, and silhouette mapping
-          refined with night riders and rooftop runners across the grid.
+          We create experiences that inspire kindness, creativity, and meaningful connection.
         </motion.p>
 
         <motion.div
@@ -142,19 +141,13 @@ export default function Hero() {
             href="/store"
             className="inline-flex items-center gap-3 rounded-full bg-gradient-to-r from-flare via-pulse to-flare px-8 py-3 text-sm font-semibold uppercase tracking-[0.3em] text-ink shadow-[0_18px_32px_rgba(255,107,61,0.32)] transition hover:shadow-[0_22px_40px_rgba(255,107,61,0.42)]"
           >
-            Shop The Drop
-          </Link>
-          <Link
-            href="/events"
-            className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/10 px-7 py-3 text-sm font-semibold uppercase tracking-[0.28em] text-sand transition hover:bg-white/20"
-          >
-            Upcoming Events
+            Explore Our Work
           </Link>
           <Link
             href="/contact"
-            className="inline-flex items-center gap-2 rounded-full border border-white/10 px-7 py-3 text-sm font-semibold uppercase tracking-[0.28em] text-sand transition hover:border-white/30"
+            className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/10 px-7 py-3 text-sm font-semibold uppercase tracking-[0.28em] text-sand transition hover:bg-white/20"
           >
-            Contact Studio
+            Join the Movement
           </Link>
         </motion.div>
 
