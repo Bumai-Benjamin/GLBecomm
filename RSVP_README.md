@@ -82,13 +82,7 @@ Retrieve all RSVPs (consider adding authentication)
 }
 ```
 
-## Environment Variables
 
-Create a `.env.local` file in the root directory:
-
-```env
-MONGODB_URI=mongodb+srv://lee38667:glbSite2025@cluster0rsvp.r5ofrsa.mongodb.net/?appName=Cluster0rsvp
-```
 
 ## File Structure
 
