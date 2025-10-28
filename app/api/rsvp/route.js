@@ -1,6 +1,7 @@
 import { NextResponse } from 'next/server'
 import dbConnect from '../../../lib/mongodb'
 import Rsvp from '../../../src/models/Rsvp'
+import { sendRsvpConfirmation, notifyAdminNewRsvp } from '../../../lib/email'
 
 export async function POST(request) {
   try {
@@ -30,6 +31,22 @@ export async function POST(request) {
       message: message || '',
       status: 'pending',
     })
+
+    // Send confirmation email to user (async, don't block response)
+    try {
+      await sendRsvpConfirmation({ name, email, eventTitle, eventDate, guests: guests || 1 })
+    } catch (emailError) {
+      console.error('Failed to send confirmation email:', emailError)
+      // Don't fail the RSVP if email fails
+    }
+
+    // Notify admin (async, don't block response)
+    try {
+      await notifyAdminNewRsvp({ name, email, phone, eventTitle, eventDate, guests: guests || 1, message })
+    } catch (emailError) {
+      console.error('Failed to notify admin:', emailError)
+      // Don't fail the RSVP if email fails
+    }
 
     return NextResponse.json(
       {
