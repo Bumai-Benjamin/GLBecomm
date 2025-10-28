@@ -8,11 +8,11 @@ const EVENT = {
   title: "Street Cache Volume 1",
   date: "14 November",
   time: "5–10pm",
-  entrance: "50",
+  entrance: "60",
   location: "Open-Air Venue",
   description:
     "A curated open-air brand exhibition blending fashion showcases, stalls, and social connection.",
-  tags: ["Exhibition", "Open Air", "Curated", "Entrance: 50"],
+  tags: ["Exhibition", "Open Air", "Curated", "Entrance: 60"],
 };
 
 export default function EventsPage() {
