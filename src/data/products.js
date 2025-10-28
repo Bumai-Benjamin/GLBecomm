@@ -2,7 +2,7 @@ export const PRODUCTS = [
   {
     id:'bestipink',
     name:'Bestie Pink Tee',
-    price:24.99,
+  price:"TBA",
     file:'bestipink.jpg',
     description:'Soft premium tee in Bestie Pink. Everyday essential with a purpose.',
     specs:[
@@ -17,7 +17,7 @@ export const PRODUCTS = [
   {
     id:'bestiepurple',
     name:'Bestie Purple Tee',
-    price:24.99,
+  price:"TBA",
     file:'bestipurple.jpg',
     description:'Limited Bestie Purple colorway. Clean, ultra-soft finish.',
     specs:[
@@ -32,7 +32,7 @@ export const PRODUCTS = [
   {
     id:'classicblack',
     name:'Classic Black Tee',
-    price:22.99,
+  price:"TBA",
     file:'classicblack.jpg',
     description:'Timeless black tee in a breathable weight for daily wear.',
     specs:[
@@ -47,7 +47,7 @@ export const PRODUCTS = [
   {
     id:'classicwhite',
     name:'Classic White Tee',
-    price:22.99,
+  price:"TBA",
     file:'classicwhite.jpg',
     description:'Clean white tee—crisp lines, soft handfeel.',
     specs:[
@@ -62,7 +62,7 @@ export const PRODUCTS = [
   {
     id:'totebag',
     name:'Canvas Tote Bag',
-    price:14.99,
+  price:"TBA",
     file:'totebag.jpg',
     description:'Durable canvas tote for everyday carry—books, groceries, everything.',
     specs:[
@@ -77,7 +77,7 @@ export const PRODUCTS = [
   {
     id:'truckerblack',
     name:'Trucker Cap Black',
-    price:19.99,
+  price:"TBA",
     file:'truckerblack.jpg',
     description:'Classic black trucker with breathable mesh and curved brim.',
     specs:[
@@ -92,7 +92,7 @@ export const PRODUCTS = [
   {
     id:'truckerwhite',
     name:'Trucker Cap White',
-    price:19.99,
+  price:"TBA",
     file:'truckerwhite.jpg',
     description:'White trucker cap with snapback closure and breathable mesh.',
     specs:[

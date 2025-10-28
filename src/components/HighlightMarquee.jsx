@@ -3,11 +3,11 @@
 import { motion } from "framer-motion";
 
 const highlights = [
-  "Carbon-thread utility layers",
-  "Reflective ink overlays",
-  "Limited edition rooftop sessions",
-  "GSAP-powered scroll moments",
-  "Three.js interactive showcase",
+  "GIVE LOVE BACK",
+  "Design with Purpose",
+  "Delight in Details",
+  "Wear Your Values",
+  "Show off Your Style",
 ];
 
 export default function HighlightMarquee() {

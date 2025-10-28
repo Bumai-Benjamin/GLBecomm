@@ -5,22 +5,10 @@ import { motion } from "framer-motion";
 
 const events = [
   {
-    title: "Midnight Rooftop Session",
-    date: "Oct 24",
-    location: "Downtown Skyline",
-    detail: "Live lookbook shoot with ambient set and limited product pickup window.",
-  },
-  {
-    title: "Studio Archive Night",
-    date: "Nov 02",
-    location: "GLB Atelier",
-    detail: "Pull rare samples, explore prototypes, and reserve custom fittings.",
-  },
-  {
-    title: "Transit Drift Ride-Along",
-    date: "Nov 15",
-    location: "Metro Line 7",
-    detail: "Late-night ride documenting the capsule moving through the grid.",
+    title: "Street Cache Volume 1",
+    date: "Nov 14",
+    location: "Open-Air Venue",
+    detail: "A curated open-air brand exhibition blending fashion showcases, stalls, and social connection.",
   },
 ];
 
@@ -36,20 +24,19 @@ export default function EventsPreview() {
             transition={{ duration: 0.6, ease: [0.17, 0.67, 0.36, 0.99] }}
           >
             <span className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-4 py-1 text-[0.65rem] font-semibold uppercase tracking-[0.4em] text-flare/80">
-              Events
+              Upcoming Event
             </span>
             <h2 className="mt-4 max-w-lg font-display text-4xl tracking-tight text-sand">
               Experience the drop in motion.
             </h2>
             <p className="mt-4 max-w-md text-sm leading-relaxed text-clay/80">
-              RSVP to join our city takeovers, private fittings, and late-night sessions. Expect immersive lighting, live
-              styling, and first access to limited styles.
+              Join us for Street Cache Volume 1 -- an open-air exhibition featuring brand showcases, stalls, and space to connect with the community.
             </p>
             <Link
               href="/events"
               className="mt-6 inline-flex items-center gap-2 rounded-full border border-white/10 px-7 py-3 text-xs font-semibold uppercase tracking-[0.3em] text-sand transition hover:border-white/40"
             >
-              View All Events
+              View Event Details
             </Link>
           </motion.div>
 

@@ -17,7 +17,7 @@ export default function ProductCard({ p }) {
           className="object-cover transition duration-700 group-hover:scale-105"
         />
         <span className="absolute left-4 top-4 rounded-full border border-white/10 bg-black/40 px-3 py-1 text-[0.6rem] uppercase tracking-[0.35em] text-sand/80">
-          {p.price.toLocaleString('en-US', { style: 'currency', currency: 'USD' })}
+          N$ {p.price}
         </span>
       </Link>
 

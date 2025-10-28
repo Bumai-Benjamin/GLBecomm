@@ -1,73 +1,39 @@
 "use client";
 
-import { Suspense, useMemo, useRef } from "react";
-import { Canvas, useFrame } from "@react-three/fiber";
-import { Environment, Float, Html, OrbitControls, Text, useTexture } from "@react-three/drei";
-import { motion } from "framer-motion";
-import { SRGBColorSpace } from "three";
+import { useState, useEffect } from "react";
+import Image from "next/image";
+import { motion, AnimatePresence } from "framer-motion";
 
 import { PRODUCTS } from "../data/products";
 
-function ProductBillboard({ product, index, total }) {
-  const meshRef = useRef();
-  const texture = useTexture(`/assets/${product.file}`);
-
-  texture.colorSpace = SRGBColorSpace;
-
-  const radius = 4.5;
-
-  useFrame(({ clock }) => {
-    if (!meshRef.current) return;
-    const t = clock.getElapsedTime() * 0.35;
-    const angle = (index / total) * Math.PI * 2 + t * 0.35;
-    meshRef.current.position.x = Math.cos(angle) * radius;
-    meshRef.current.position.z = Math.sin(angle) * radius;
-    meshRef.current.position.y = Math.sin(angle * 1.4) * 0.6;
-    meshRef.current.rotation.y = -angle + Math.PI;
-  });
-
-  return (
-    <group ref={meshRef}>
-      <Float speed={2.4} rotationIntensity={0.25} floatIntensity={1.4}>
-        <mesh>
-          <planeGeometry args={[1.9, 2.6, 16, 16]} />
-          <meshStandardMaterial map={texture} roughness={0.45} metalness={0.1} />
-        </mesh>
-        <Text
-          position={[0, -1.7, 0]}
-          fontSize={0.22}
-          color="#f5f1ea"
-          anchorX="center"
-          anchorY="top"
-          letterSpacing={0.02}
-        >
-          {product.name.toUpperCase()}
-        </Text>
-      </Float>
-    </group>
-  );
-}
-
-function CarouselScene() {
-  const featured = useMemo(() => PRODUCTS.slice(0, 6), []);
-
-  return (
-    <>
-      <ambientLight intensity={0.8} />
-      <directionalLight intensity={1.2} position={[4, 6, 2]} />
-      <spotLight intensity={2.8} position={[0, 10, 0]} angle={0.5} penumbra={0.6} distance={20} />
-      <group position={[0, 0.2, 0]}>
-        {featured.map((product, index) => (
-          <ProductBillboard key={product.id} product={product} index={index} total={featured.length} />
-        ))}
-      </group>
-      <Environment preset="city" />
-      <OrbitControls enableZoom={false} enablePan={false} autoRotate autoRotateSpeed={0.6} />
-    </>
-  );
-}
-
 export default function ProductCarousel() {
+  const featured = PRODUCTS.slice(0, 6);
+  const [currentIndex, setCurrentIndex] = useState(0);
+  const [isPaused, setIsPaused] = useState(false);
+
+  const goToNext = () => {
+    setCurrentIndex((prev) => (prev + 1) % featured.length);
+  };
+
+  const goToPrevious = () => {
+    setCurrentIndex((prev) => (prev - 1 + featured.length) % featured.length);
+  };
+
+  const goToSlide = (index) => {
+    setCurrentIndex(index);
+  };
+
+  // Auto-advance carousel every 4 seconds
+  useEffect(() => {
+    if (isPaused) return;
+
+    const interval = setInterval(() => {
+      goToNext();
+    }, 4000);
+
+    return () => clearInterval(interval);
+  }, [currentIndex, isPaused]);
+
   return (
     <section className="mx-auto flex w-full max-w-6xl flex-col gap-10 px-6 sm:px-10">
       <div className="flex flex-col items-start justify-between gap-6 md:flex-row md:items-end">
@@ -78,10 +44,10 @@ export default function ProductCarousel() {
           transition={{ duration: 0.6, ease: [0.17, 0.67, 0.36, 0.99] }}
         >
           <span className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-4 py-1 text-[0.65rem] font-semibold uppercase tracking-[0.4em] text-tide/80">
-            Immersive Showcase
+            Product Showcase
           </span>
           <h2 className="mt-4 font-display text-4xl tracking-tight text-sand sm:text-5xl">
-            Orbiting the must-touch textures of the drop.
+            Explore the collection.
           </h2>
         </motion.div>
         <motion.p
@@ -91,33 +57,85 @@ export default function ProductCarousel() {
           viewport={{ once: true }}
           transition={{ delay: 0.1, duration: 0.6 }}
         >
-          Spin through select pieces rendered in WebGL. Built with React Three Fiber and optimized lighting so every
-          fold and ink layer reads even on low light setups.
+          Browse our featured pieces with smooth transitions. Navigate using the arrows or dots below to discover each
+          item.
         </motion.p>
       </div>
 
       <motion.div
-        className="relative overflow-hidden rounded-[36px] border border-white/10 bg-black/40 shadow-[0_30px_60px_rgba(0,0,0,0.55)]"
+        className="relative overflow-hidden rounded-[36px] border border-white/10 bg-gradient-to-br from-black/60 via-charcoal/70 to-black/40 shadow-[0_30px_60px_rgba(0,0,0,0.55)]"
         initial={{ opacity: 0, y: 60 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true, amount: 0.35 }}
         transition={{ duration: 0.8, ease: [0.17, 0.67, 0.36, 0.99] }}
       >
-        <Canvas className="h-[540px] w-full">
-          <color attach="background" args={["#0b0a0a"]} />
-          <Suspense
-            fallback={
-              <Html center>
-                <div className="rounded-full border border-white/10 px-6 py-3 text-xs uppercase tracking-[0.4em] text-clay/70">
-                  Loading assets
-                </div>
-              </Html>
-            }
-          >
-            <CarouselScene />
-          </Suspense>
-        </Canvas>
+        <div className="relative h-[480px] w-full">
+          <AnimatePresence mode="wait">
+            <motion.div
+              key={currentIndex}
+              initial={{ opacity: 0, scale: 0.95, x: 60 }}
+              animate={{ opacity: 1, scale: 1, x: 0 }}
+              exit={{ opacity: 0, scale: 0.95, x: -60 }}
+              transition={{ duration: 0.5, ease: [0.17, 0.67, 0.36, 0.99] }}
+              className="absolute inset-0 flex flex-col items-center justify-center p-10"
+              onMouseEnter={() => setIsPaused(true)}
+              onMouseLeave={() => setIsPaused(false)}
+            >
+              <div className="relative h-[320px] w-[240px] overflow-hidden rounded-2xl border border-white/10 shadow-2xl">
+                <Image
+                  src={`/assets/${featured[currentIndex].file}`}
+                  alt={featured[currentIndex].name}
+                  fill
+                  className="object-cover"
+                  priority
+                />
+              </div>
+              <h3 className="mt-6 font-display text-2xl tracking-tight text-sand">
+                {featured[currentIndex].name}
+              </h3>
+              <p className="mt-2 max-w-md text-center text-sm leading-relaxed text-clay/75">
+                {featured[currentIndex].description}
+              </p>
+              <div className="mt-4 text-xl font-semibold text-flare">N$ TBA</div>
+            </motion.div>
+          </AnimatePresence>
+        </div>
+
         <div className="pointer-events-none absolute inset-x-0 bottom-0 h-32 bg-gradient-to-t from-ink via-ink/70 to-transparent" />
+
+        {/* Navigation Arrows */}
+        <button
+          onClick={goToPrevious}
+          className="absolute left-6 top-1/2 flex h-12 w-12 -translate-y-1/2 items-center justify-center rounded-full border border-white/20 bg-black/60 text-sand backdrop-blur transition hover:border-white/40 hover:bg-white/10"
+          aria-label="Previous product"
+        >
+          <svg className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
+          </svg>
+        </button>
+        <button
+          onClick={goToNext}
+          className="absolute right-6 top-1/2 flex h-12 w-12 -translate-y-1/2 items-center justify-center rounded-full border border-white/20 bg-black/60 text-sand backdrop-blur transition hover:border-white/40 hover:bg-white/10"
+          aria-label="Next product"
+        >
+          <svg className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+          </svg>
+        </button>
+
+        {/* Dot Indicators */}
+        <div className="absolute bottom-8 left-1/2 flex -translate-x-1/2 gap-2">
+          {featured.map((_, index) => (
+            <button
+              key={index}
+              onClick={() => goToSlide(index)}
+              className={`h-2 rounded-full transition-all ${
+                index === currentIndex ? "w-8 bg-flare" : "w-2 bg-white/30 hover:bg-white/50"
+              }`}
+              aria-label={`Go to product ${index + 1}`}
+            />
+          ))}
+        </div>
       </motion.div>
     </section>
   );

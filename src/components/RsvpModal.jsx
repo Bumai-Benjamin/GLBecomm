@@ -45,7 +45,7 @@ export default function RsvpModal({ isOpen, onClose, event }) {
       const data = await response.json()
 
       if (response.ok && data.success) {
-        setSubmitStatus({ type: 'success', message: 'RSVP submitted successfully! We&rsquo;ll be in touch soon.' })
+        setSubmitStatus({ type: 'success', message: 'RSVP submitted successfully! We\'ll be in touch soon.' })
         setFormData({ name: '', email: '', phone: '', guests: 1, message: '' })
         setTimeout(() => {
           onClose()

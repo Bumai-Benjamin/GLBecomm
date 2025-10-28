@@ -10,14 +10,14 @@
     "lint": "eslint ."
   },
   "dependencies": {
-    "@react-three/drei": "^9.118.6",
-    "@react-three/fiber": "^8.15.19",
+    "@react-three/drei": "^10.7.6",
+    "@react-three/fiber": "^9.4.0",
     "framer-motion": "^12.23.24",
     "gsap": "^3.12.5",
     "mongoose": "^8.19.2",
-    "next": "^15.0.0",
-    "react": "^18.2.0",
-    "react-dom": "^18.2.0",
+    "next": "^16.0.0",
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0",
     "three": "^0.165.0"
   },
   "devDependencies": {

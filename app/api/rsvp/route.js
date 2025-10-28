@@ -60,7 +60,7 @@ export async function POST(request) {
     // Handle duplicate entries (if email index exists)
     if (error.code === 11000) {
       return NextResponse.json(
-        { success: false, error: 'You have already RSVP&rsquo;d for this event' },
+        { success: false, error: "You have already RSVP'd for this event" },
         { status: 409 }
       )
     }

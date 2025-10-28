@@ -3,6 +3,7 @@ import './globals.css'
 import { Bebas_Neue, Space_Grotesk } from 'next/font/google'
 
 import Navbar from '../src/components/Navbar'
+import LoadingScreen from '../src/components/LoadingScreen'
 import Providers from './providers'
 
 const display = Bebas_Neue({
@@ -25,9 +26,10 @@ export const metadata = {
 
 export default function RootLayout({ children }) {
   return (
-    <html lang="en" className={`${display.variable} ${grotesk.variable}`}>
+    <html lang="en" className={`${display.variable} ${grotesk.variable}`}> 
       <body className="bg-ink text-sand antialiased">
         <Providers>
+          <LoadingScreen />
           <div className="relative flex min-h-screen flex-col overflow-x-hidden bg-gradient-to-b from-ink via-charcoal/80 to-ink">
             <Navbar />
             <main className="flex-1">{children}</main>

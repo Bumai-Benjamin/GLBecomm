@@ -83,13 +83,13 @@ export default function Hero() {
       ref={sectionRef}
       className="relative isolate overflow-hidden px-6 pb-28 pt-32 sm:px-10 sm:pt-36 lg:pt-40"
     >
-      <span className="hero-gradient-orb pointer-events-none absolute -top-32 left-1/2 h-[480px] w-[480px] -translate-x-1/2 rounded-full bg-hero-gradient blur-3xl" />
+      <span className="hero-gradient-orb pointer-events-none absolute -top-32 left-1/2 h-[440px] w-[180px] -translate-x-1/2 rounded-full bg-hero-gradient blur-3xl" />
       <div className="absolute inset-0 -z-10 opacity-60">
         <div className="hero-parallax pointer-events-none absolute -right-24 top-10 hidden lg:block">
           <motion.div
             ref={mediaRef}
-            style={{ y: parallaxY }}
-            className="relative h-[540px] w-[420px] overflow-hidden rounded-[36px] border border-white/10 bg-black/20 shadow-xl"
+            style={{ y: parallaxY, x: '18%' }}
+            className="relative h-[440px] w-[720px] overflow-hidden rounded-[36px] border border-white/10 bg-black/20 shadow-xl"
           >
             <Image
               src="/assets/hero.jpg"

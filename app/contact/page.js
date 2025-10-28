@@ -7,9 +7,9 @@ export default function Contact() {
         <span className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-4 py-1 text-[0.65rem] font-semibold uppercase tracking-[0.4em] text-flare/80">
           Contact
         </span>
-        <h1 className="font-display text-4xl tracking-tight text-sand sm:text-5xl">Let&rsquo;s Build Something Meaningful</h1>
+        <h1 className="font-display text-4xl tracking-tight text-sand sm:text-5xl">Lets Build Something Meaningful</h1>
         <p className="max-w-2xl text-sm leading-relaxed text-clay/75">
-          Whether you&rsquo;re here to collaborate, inquire, or just share an idea, we&rsquo;d love to hear from you. Let&rsquo;s create
+          Whether you’re here to collaborate, inquire, or just share an idea, we’d love to hear from you. Lets create
           something beautiful that makes an impact.
         </p>
       </header>
@@ -24,7 +24,7 @@ export default function Contact() {
           const message = formData.get("message") ?? "";
           const subject = encodeURIComponent(`Contact from ${name}`);
           const body = encodeURIComponent(`${message}\n\nFrom: ${name} <${email}>`);
-          window.location.href = `mailto:hello@giveloveback.com?subject=${subject}&body=${body}`;
+          window.location.href = `mailto:gvelvebck@gmail.com?subject=${subject}&body=${body}`;
           form.reset();
         }}
         className="space-y-8 rounded-[36px] border border-white/10 bg-white/5 p-8 backdrop-blur"

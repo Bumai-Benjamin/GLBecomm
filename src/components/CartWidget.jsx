@@ -128,7 +128,7 @@ export default function CartWidget() {
                     </div>
                     <div className="flex flex-1 flex-col gap-1">
                       <span className="text-xs uppercase tracking-[0.32em] text-sand/80">{product.name}</span>
-                      <span className="text-xs text-clay/70">${(product.price * item.qty).toFixed(2)}</span>
+                      <span className="text-xs text-clay/70">N$ TBA</span>
                       <div className="flex items-center gap-2">
                         <button
                           type="button"
@@ -162,7 +162,7 @@ export default function CartWidget() {
             <footer className="mt-5 space-y-3 border-t border-white/5 pt-4 text-xs">
               <div className="flex items-center justify-between uppercase tracking-[0.35em] text-clay/70">
                 <span>Subtotal</span>
-                <span>${subtotal.toFixed(2)}</span>
+                <span>N$ TBA</span>
               </div>
               <div className="flex gap-2">
                 <Link
