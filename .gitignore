@@ -15,7 +15,8 @@ public/build/
 # Environment files (keep secrets out of repo)
 .env
 .env.local
-.env.*.local
+.env.*.local    
+.env.example
 
 # TypeScript
 *.tsbuildinfo
