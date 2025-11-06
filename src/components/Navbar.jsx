@@ -10,6 +10,7 @@ import CartWidget from "./CartWidget";
 const NAV_LINKS = [
   { href: "/", label: "Home" },
   { href: "/store", label: "Store" },
+  { href: "/about", label: "About" },
   { href: "/events", label: "Events" },
   { href: "/contact", label: "Contact" },
 ];

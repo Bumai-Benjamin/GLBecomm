@@ -14,14 +14,14 @@ export default function SpotlightCta() {
         transition={{ duration: 0.65, ease: [0.17, 0.67, 0.36, 0.99] }}
       >
         <span className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-4 py-1 text-[0.65rem] font-semibold uppercase tracking-[0.4em] text-sand/80">
-          Newsletter
+          Insider List
         </span>
         <h2 className="mt-6 font-display text-4xl tracking-tight text-sand sm:text-5xl">
-          Stay synced with the next release wave.
+          Be the first to know.
         </h2>
         <p className="mx-auto mt-4 max-w-2xl text-sm leading-relaxed text-clay/80">
-          Receive the earliest look at prototypes, build notes, and invite-only drops. We ship only the essentials—no
-          noise, just the signal.
+          Join the GLB insider list for drops, events, and stories from the community. No spam—just the next step in
+          giving love back.
         </p>
         <form
           className="mx-auto mt-8 flex max-w-md flex-col gap-4 sm:flex-row"

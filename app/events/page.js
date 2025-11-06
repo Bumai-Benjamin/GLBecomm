@@ -33,13 +33,13 @@ export default function EventsPage() {
 
       <header className="max-w-3xl space-y-6">
         <span className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-4 py-1 text-[0.65rem] font-semibold uppercase tracking-[0.4em] text-tide/80">
-          GLB Event
+          Community Event
         </span>
         <h1 className="font-display text-4xl tracking-tight text-sand sm:text-5xl">
           {EVENT.title}
         </h1>
         <p className="text-sm leading-relaxed text-clay/75">
-          A curated open-air brand exhibition blending fashion showcases, stalls, and social connection.
+          More than a showcase—this is a space where brands, creatives, and friends of the movement connect, sell, and shine together.
         </p>
       </header>
 
@@ -75,7 +75,7 @@ export default function EventsPage() {
         <article className="rounded-[28px] border border-white/10 bg-white/5 p-6 text-sm text-clay/80 backdrop-blur">
           <h3 className="font-display text-2xl text-sand">Concept</h3>
           <p className="mt-3 leading-relaxed">
-            GLB will host a curated open-air brand exhibition. The event blends fashion showcases, stalls, and social interaction, supported by food &amp; drink vendors.
+            GLB hosts open‑air brand exhibitions that blend fashion, stalls, and social connection—powered by food &amp; drink vendors and guided by community.
           </p>
         </article>
 
@@ -97,22 +97,22 @@ export default function EventsPage() {
           <h3 className="font-display text-2xl text-sand">Event Flow</h3>
           <ul className="mt-3 space-y-3">
             <li>
-              <span className="text-sand">4:00 – 4:30 PM |</span> Welcome &amp; Arrival — browse stalls, light music, cocktail hour.
+              <span className="text-sand">5:00 – 5:30 PM |</span> Welcome &amp; Arrival — browse stalls, light music, cocktail hour.
             </li>
             <li>
-              <span className="text-sand">4:30 – 5:00 PM |</span> Opening Remarks — GLB welcome; MC introduces brands.
+              <span className="text-sand">5:30 – 6:00 PM |</span> Opening Remarks — GLB welcome; MC introduces brands.
             </li>
             <li>
-              <span className="text-sand">5:00 – 7:00 PM |</span> Cocktail Hour &amp; Stalls Open — socializing, shopping, food &amp; drinks.
+              <span className="text-sand">6:00 – 8:00 PM |</span> Cocktail Hour &amp; Stalls Open — socializing, shopping, food &amp; drinks.
             </li>
             <li>
-              <span className="text-sand">7:00 – 8:00 PM |</span> Brand Showcases — stage time with MC transitions.
+              <span className="text-sand">8:00 – 9:00 PM |</span> Brand Showcases — stage time with MC transitions.
             </li>
             <li>
-              <span className="text-sand">8:00 – 8:30 PM |</span> Networking &amp; Last Sales — encourage final purchases.
+              <span className="text-sand">9:00 – 9:30 PM |</span> Networking &amp; Last Sales — encourage final purchases.
             </li>
             <li>
-              <span className="text-sand">8:30 – 9:00 PM |</span> Closing Remarks — thank vendors, brands, guests; photo opportunity.
+              <span className="text-sand">9:30 – 10:00 PM |</span> Closing Remarks — thank vendors, brands, guests; photo opportunity.
             </li>
           </ul>
         </article>

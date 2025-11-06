@@ -45,10 +45,10 @@ export default function ParallaxStories() {
           transition={{ duration: 0.6, ease: [0.17, 0.67, 0.36, 0.99] }}
         >
           <span className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-4 py-1 text-[0.65rem] font-semibold uppercase tracking-[0.4em] text-tide/80">
-            Stories
+            Field Notes
           </span>
           <h2 className="mt-4 max-w-2xl font-display text-4xl tracking-tight text-sand sm:text-5xl">
-            Embedded in the city. Captured with parallax drift.
+            Built on collaboration. Captured in motion.
           </h2>
         </motion.div>
         <motion.p
@@ -58,8 +58,8 @@ export default function ParallaxStories() {
           viewport={{ once: true }}
           transition={{ delay: 0.1, duration: 0.6 }}
         >
-          Scroll to activate the offset interplay. Each frame leans into the multi-layer narrative of the collection,
-          pairing texture studies with motion notes.
+          From open‑air pop‑ups to studio sessions, these frames trace the community that makes GLB possible—bringing care,
+          connection, and style into every scene.
         </motion.p>
       </div>
 

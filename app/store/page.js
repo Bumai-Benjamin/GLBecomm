@@ -15,8 +15,8 @@ export default function Store() {
         </h1>
 
         <p className="mx-auto max-w-xl text-base leading-relaxed text-clay/80 md:text-lg">
-          We&rsquo;re curating something special. Our store will launch soon with thoughtfully designed products that
-          give back with purpose.
+          We’re curating releases built on community, collaboration, and care. Expect limited drops that carry love into every
+          space—and give love back.
         </p>
 
         <div className="flex flex-wrap items-center justify-center gap-4 pt-4">
@@ -38,19 +38,19 @@ export default function Store() {
           <div className="rounded-3xl border border-white/10 bg-white/5 p-6 backdrop-blur">
             <h3 className="font-display text-xl text-sand">Purposeful Design</h3>
             <p className="mt-3 text-xs leading-relaxed text-clay/75">
-              Every product tells a story of care, creativity, and impact.
+              Pieces that express individuality and make room for community.
             </p>
           </div>
           <div className="rounded-3xl border border-white/10 bg-white/5 p-6 backdrop-blur">
             <h3 className="font-display text-xl text-sand">Limited Editions</h3>
             <p className="mt-3 text-xs leading-relaxed text-clay/75">
-              Curated collections built with intention, not mass production.
+              Curated drops built with intention—not mass production.
             </p>
           </div>
           <div className="rounded-3xl border border-white/10 bg-white/5 p-6 backdrop-blur">
             <h3 className="font-display text-xl text-sand">Give Love Back</h3>
             <p className="mt-3 text-xs leading-relaxed text-clay/75">
-              Each purchase supports meaningful causes and creative initiatives.
+              Every drop helps us support creatives, brands, and causes around us.
             </p>
           </div>
         </div>

@@ -55,10 +55,10 @@ export default function GalleryPage() {
           Gallery
         </span>
         <h1 className="mt-4 font-display text-4xl tracking-tight text-sand sm:text-5xl">
-          Event Memories
+          Community in Focus
         </h1>
         <p className="mt-4 max-w-2xl text-sm leading-relaxed text-clay/75">
-          Relive the moments from our past events. Explore photos and videos from our community.
+          Relive moments from our events and collaborations. Every image is a reminder that we’re growing together, not alone.
         </p>
       </motion.header>
 

@@ -7,19 +7,19 @@ import { motion } from "framer-motion";
 const collections = [
   {
     title: "Nightshift Capsule",
-    copy: "Modular outerwear with heat-responsive graphics and concealed pocketing for midnight journeys.",
+    copy: "Modular outerwear made with our community in mind—heat‑responsive graphics, concealed pocketing, and details that carry love through late‑night runs.",
     tag: "Drop 05",
     image: "/assets/IMG-20250919-WA0014.jpg",
   },
   {
     title: "Studio Essentials",
-    copy: "Everyday staples reimagined with premium cotton, taped seams, and clean monochrome palettes.",
+    copy: "Everyday staples reimagined for collaboration—premium cotton, clean lines, and finishes that let others shine.",
     tag: "Core",
     image: "/assets/classicblack.jpg",
   },
   {
     title: "Motion Ready",
-    copy: "Athletic silhouettes with reflective paneling and sweat-wicking tech tuned for the underground commute.",
+    copy: "Motion‑ready layers built to move together—reflective panels, breathable tech, and silhouettes that travel from open‑air pop‑ups to city nights.",
     tag: "Velocity",
     image: "/assets/IMG-20250919-WA0032.jpg",
   },
@@ -39,7 +39,7 @@ export default function SignatureCollections() {
             Collections
           </span>
           <h2 className="mt-4 font-display text-4xl tracking-tight text-sand sm:text-5xl">
-            Signature edits built for elevated street movement.
+            Signature edits built on community and care.
           </h2>
         </motion.div>
         <motion.p
@@ -49,8 +49,9 @@ export default function SignatureCollections() {
           viewport={{ once: true }}
           transition={{ delay: 0.1, duration: 0.6 }}
         >
-          Each release is constructed in limited batches with responsibly sourced materials. Expect textural juxtapositions,
-          upgraded lining systems, and silhouettes that stay composed through high-output nights.
+          Each release is crafted in limited batches with responsibly sourced materials and the help of our community.
+          Expect considered details, textural pairings, and silhouettes that carry love into every space—from open‑air
+          pop‑ups to late nights in the city.
         </motion.p>
       </div>
 
@@ -81,7 +82,7 @@ export default function SignatureCollections() {
                 href="/store"
                 className="text-xs uppercase tracking-[0.35em] text-sand/80 transition hover:text-flare"
               >
-                Shop Edit
+                View Collection
               </Link>
             </div>
             <h3 className="mt-4 font-display text-2xl text-sand">{collection.title}</h3>

@@ -9,19 +9,19 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger'
 
 const introStats = [
   {
-    label: 'Our Purpose',
-    value: 'In Every Design',
-    text: 'We create work that speaks to meaning, not just appearance.',
+    label: 'Mission',
+    value: 'Give Love Back',
+    text: 'Fashion that carries care, connection, and self‑expression.',
   },
   {
-    label: 'Our Approach',
-    value: 'Creativity with Impact',
-    text: 'Design that centers human connection and thoughtful giving.',
+    label: 'Vision',
+    value: 'Grow Together',
+    text: 'We create spaces where other brands and voices can shine.',
   },
   {
-    label: 'Our Mission',
-    value: 'Built to Inspire',
-    text: 'Every project is an invitation to give love back.',
+    label: 'Story',
+    value: 'Four Friends, One Vision',
+    text: 'Designing together to make a difference—one garment at a time.',
   },
 ]
 
@@ -110,7 +110,7 @@ export default function Hero() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.1, duration: 0.6, ease: [0.17, 0.67, 0.36, 0.99] }}
         >
-          Create with Purpose • Impact with Heart
+          Movement • Give Love Back
         </motion.span>
 
         <motion.h1
@@ -119,7 +119,7 @@ export default function Hero() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.2, duration: 0.65, ease: [0.17, 0.67, 0.36, 0.99] }}
         >
-          Design that gives back.
+          Fashion as an act of care.
         </motion.h1>
 
         <motion.p
@@ -128,7 +128,7 @@ export default function Hero() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.35, duration: 0.65, ease: 'easeOut' }}
         >
-          We create experiences that inspire kindness, creativity, and meaningful connection.
+          GLB is a community‑first label founded by four friends—creating pieces that carry love into every space and make room for others to shine.
         </motion.p>
 
         <motion.div
@@ -141,10 +141,10 @@ export default function Hero() {
             href="/store"
             className="inline-flex items-center gap-3 rounded-full bg-gradient-to-r from-flare via-pulse to-flare px-8 py-3 text-sm font-semibold uppercase tracking-[0.3em] text-ink shadow-[0_18px_32px_rgba(255,107,61,0.32)] transition hover:shadow-[0_22px_40px_rgba(255,107,61,0.42)]"
           >
-            Explore Our Work
+            Explore Collections
           </Link>
           <Link
-            href="/contact"
+            href="https://whatsapp.com/channel/0029Vb7EZML7j6g2Mk7RaB2l"
             className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/10 px-7 py-3 text-sm font-semibold uppercase tracking-[0.28em] text-sand transition hover:bg-white/20"
           >
             Join the Movement

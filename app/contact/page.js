@@ -7,10 +7,10 @@ export default function Contact() {
         <span className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-4 py-1 text-[0.65rem] font-semibold uppercase tracking-[0.4em] text-flare/80">
           Contact
         </span>
-        <h1 className="font-display text-4xl tracking-tight text-sand sm:text-5xl">Lets Build Something Meaningful</h1>
+        <h1 className="font-display text-4xl tracking-tight text-sand sm:text-5xl">Let’s build something meaningful</h1>
         <p className="max-w-2xl text-sm leading-relaxed text-clay/75">
-          Whether you’re here to collaborate, inquire, or just share an idea, we’d love to hear from you. Lets create
-          something beautiful that makes an impact.
+          Whether you’re a brand, creative, or friend of the movement, we’d love to hear from you. Let’s create work
+          that carries love into every space.
         </p>
       </header>
 
