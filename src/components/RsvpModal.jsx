@@ -145,9 +145,10 @@ export default function RsvpModal({ isOpen, onClose, event }) {
                     <input
                       type="tel"
                       name="phone"
+                      required
                       value={formData.phone}
                       onChange={handleChange}
-                      placeholder="(optional)"
+                      placeholder="+264 123 456 789"
                       className="rounded-2xl border border-white/10 bg-black/30 px-5 py-3 text-sm text-sand placeholder:text-clay/50 focus:border-flare/60 focus:outline-none"
                     />
                   </label>
