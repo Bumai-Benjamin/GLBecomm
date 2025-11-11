@@ -6,6 +6,7 @@ import { useEffect, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 
 import CartWidget from "./CartWidget";
+import Logo from "./Logo";
 
 const NAV_LINKS = [
   { href: "/", label: "Home" },
@@ -53,9 +54,7 @@ export default function Navbar() {
       }`}
     >
       <div className="mx-auto flex w-full max-w-6xl items-center justify-between px-6 py-5 sm:px-10">
-        <Link href="/" className="font-display text-xl uppercase tracking-[0.32em] text-sand">
-          Give Love Back
-        </Link>
+        <Logo size={30} />
 
         <nav className="hidden items-center gap-8 md:flex">
           {NAV_LINKS.map(({ href, label }) => (

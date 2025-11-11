@@ -34,6 +34,11 @@ export default function LoadingScreen() {
             transition={{ duration: 0.6, ease: "easeOut" }}
             className="relative z-10 flex flex-col items-center"
           >
+            <div className="mb-4">
+              <span className="relative block" style={{ width: 64, height: 64 }}>
+                <Image src="/assets/logo.png" alt="GLB logo" fill className="object-contain drop-shadow" />
+              </span>
+            </div>
             <h1 className="font-display text-4xl sm:text-5xl text-white drop-shadow-lg mb-4 text-center">
               Welcome to the GLB Experience
             </h1>

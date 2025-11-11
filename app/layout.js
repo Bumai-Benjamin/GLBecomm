@@ -22,7 +22,33 @@ export const metadata = {
   title: 'Give Love Back — Create with Purpose. Impact with Heart.',
   description:
     'Give Love Back is a creative brand blending design, compassion, and purpose. Discover visual experiences that inspire kindness, creativity, and human connection.',
-}
+  icons: {
+    icon: '/assets/logo.png',
+    shortcut: '/assets/logo.png',
+    apple: '/assets/logo.png',
+  },
+  openGraph: {
+    title: 'Give Love Back',
+    description: 'Community-first fashion & creative movement.',
+    url: 'https://giveloveback.example',
+    siteName: 'Give Love Back',
+    images: [
+      {
+        url: '/assets/logo.png',
+        width: 512,
+        height: 512,
+        alt: 'Give Love Back Logo',
+      },
+    ],
+    type: 'website',
+  },
+  twitter: {
+    card: 'summary',
+    title: 'Give Love Back',
+    description: 'Community-first fashion & creative movement.',
+    images: ['/assets/logo.png'],
+  },
+};
 
 export default function RootLayout({ children }) {
   return (
