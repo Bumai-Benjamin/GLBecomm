@@ -6,22 +6,22 @@ import { motion } from "framer-motion";
 
 const collections = [
   {
-    title: "Nightshift Capsule",
-    copy: "Modular outerwear made with our community in mind—heat‑responsive graphics, concealed pocketing, and details that carry love through late‑night runs.",
-    tag: "Drop 05",
-    image: "/assets/IMG-20250919-WA0014.jpg",
-  },
-  {
-    title: "Studio Essentials",
-    copy: "Everyday staples reimagined for collaboration—premium cotton, clean lines, and finishes that let others shine.",
-    tag: "Core",
+    title: "Embrace It Collection",
+    copy: "Whatever comes, meet it with love. The Embrace It tees are cut in a unisex fit with bold graphics that keep your truth front and centre in everyday moments.",
+    tag: "T-Shirts",
     image: "/assets/classicblack.jpg",
   },
   {
-    title: "Motion Ready",
-    copy: "Motion‑ready layers built to move together—reflective panels, breathable tech, and silhouettes that travel from open‑air pop‑ups to city nights.",
-    tag: "Velocity",
-    image: "/assets/IMG-20250919-WA0032.jpg",
+    title: "GLB Classic Collection",
+    copy: "Give . Love . Back. Our Classic tees remix the core mantra across colourways like pink, purple, black, white, and blue—designed to layer with anything and still carry the message.",
+    tag: "Signature",
+    image: "/assets/bestipink.jpg",
+  },
+  {
+    title: "Accessories & Winter Lore",
+    copy: "From trucker hats and canvas totes to the Love Dept Winter Lore pieces, these layers keep warmth, community, and care close—whether you’re on the move or posted at the function.",
+    tag: "Accessories",
+    image: "/assets/truckerblack.jpg",
   },
 ];
 

@@ -6,22 +6,22 @@ import { motion, useScroll, useTransform } from "framer-motion";
 
 const stories = [
   {
-    title: "Rooftop Run",
-    body: "Shot at dawn above the warehouse district. Lightweight puffers layered with reflective mesh harnesses keep the squad visible and mobile.",
+    title: "Street Cache Volume 1",
+    body: "Captured between stalls, decks, and drop moments at Street Cache Volume 1. Embrace It and GLB Classic tees pair with truckers to keep the message visible from every angle.",
     image: "/assets/IMG-20250919-WA0041.jpg",
-    vibe: "Field Test",
+    vibe: "In Session",
   },
   {
-    title: "Transit Drift",
-    body: "Captured in the glow of late-night transit. Utility trousers with magnetic seams pair with modular overshirts for quick shifts.",
+    title: "Studio Layouts",
+    body: "Flat lays inside the GLB studio. Classic tees, totes, and accessories come together on the table before heading out into the city.",
     image: "/assets/IMG-20250919-WA0032.jpg",
-    vibe: "In Motion",
+    vibe: "Behind The Scenes",
   },
   {
-    title: "Studio Reset",
-    body: "A calm moment inside the atelier. Soft organic cotton blends with laser-cut vents and tonal embroidery across the capsule.",
+    title: "Winter Lore Session",
+    body: "Colder nights, warmer layers. Love Dept Winter Lore pieces sit alongside GLB truckers and totes as the crew resets between sets.",
     image: "/assets/IMG-20250919-WA0025.jpg",
-    vibe: "At Rest",
+    vibe: "Winter Lore",
   },
 ];
 
