@@ -88,9 +88,9 @@ export default function GalleryPage() {
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.6 }}
       >
-        <div className="flex items-center gap-3">
+        <div className="flex flex-wrap items-center gap-2">
           <Logo size={22} />
-          <span className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-4 py-1 text-[0.65rem] font-semibold uppercase tracking-[0.4em] text-tide/80">
+          <span className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-4 py-1 text-[0.55rem] font-semibold uppercase tracking-[0.25em] text-tide/80 sm:text-[0.65rem] sm:tracking-[0.4em]">
             Event Gallery
           </span>
         </div>
@@ -122,7 +122,7 @@ export default function GalleryPage() {
           </select>
         </div>
         <div className="text-xs text-clay/60">{images.length} image{images.length === 1 ? '' : 's'}</div>
-        <div className="hidden flex-1 items-center justify-end gap-2 sm:flex">
+        <div className="flex w-full flex-wrap items-center justify-start gap-2 sm:flex-1 sm:justify-end">
           <button
             type="button"
             onClick={() => setLayoutMode("bento")}

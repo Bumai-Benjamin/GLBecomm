@@ -105,7 +105,7 @@ export default function Hero() {
 
       <div className="relative z-10 mx-auto max-w-6xl">
         <motion.span
-          className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-4 py-2 text-xs font-medium uppercase tracking-[0.38em] text-clay backdrop-blur"
+          className="inline-flex flex-wrap items-center gap-2 rounded-full border border-white/10 bg-white/5 px-4 py-2 text-[0.6rem] font-medium uppercase tracking-[0.25em] text-clay backdrop-blur sm:text-xs sm:tracking-[0.38em]"
           initial={{ opacity: 0, y: 10 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.1, duration: 0.6, ease: [0.17, 0.67, 0.36, 0.99] }}
@@ -114,7 +114,7 @@ export default function Hero() {
         </motion.span>
 
         <motion.h1
-          className="mt-8 max-w-3xl font-display text-5xl leading-[1.05] tracking-tight text-sand md:text-6xl lg:text-7xl"
+          className="mt-8 max-w-3xl font-display text-4xl leading-[1.05] tracking-tight text-sand sm:text-5xl md:text-6xl lg:text-7xl"
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.2, duration: 0.65, ease: [0.17, 0.67, 0.36, 0.99] }}

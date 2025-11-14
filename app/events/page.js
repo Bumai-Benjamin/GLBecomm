@@ -33,9 +33,9 @@ export default function EventsPage() {
       <RsvpModal isOpen={rsvpModal.isOpen} onClose={closeRsvp} event={rsvpModal.event} />
 
       <header className="max-w-3xl space-y-6">
-        <div className="flex items-center gap-3">
+        <div className="flex flex-wrap items-center gap-2">
           <Logo size={22} />
-          <span className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-4 py-1 text-[0.65rem] font-semibold uppercase tracking-[0.4em] text-tide/80">
+          <span className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-4 py-1 text-[0.55rem] font-semibold uppercase tracking-[0.25em] text-tide/80 sm:text-[0.65rem] sm:tracking-[0.4em]">
             Community Event
           </span>
         </div>

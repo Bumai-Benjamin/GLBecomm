@@ -7,9 +7,9 @@ export default function Store() {
   return (
     <main className="mx-auto flex min-h-[80vh] max-w-4xl flex-col items-center justify-center px-6 pb-24 pt-32 text-center sm:px-10 sm:pt-36">
       <div className="space-y-8">
-        <div className="inline-flex items-center gap-3">
+        <div className="inline-flex flex-wrap items-center gap-2">
           <Logo size={24} />
-          <span className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-4 py-2 text-[0.65rem] font-semibold uppercase tracking-[0.4em] text-flare/80">
+          <span className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-4 py-2 text-[0.55rem] font-semibold uppercase tracking-[0.25em] text-flare/80 sm:text-[0.65rem] sm:tracking-[0.4em]">
             Store
           </span>
         </div>

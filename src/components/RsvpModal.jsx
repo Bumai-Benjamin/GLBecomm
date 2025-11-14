@@ -72,7 +72,7 @@ export default function RsvpModal({ isOpen, onClose, event }) {
     <AnimatePresence>
       {isOpen && (
         <motion.div
-          className="fixed inset-0 z-50 flex items-center justify-center px-4"
+          className="fixed inset-0 z-50 overflow-y-auto px-4 py-10"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}
@@ -80,15 +80,16 @@ export default function RsvpModal({ isOpen, onClose, event }) {
         >
           <div className="absolute inset-0 bg-black/80 backdrop-blur-sm" />
 
-          <motion.div
-            className="relative z-10 w-full max-w-2xl overflow-hidden rounded-[36px] border border-white/10 bg-gradient-to-br from-charcoal via-ash to-charcoal shadow-2xl"
+          <div className="relative z-10 flex min-h-full items-center justify-center">
+            <motion.div
+              className="w-full max-w-2xl overflow-hidden rounded-[36px] border border-white/10 bg-gradient-to-br from-charcoal via-ash to-charcoal shadow-2xl"
             initial={{ scale: 0.95, y: 20 }}
             animate={{ scale: 1, y: 0 }}
             exit={{ scale: 0.95, y: 20 }}
             onClick={(e) => e.stopPropagation()}
-          >
-            <div className="p-8 sm:p-10">
-              <div className="flex items-start justify-between">
+            >
+              <div className="max-h-[90vh] overflow-y-auto p-6 sm:p-10">
+              <div className="flex flex-col gap-4 sm:flex-row sm:items-start sm:justify-between">
                 <div>
                   <h2 className="font-display text-3xl text-sand">{event.title}</h2>
                   <p className="mt-2 text-sm text-clay/75">
@@ -101,7 +102,7 @@ export default function RsvpModal({ isOpen, onClose, event }) {
                 <button
                   type="button"
                   onClick={onClose}
-                  className="rounded-full p-2 text-sand/60 transition hover:bg-white/10 hover:text-sand"
+                  className="self-end rounded-full p-2 text-sand/60 transition hover:bg-white/10 hover:text-sand"
                   aria-label="Close modal"
                 >
                   <svg className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -191,7 +192,7 @@ export default function RsvpModal({ isOpen, onClose, event }) {
                   </div>
                 )}
 
-                <div className="flex justify-end gap-4">
+                <div className="flex flex-wrap justify-end gap-4">
                   <button
                     type="button"
                     onClick={onClose}
@@ -208,8 +209,9 @@ export default function RsvpModal({ isOpen, onClose, event }) {
                   </button>
                 </div>
               </form>
-            </div>
-          </motion.div>
+              </div>
+            </motion.div>
+          </div>
         </motion.div>
       )}
     </AnimatePresence>

@@ -53,44 +53,47 @@ export default function AdminDashboardPage() {
     };
   }, []);
 
-  const exportRsvps = () => {
+  const rsvpHeaders = [
+    "Name",
+    "Email",
+    "Phone",
+    "Event Title",
+    "Event Date",
+    "Guests",
+    "Status",
+    "Message",
+    "Created At",
+  ];
+
+  const buildRsvpRecords = () =>
+    rsvps.map((rsvp) => ({
+      Name: rsvp.name,
+      Email: rsvp.email,
+      Phone: rsvp.phone || "",
+      "Event Title": rsvp.eventTitle,
+      "Event Date": rsvp.eventDate,
+      Guests: rsvp.guests,
+      Status: rsvp.status,
+      Message: rsvp.message || "",
+      "Created At": new Date(rsvp.createdAt).toLocaleString(),
+    }));
+
+  const exportRsvpsCsv = () => {
     if (!rsvps.length) {
       alert("No RSVP data available to export yet.");
       return;
     }
 
-    const headers = [
-      "Name",
-      "Email",
-      "Phone",
-      "Event Title",
-      "Event Date",
-      "Guests",
-      "Status",
-      "Message",
-      "Created At",
-    ];
-
-    const escape = (value) => {
+    const escapeCell = (value) => {
       if (value === null || value === undefined) return "";
       const str = String(value).replace(/"/g, '""');
       return `"${str}"`;
     };
 
-    const rows = rsvps.map((rsvp) => [
-      rsvp.name,
-      rsvp.email,
-      rsvp.phone,
-      rsvp.eventTitle,
-      rsvp.eventDate,
-      rsvp.guests,
-      rsvp.status,
-      rsvp.message,
-      new Date(rsvp.createdAt).toLocaleString(),
-    ]);
-
-    const csvLines = [headers, ...rows]
-      .map((row) => row.map(escape).join(","))
+    const records = buildRsvpRecords();
+    const rows = records.map((record) => rsvpHeaders.map((header) => record[header] ?? ""));
+    const csvLines = [rsvpHeaders, ...rows]
+      .map((row) => row.map(escapeCell).join(","))
       .join("\n");
 
     const blob = new Blob([csvLines], { type: "text/csv;charset=utf-8;" });
@@ -102,6 +105,20 @@ export default function AdminDashboardPage() {
     link.click();
     document.body.removeChild(link);
     URL.revokeObjectURL(url);
+  };
+
+  const exportRsvpsXlsx = async () => {
+    if (!rsvps.length) {
+      alert("No RSVP data available to export yet.");
+      return;
+    }
+
+    const { utils, writeFile } = await import("xlsx");
+    const records = buildRsvpRecords();
+    const worksheet = utils.json_to_sheet(records, { header: rsvpHeaders });
+    const workbook = utils.book_new();
+    utils.book_append_sheet(workbook, worksheet, "RSVPs");
+    writeFile(workbook, `glb-rsvps-${new Date().toISOString().split("T")[0]}.xlsx`);
   };
 
   const stats = useMemo(() => {
@@ -180,17 +197,25 @@ export default function AdminDashboardPage() {
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.6 }}
       >
-        <div className="flex flex-wrap items-center gap-3">
-          <Logo size={22} />
-          <span className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-4 py-1 text-[0.65rem] font-semibold uppercase tracking-[0.4em] text-tide/80">
-            Admin Command Center
-          </span>
-          <div className="ml-auto">
+        <div className="flex flex-col gap-3 sm:flex-row sm:items-center">
+          <div className="flex flex-wrap items-center gap-2">
+            <Logo size={22} />
+            <span className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-4 py-1 text-[0.55rem] font-semibold uppercase tracking-[0.25em] text-tide/80 sm:text-[0.65rem] sm:tracking-[0.4em]">
+              Admin Command Center
+            </span>
+          </div>
+          <div className="flex flex-wrap gap-2 sm:ml-auto">
             <button
-              onClick={exportRsvps}
+              onClick={exportRsvpsCsv}
               className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-5 py-2 text-[0.6rem] font-semibold uppercase tracking-[0.3em] text-sand transition hover:border-white/30 hover:bg-white/10"
             >
-              ⬇︎ Export RSVPs
+              ⬇︎ Export CSV
+            </button>
+            <button
+              onClick={exportRsvpsXlsx}
+              className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-5 py-2 text-[0.6rem] font-semibold uppercase tracking-[0.3em] text-sand transition hover:border-white/30 hover:bg-white/10"
+            >
+              ⬇︎ Export XLSX
             </button>
           </div>
         </div>

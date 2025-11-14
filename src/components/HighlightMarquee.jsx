@@ -25,7 +25,7 @@ export default function HighlightMarquee() {
         {sequence.map((item, index) => (
           <span
             key={`${item}-${index}`}
-            className="text-xs uppercase tracking-[0.55em] text-clay/70"
+            className="text-[0.6rem] uppercase tracking-[0.35em] text-clay/70 sm:text-xs sm:tracking-[0.55em]"
           >
             {item}
           </span>
