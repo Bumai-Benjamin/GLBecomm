@@ -1,6 +1,8 @@
 import Image from 'next/image'
 import React, {useEffect, useState} from 'react'
 import { createRoot } from 'react-dom/client'
+
+import { formatPrice } from '../lib/pricing'
 import { useCart } from '../state/CartContext'
 
 function CartIcon({onToggle}){
@@ -34,7 +36,7 @@ function MiniCart({visible, onClose}){
               </div>
               <div style={{flex:1}}>
                 <div>{p.name}</div>
-                <div className="price">N$ TBA</div>
+                <div className="price">{formatPrice(p.price)}</div>
                 <div className="qty">
                   <button onClick={()=>change(it.id,-1)}>-</button>
                   <span style={{padding:'0 8px'}}>{it.qty}</span>
@@ -47,7 +49,7 @@ function MiniCart({visible, onClose}){
         })}
       </div>
       <div className="mini-cart-footer">
-  <div className="mini-cart-subtotal">Subtotal: N$ TBA</div>
+  <div className="mini-cart-subtotal">Subtotal: {formatPrice(subtotal)}</div>
         <div>
           <button className="btn" onClick={()=>window.location.href='/store'}>View Cart</button>
           <button className="btn primary" onClick={()=>alert('Checkout not implemented')}>Checkout</button>

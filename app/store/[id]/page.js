@@ -4,6 +4,7 @@ import Image from "next/image";
 import Link from "next/link";
 
 import { PRODUCTS } from "../../../src/data/products";
+import { formatPrice } from "../../../src/lib/pricing";
 import { useCart } from "../../../src/state/CartContext";
 
 export default function ProductDetails({ params }) {
@@ -49,7 +50,7 @@ export default function ProductDetails({ params }) {
             <h1 className="mt-4 font-display text-4xl tracking-tight text-sand">{product.name}</h1>
             <div className="mt-4 flex items-center gap-4 text-xs uppercase tracking-[0.35em] text-clay/70">
               <span className="rounded-full border border-white/10 bg-black/30 px-4 py-2 text-sm text-sand">
-                {product.price.toLocaleString("en-US", { style: "currency", currency: "USD" })}
+                {formatPrice(product.price)}
               </span>
               <span>Tax Included</span>
             </div>

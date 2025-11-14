@@ -26,14 +26,14 @@ export default function ProductCarousel() {
 
   // Auto-advance carousel every 4 seconds
   useEffect(() => {
-    if (isPaused) return;
+    if (isPaused) return undefined;
 
     const interval = setInterval(() => {
-      goToNext();
+      setCurrentIndex((prev) => (prev + 1) % featured.length);
     }, 4000);
 
     return () => clearInterval(interval);
-  }, [currentIndex, isPaused]);
+  }, [featured.length, isPaused]);
 
   return (
     <section className="mx-auto flex w-full max-w-6xl flex-col gap-10 px-6 sm:px-10">

@@ -56,12 +56,26 @@ export default function Navbar() {
       <div className="mx-auto flex w-full max-w-6xl items-center justify-between px-6 py-5 sm:px-10">
         <Logo size={30} />
 
-        <nav className="hidden items-center gap-8 md:flex">
-          {NAV_LINKS.map(({ href, label }) => (
-            <Link key={href} href={href} className={linkClass(href)}>
-              {label}
-            </Link>
-          ))}
+        <nav className="hidden items-center gap-6 md:flex">
+          {NAV_LINKS.map(({ href, label }) => {
+            const isStore = href === "/store";
+            if (isStore) {
+              return (
+                <Link
+                  key={href}
+                  href={href}
+                  className="inline-flex items-center rounded-full bg-gradient-to-r from-flare via-pulse to-flare px-5 py-2 text-[0.65rem] font-semibold uppercase tracking-[0.25em] text-ink shadow-[0_12px_22px_rgba(255,107,61,0.32)] transition hover:shadow-[0_16px_28px_rgba(255,107,61,0.4)]"
+                >
+                  {label}
+                </Link>
+              );
+            }
+            return (
+              <Link key={href} href={href} className={linkClass(href)}>
+                {label}
+              </Link>
+            );
+          })}
         </nav>
 
         <div className="flex items-center gap-4">
@@ -101,15 +115,20 @@ export default function Navbar() {
             transition={{ duration: 0.3, ease: "easeOut" }}
           >
             <div className="space-y-6 border-t border-white/5 bg-black/85 px-6 pb-8 pt-6 backdrop-blur-xl">
-              {NAV_LINKS.map(({ href, label }) => (
-                <Link
-                  key={href}
-                  href={href}
-                  className="block text-sm uppercase tracking-[0.4em] text-sand/80 transition hover:text-flare"
-                >
-                  {label}
-                </Link>
-              ))}
+              {NAV_LINKS.map(({ href, label }) => {
+                const isStore = href === "/store";
+                return (
+                  <Link
+                    key={href}
+                    href={href}
+                    className={`block text-sm uppercase tracking-[0.4em] transition ${
+                      isStore ? "text-flare" : "text-sand/80 hover:text-flare"
+                    }`}
+                  >
+                    {label}
+                  </Link>
+                );
+              })}
             </div>
           </motion.div>
         )}
