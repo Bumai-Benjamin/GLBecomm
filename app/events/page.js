@@ -19,8 +19,20 @@ const EVENT = {
 export default function EventsPage() {
   const featured = useMemo(() => [EVENT], []);
   const [rsvpModal, setRsvpModal] = useState({ isOpen: false, event: null });
+  const [rsvpClosedMessage, setRsvpClosedMessage] = useState("");
 
   const openRsvp = (event) => {
+    const now = new Date();
+    const closingTime = new Date(now);
+    closingTime.setHours(15, 0, 0, 0); // 3:00 PM local time
+
+    if (now >= closingTime) {
+      setRsvpClosedMessage("RSVPs for this event are now closed.");
+      setRsvpModal({ isOpen: false, event: null });
+      return;
+    }
+
+    setRsvpClosedMessage("");
     setRsvpModal({ isOpen: true, event });
   };
 
@@ -31,6 +43,12 @@ export default function EventsPage() {
   return (
     <main className="mx-auto max-w-6xl px-6 pb-24 pt-32 sm:px-10 sm:pt-36">
       <RsvpModal isOpen={rsvpModal.isOpen} onClose={closeRsvp} event={rsvpModal.event} />
+
+      {rsvpClosedMessage && (
+        <p className="mb-4 rounded-2xl border border-white/10 bg-white/5 px-4 py-3 text-xs font-semibold uppercase tracking-[0.3em] text-clay/70">
+          {rsvpClosedMessage}
+        </p>
+      )}
 
       <header className="max-w-3xl space-y-6">
         <div className="flex flex-wrap items-center gap-2">
