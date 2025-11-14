@@ -1,12 +1,16 @@
 "use client";
+import Logo from "../../src/components/Logo";
 
 export default function Contact() {
   return (
     <main className="mx-auto flex max-w-4xl flex-col gap-10 px-6 pb-24 pt-32 sm:px-10 sm:pt-36">
       <header className="space-y-6">
-        <span className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-4 py-1 text-[0.65rem] font-semibold uppercase tracking-[0.4em] text-flare/80">
-          Contact
-        </span>
+        <div className="flex items-center gap-3">
+          <Logo size={22} />
+          <span className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-4 py-1 text-[0.65rem] font-semibold uppercase tracking-[0.4em] text-flare/80">
+            Contact
+          </span>
+        </div>
         <h1 className="font-display text-4xl tracking-tight text-sand sm:text-5xl">Let’s build something meaningful</h1>
         <p className="max-w-2xl text-sm leading-relaxed text-clay/75">
           Whether you’re a brand, creative, or friend of the movement, we’d love to hear from you. Let’s create work

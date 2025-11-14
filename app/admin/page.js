@@ -3,6 +3,7 @@
 import { useEffect, useMemo, useState } from "react";
 import Link from "next/link";
 import { motion } from "framer-motion";
+import Logo from "../../src/components/Logo";
 
 export default function AdminDashboardPage() {
   const [events, setEvents] = useState([]);
@@ -51,6 +52,57 @@ export default function AdminDashboardPage() {
       isActive = false;
     };
   }, []);
+
+  const exportRsvps = () => {
+    if (!rsvps.length) {
+      alert("No RSVP data available to export yet.");
+      return;
+    }
+
+    const headers = [
+      "Name",
+      "Email",
+      "Phone",
+      "Event Title",
+      "Event Date",
+      "Guests",
+      "Status",
+      "Message",
+      "Created At",
+    ];
+
+    const escape = (value) => {
+      if (value === null || value === undefined) return "";
+      const str = String(value).replace(/"/g, '""');
+      return `"${str}"`;
+    };
+
+    const rows = rsvps.map((rsvp) => [
+      rsvp.name,
+      rsvp.email,
+      rsvp.phone,
+      rsvp.eventTitle,
+      rsvp.eventDate,
+      rsvp.guests,
+      rsvp.status,
+      rsvp.message,
+      new Date(rsvp.createdAt).toLocaleString(),
+    ]);
+
+    const csvLines = [headers, ...rows]
+      .map((row) => row.map(escape).join(","))
+      .join("\n");
+
+    const blob = new Blob([csvLines], { type: "text/csv;charset=utf-8;" });
+    const url = URL.createObjectURL(blob);
+    const link = document.createElement("a");
+    link.href = url;
+    link.download = `glb-rsvps-${new Date().toISOString().split("T")[0]}.csv`;
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+    URL.revokeObjectURL(url);
+  };
 
   const stats = useMemo(() => {
     const statusCount = events.reduce(
@@ -128,9 +180,20 @@ export default function AdminDashboardPage() {
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.6 }}
       >
-        <span className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-4 py-1 text-[0.65rem] font-semibold uppercase tracking-[0.4em] text-tide/80">
-          Admin Command Center
-        </span>
+        <div className="flex flex-wrap items-center gap-3">
+          <Logo size={22} />
+          <span className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-4 py-1 text-[0.65rem] font-semibold uppercase tracking-[0.4em] text-tide/80">
+            Admin Command Center
+          </span>
+          <div className="ml-auto">
+            <button
+              onClick={exportRsvps}
+              className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-5 py-2 text-[0.6rem] font-semibold uppercase tracking-[0.3em] text-sand transition hover:border-white/30 hover:bg-white/10"
+            >
+              ⬇︎ Export RSVPs
+            </button>
+          </div>
+        </div>
         <h1 className="mt-4 font-display text-4xl tracking-tight text-sand sm:text-5xl">
           Welcome back, curator
         </h1>

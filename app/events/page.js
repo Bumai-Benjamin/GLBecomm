@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { useMemo, useState } from "react";
 import RsvpModal from "../../src/components/RsvpModal";
+import Logo from "../../src/components/Logo";
 
 const EVENT = {
   title: "Street Cache Volume 1",
@@ -32,9 +33,12 @@ export default function EventsPage() {
       <RsvpModal isOpen={rsvpModal.isOpen} onClose={closeRsvp} event={rsvpModal.event} />
 
       <header className="max-w-3xl space-y-6">
-        <span className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-4 py-1 text-[0.65rem] font-semibold uppercase tracking-[0.4em] text-tide/80">
-          Community Event
-        </span>
+        <div className="flex items-center gap-3">
+          <Logo size={22} />
+          <span className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-4 py-1 text-[0.65rem] font-semibold uppercase tracking-[0.4em] text-tide/80">
+            Community Event
+          </span>
+        </div>
         <h1 className="font-display text-4xl tracking-tight text-sand sm:text-5xl">
           {EVENT.title}
         </h1>

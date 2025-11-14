@@ -1,14 +1,18 @@
 "use client";
 
 import Link from "next/link";
+import Logo from "../../src/components/Logo";
 
 export default function Store() {
   return (
     <main className="mx-auto flex min-h-[80vh] max-w-4xl flex-col items-center justify-center px-6 pb-24 pt-32 text-center sm:px-10 sm:pt-36">
       <div className="space-y-8">
-        <span className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-4 py-2 text-[0.65rem] font-semibold uppercase tracking-[0.4em] text-flare/80">
-          Store
-        </span>
+        <div className="inline-flex items-center gap-3">
+          <Logo size={24} />
+          <span className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-4 py-2 text-[0.65rem] font-semibold uppercase tracking-[0.4em] text-flare/80">
+            Store
+          </span>
+        </div>
 
         <h1 className="font-display text-5xl tracking-tight text-sand sm:text-6xl lg:text-7xl">
           Coming Soon
