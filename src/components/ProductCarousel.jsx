@@ -5,6 +5,7 @@ import Image from "next/image";
 import { motion, AnimatePresence } from "framer-motion";
 
 import { PRODUCTS } from "../data/products";
+import { formatPrice } from "../lib/pricing";
 
 export default function ProductCarousel() {
   const featured = PRODUCTS.slice(0, 6);
@@ -96,7 +97,7 @@ export default function ProductCarousel() {
               <p className="mt-2 max-w-md text-center text-sm leading-relaxed text-clay/75">
                 {featured[currentIndex].description}
               </p>
-              <div className="mt-4 text-xl font-semibold text-flare">N$ TBA</div>
+              <div className="mt-4 text-xl font-semibold text-flare">{formatPrice(featured[currentIndex].price)}</div>
             </motion.div>
           </AnimatePresence>
         </div>

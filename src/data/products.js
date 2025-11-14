@@ -1,107 +1,121 @@
 export const PRODUCTS = [
   {
-    id:'bestipink',
-    name:'Bestie Pink Tee',
-  price:"TBA",
-    file:'bestipink.jpg',
-    description:'Soft premium tee in Bestie Pink. Everyday essential with a purpose.',
-    specs:[
-      {label:'Material', value:'100% Combed Ring-Spun Cotton (180gsm)'},
-      {label:'Fit', value:'Unisex, Regular'},
-      {label:'Print', value:'Screen-printed graphic'},
-      {label:'Care', value:'Machine wash cold, tumble dry low'},
-      {label:'Origin', value:'Responsibly made'},
-      {label:'SKU', value:'GLB-TEE-PNK'}
-    ]
+    id: 'bestipink',
+    name: 'GLB Classic Tee — Pink',
+    collection: 'GLB Classic',
+    price: 250,
+    file: 'bestipink.jpg',
+    description:
+      'Part of the GLB Classic range seen in the catalogue—bold colours that spell out Give. Love. Back. on ultra-soft cotton.',
+    specs: [
+      { label: 'Collection', value: 'GLB Classic' },
+      { label: 'Material', value: '100% Combed Ring-Spun Cotton (180gsm)' },
+      { label: 'Fit', value: 'Unisex, Regular' },
+      { label: 'Sizes', value: 'S, M, L, XL' },
+      { label: 'Colors', value: 'Pink, Purple, Black, White, Blue' },
+      { label: 'SKU', value: 'GLB-TEE-CLSC-PNK' },
+    ],
   },
   {
-    id:'bestiepurple',
-    name:'Bestie Purple Tee',
-  price:"TBA",
-    file:'bestipurple.jpg',
-    description:'Limited Bestie Purple colorway. Clean, ultra-soft finish.',
-    specs:[
-      {label:'Material', value:'100% Combed Ring-Spun Cotton (180gsm)'},
-      {label:'Fit', value:'Unisex, Regular'},
-      {label:'Print', value:'Screen-printed graphic'},
-      {label:'Care', value:'Machine wash cold, tumble dry low'},
-      {label:'Origin', value:'Responsibly made'},
-      {label:'SKU', value:'GLB-TEE-PUR'}
-    ]
+    id: 'bestiepurple',
+    name: 'GLB Classic Tee — Purple',
+    collection: 'GLB Classic',
+    price: 250,
+    file: 'bestipurple.jpg',
+    description:
+      'A premium tee inspired by the GLB Classic story—statement typography, saturated hues, and a reminder to give love back.',
+    specs: [
+      { label: 'Collection', value: 'GLB Classic' },
+      { label: 'Material', value: '100% Combed Ring-Spun Cotton (180gsm)' },
+      { label: 'Fit', value: 'Unisex, Regular' },
+      { label: 'Sizes', value: 'S, M, L, XL' },
+      { label: 'Colors', value: 'Pink, Purple, Black, White, Blue' },
+      { label: 'SKU', value: 'GLB-TEE-CLSC-PUR' },
+    ],
   },
   {
-    id:'classicblack',
-    name:'Classic Black Tee',
-  price:"TBA",
-    file:'classicblack.jpg',
-    description:'Timeless black tee in a breathable weight for daily wear.',
-    specs:[
-      {label:'Material', value:'100% Cotton (180gsm)'},
-      {label:'Fit', value:'Unisex, Regular'},
-      {label:'Neck', value:'Crew neck, ribbed'},
-      {label:'Care', value:'Machine wash cold, line dry'},
-      {label:'Origin', value:'Responsibly made'},
-      {label:'SKU', value:'GLB-TEE-BLK'}
-    ]
+    id: 'classicblack',
+    name: 'Embrace It Tee — Black',
+    collection: 'Embrace It',
+    price: 200,
+    file: 'classicblack.jpg',
+    description:
+      'From the Embrace It capsule—designed to “wear your truth” and keep love front and centre in everyday fits.',
+    specs: [
+      { label: 'Collection', value: 'Embrace It' },
+      { label: 'Material', value: '100% Cotton (180gsm)' },
+      { label: 'Fit', value: 'Unisex, Regular' },
+      { label: 'Sizes', value: 'S, M, L, XL' },
+      { label: 'Colors', value: 'Black, Brown, White, Purple, Green' },
+      { label: 'SKU', value: 'GLB-TEE-EMB-BLK' },
+    ],
   },
   {
-    id:'classicwhite',
-    name:'Classic White Tee',
-  price:"TBA",
-    file:'classicwhite.jpg',
-    description:'Clean white tee—crisp lines, soft handfeel.',
-    specs:[
-      {label:'Material', value:'100% Cotton (180gsm)'},
-      {label:'Fit', value:'Unisex, Regular'},
-      {label:'Neck', value:'Crew neck, ribbed'},
-      {label:'Care', value:'Machine wash cold, line dry'},
-      {label:'Origin', value:'Responsibly made'},
-      {label:'SKU', value:'GLB-TEE-WHT'}
-    ]
+    id: 'classicwhite',
+    name: 'Embrace It Tee — White',
+    collection: 'Embrace It',
+    price: 200,
+    file: 'classicwhite.jpg',
+    description:
+      'Lightweight edition of the Embrace It drop—built for those who meet every moment head-on with compassion.',
+    specs: [
+      { label: 'Collection', value: 'Embrace It' },
+      { label: 'Material', value: '100% Cotton (180gsm)' },
+      { label: 'Fit', value: 'Unisex, Regular' },
+      { label: 'Sizes', value: 'S, M, L, XL' },
+      { label: 'Colors', value: 'Black, Brown, White, Purple, Green' },
+      { label: 'SKU', value: 'GLB-TEE-EMB-WHT' },
+    ],
   },
   {
-    id:'totebag',
-    name:'Canvas Tote Bag',
-  price:"TBA",
-    file:'totebag.jpg',
-    description:'Durable canvas tote for everyday carry—books, groceries, everything.',
-    specs:[
-      {label:'Material', value:'100% Cotton Canvas (12oz)'},
-      {label:'Size', value:'38 × 42 cm (handles 66 cm)'},
-      {label:'Capacity', value:'~15L'},
-      {label:'Care', value:'Spot clean recommended'},
-      {label:'Origin', value:'Responsibly made'},
-      {label:'SKU', value:'GLB-TOTE-NAT'}
-    ]
+    id: 'totebag',
+    name: 'Give Love Back Tote',
+    collection: 'Accessories',
+    price: 180,
+    file: 'totebag.jpg',
+    description:
+      'As seen in the Accessories section—heavy-duty canvas that carries groceries, books, or creative tools with meaning.',
+    specs: [
+      { label: 'Collection', value: 'Accessories' },
+      { label: 'Material', value: '100% Cotton Canvas (12oz)' },
+      { label: 'Size', value: '38 × 42 cm (handles 66 cm)' },
+      { label: 'Colors', value: 'Beige' },
+      { label: 'Care', value: 'Spot clean recommended' },
+      { label: 'SKU', value: 'GLB-TOTE-ACC' },
+    ],
   },
   {
-    id:'truckerblack',
-    name:'Trucker Cap Black',
-  price:"TBA",
-    file:'truckerblack.jpg',
-    description:'Classic black trucker with breathable mesh and curved brim.',
-    specs:[
-      {label:'Crown', value:'5-panel, mid profile'},
-      {label:'Closure', value:'Adjustable snapback'},
-      {label:'Visor', value:'Curved bill'},
-      {label:'Material', value:'Cotton front, polyester mesh back'},
-      {label:'Origin', value:'Responsibly made'},
-      {label:'SKU', value:'GLB-CAP-BLK'}
-    ]
+    id: 'truckerblack',
+    name: 'Trucker Hat — Black',
+    collection: 'Accessories',
+    price: 200,
+    file: 'truckerblack.jpg',
+    description:
+      'Crowned in the Accessories spread—mesh-backed trucker with the GLB mantra, ready for block parties and pop-ups.',
+    specs: [
+      { label: 'Collection', value: 'Accessories' },
+      { label: 'Crown', value: '5-panel, mid profile' },
+      { label: 'Closure', value: 'Adjustable snapback' },
+      { label: 'Colors', value: 'Black, Beige, Grey' },
+      { label: 'Material', value: 'Cotton front, polyester mesh back' },
+      { label: 'SKU', value: 'GLB-CAP-ACC-BLK' },
+    ],
   },
   {
-    id:'truckerwhite',
-    name:'Trucker Cap White',
-  price:"TBA",
-    file:'truckerwhite.jpg',
-    description:'White trucker cap with snapback closure and breathable mesh.',
-    specs:[
-      {label:'Crown', value:'5-panel, mid profile'},
-      {label:'Closure', value:'Adjustable snapback'},
-      {label:'Visor', value:'Curved bill'},
-      {label:'Material', value:'Cotton front, polyester mesh back'},
-      {label:'Origin', value:'Responsibly made'},
-      {label:'SKU', value:'GLB-CAP-WHT'}
-    ]
+    id: 'truckerwhite',
+    name: 'Trucker Hat — Beige',
+    collection: 'Accessories',
+    price: 200,
+    file: 'truckerwhite.jpg',
+    description:
+      'A softer take on the GLB crown—same breathable build, finished in the beige colourway from the catalogue.',
+    specs: [
+      { label: 'Collection', value: 'Accessories' },
+      { label: 'Crown', value: '5-panel, mid profile' },
+      { label: 'Closure', value: 'Adjustable snapback' },
+      { label: 'Colors', value: 'Black, Beige, Grey' },
+      { label: 'Material', value: 'Cotton front, polyester mesh back' },
+      { label: 'SKU', value: 'GLB-CAP-ACC-BEG' },
+    ],
   },
 ]

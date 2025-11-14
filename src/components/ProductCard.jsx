@@ -1,6 +1,7 @@
 import Image from 'next/image'
 import Link from 'next/link'
 
+import { formatPrice } from '../lib/pricing'
 import { useCart } from '../state/CartContext'
 
 export default function ProductCard({ p }) {
@@ -17,7 +18,7 @@ export default function ProductCard({ p }) {
           className="object-cover transition duration-700 group-hover:scale-105"
         />
         <span className="absolute left-4 top-4 rounded-full border border-white/10 bg-black/40 px-3 py-1 text-[0.6rem] uppercase tracking-[0.35em] text-sand/80">
-          N$ {p.price}
+          {formatPrice(p.price)}
         </span>
       </Link>
 
