@@ -14,7 +14,7 @@ const PRODUCT_MAP = PRODUCTS.reduce((accumulator, product) => {
   return accumulator;
 }, {});
 
-export default function CartWidget() {
+export default function CartWidget({ isLight = false }) {
   const { cart, change, remove } = useCart();
   const [open, setOpen] = useState(false);
   const panelRef = useRef(null);
@@ -67,7 +67,11 @@ export default function CartWidget() {
         onClick={() => setOpen((value) => !value)}
         aria-haspopup="dialog"
         aria-expanded={open}
-        className="relative flex h-11 w-11 items-center justify-center rounded-full border border-white/10 bg-black/40 text-sand transition hover:border-white/30"
+        className={`relative flex h-11 w-11 items-center justify-center rounded-full border transition ${
+          isLight
+            ? "border-black/10 bg-white/40 text-black hover:border-black/30"
+            : "border-white/10 bg-black/40 text-sand hover:border-white/30"
+        }`}
       >
         <svg
           xmlns="http://www.w3.org/2000/svg"

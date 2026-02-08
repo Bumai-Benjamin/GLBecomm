@@ -8,7 +8,12 @@ export default function LoadingScreen() {
   const [visible, setVisible] = useState(true);
 
   useEffect(() => {
-    const timer = setTimeout(() => setVisible(false), 2200);
+    const timer = setTimeout(() => {
+      setVisible(false);
+      if (typeof window !== "undefined") {
+        window.dispatchEvent(new Event("glb-loading-complete"));
+      }
+    }, 2200);
     return () => clearTimeout(timer);
   }, []);
 
@@ -32,17 +37,22 @@ export default function LoadingScreen() {
             initial={{ opacity: 0, scale: 0.9 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.6, ease: "easeOut" }}
-            className="relative z-10 flex flex-col items-center"
+            className="relative z-10 flex flex-col items-center px-6"
           >
-            <div className="mb-4">
+            <div className="mb-6 md:mb-8 lg:mb-10">
               <span className="relative block" style={{ width: 64, height: 64 }}>
-                <Image src="/assets/logo.png" alt="GLB logo" fill className="object-contain drop-shadow" />
+                <Image 
+                  src="/assets/logo.png" 
+                  alt="GLB logo" 
+                  fill 
+                  className="object-contain drop-shadow-2xl md:scale-125 lg:scale-150" 
+                />
               </span>
             </div>
-            <h1 className="font-display text-4xl sm:text-5xl text-white drop-shadow-lg mb-4 text-center">
+            <h1 className="font-display text-4xl sm:text-5xl md:text-6xl lg:text-7xl text-white drop-shadow-lg mb-6 md:mb-8 lg:mb-10 text-center max-w-4xl leading-tight">
               Welcome to the GLB Experience
             </h1>
-            <div className="w-16 h-16 border-4 border-flare border-t-transparent rounded-full animate-spin mb-2" />
+            <div className="w-16 h-16 md:w-20 md:h-20 lg:w-24 lg:h-24 border-4 md:border-[5px] lg:border-[6px] border-flare border-t-transparent rounded-full animate-spin" />
           </motion.div>
         </motion.div>
       )}

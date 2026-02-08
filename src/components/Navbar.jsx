@@ -13,6 +13,7 @@ const NAV_LINKS = [
   { href: "/store", label: "Store" },
   { href: "/about", label: "About" },
   { href: "/events", label: "Events" },
+  { href: "/gallery", label: "Gallery" },
   { href: "/contact", label: "Contact" },
 ];
 
@@ -20,6 +21,8 @@ export default function Navbar() {
   const pathname = usePathname();
   const [menuOpen, setMenuOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  const isLandingPage = pathname === "/";
+
   useEffect(() => {
     const handleScroll = () => setScrolled(window.scrollY > 24);
     handleScroll();
@@ -42,10 +45,19 @@ export default function Navbar() {
 
   const linkClass = (href) => {
     const isActive = href === "/" ? pathname === "/" : pathname?.startsWith(href);
+    if (isLandingPage) {
+      return `relative text-xs uppercase tracking-[0.38em] transition ${
+        isActive ? "text-flare" : "text-black/80 hover:text-black"
+      }`;
+    }
     return `relative text-xs uppercase tracking-[0.38em] transition ${
       isActive ? "text-flare" : "text-sand/80 hover:text-sand"
     }`;
   };
+
+  if (isLandingPage) {
+    return null;
+  }
 
   return (
     <header
@@ -54,7 +66,7 @@ export default function Navbar() {
       }`}
     >
       <div className="mx-auto flex w-full max-w-6xl items-center justify-between px-6 py-5 sm:px-10">
-        <Logo size={30} />
+        <Logo size={30} isLight={false} />
 
         <nav className="hidden items-center gap-6 md:flex">
           {NAV_LINKS.map(({ href, label }) => {
@@ -79,7 +91,7 @@ export default function Navbar() {
         </nav>
 
         <div className="flex items-center gap-4">
-          <CartWidget />
+          <CartWidget isLight={false} />
           <button
             type="button"
             aria-label="Toggle navigation"

@@ -3,7 +3,7 @@
 import Image from "next/image";
 import Link from "next/link";
 
-export default function Logo({ href = "/", size = 28, showWordmark = false }) {
+export default function Logo({ href = "/", size = 28, showWordmark = false, isLight = false }) {
   // Uses the provided PNG from attachments placed in /public/assets/logo.png
   // Falls back to text if image fails to load
   return (
@@ -14,12 +14,22 @@ export default function Logo({ href = "/", size = 28, showWordmark = false }) {
           alt="GLB logo"
           fill
           sizes={`${size}px`}
-          className="object-contain drop-shadow-[0_2px_6px_rgba(0,0,0,0.35)]"
+          className={`object-contain ${
+            isLight
+              ? "drop-shadow-[0_2px_6px_rgba(0,0,0,0.15)]"
+              : "drop-shadow-[0_2px_6px_rgba(0,0,0,0.35)]"
+          }`}
           priority
         />
       </span>
       {showWordmark && (
-        <span className="font-display text-lg uppercase tracking-[0.28em] text-sand">Give Love Back</span>
+        <span
+          className={`font-display text-lg uppercase tracking-[0.28em] ${
+            isLight ? "text-black" : "text-sand"
+          }`}
+        >
+          Give Love Back
+        </span>
       )}
     </Link>
   );
