@@ -3,6 +3,7 @@ import { Inter, Cormorant_Garamond, JetBrains_Mono } from 'next/font/google'
 import { Suspense } from 'react'
 
 import Navbar from '@/components/Navbar'
+import { Footer } from '@/components/layout/Footer'
 import Providers from './providers'
 
 import './globals.css'
@@ -95,6 +96,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
             <main id="main" className="flex-1">
               {children}
             </main>
+            <Footer />
           </div>
         </Providers>
       </body>

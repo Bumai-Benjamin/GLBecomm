@@ -44,6 +44,7 @@ type ButtonAsLink = CommonProps & {
   target?: string
   rel?: string
   prefetch?: boolean
+  onClick?: React.MouseEventHandler<HTMLAnchorElement>
 }
 
 export type ButtonProps = ButtonAsButton | ButtonAsLink
@@ -71,13 +72,14 @@ export const Button = forwardRef<HTMLButtonElement | HTMLAnchorElement, ButtonPr
     )
 
     if ('href' in props && typeof props.href === 'string') {
-      const { href, target, rel, prefetch } = props
+      const { href, target, rel, prefetch, onClick: linkClick } = props as ButtonAsLink
       return (
         <Link
           href={href}
           target={target}
           rel={rel}
           prefetch={prefetch}
+          onClick={linkClick}
           ref={ref as React.Ref<HTMLAnchorElement>}
           className={classes}
         >

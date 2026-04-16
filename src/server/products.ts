@@ -25,6 +25,7 @@ export type PublicProduct = {
   minPriceNAD: number
   maxPriceNAD: number
   inStock: boolean
+  seo?: { title?: string; description?: string; ogImage?: string }
   status: 'draft' | 'active' | 'archived'
   publishedAt: string | null
 }
@@ -70,6 +71,7 @@ function toPublic(doc: ProductDoc): PublicProduct {
     minPriceNAD: doc.minPriceNAD,
     maxPriceNAD: doc.maxPriceNAD,
     inStock: doc.inStock,
+    seo: doc.seo ? { title: doc.seo.title ?? undefined, description: doc.seo.description ?? undefined, ogImage: doc.seo.ogImage ?? undefined } : undefined,
     status: doc.status as 'draft' | 'active' | 'archived',
     publishedAt: doc.publishedAt ? new Date(doc.publishedAt).toISOString() : null,
   }

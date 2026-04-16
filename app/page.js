@@ -1,331 +1,184 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
-import gsap from "gsap";
-import Flip from "gsap/Flip";
-import CustomEase from "gsap/CustomEase";
-import SplitType from "split-type";
+import Image from "next/image";
+import Link from "next/link";
+import { useEffect, useMemo, useState } from "react";
 
-gsap.registerPlugin(Flip, CustomEase);
+import { PRODUCTS } from "../src/data/products";
+import { formatPrice } from "../src/lib/pricing";
 
-const imageStack = [
-  "/assets/hero.jpg",
-  "/assets/IMG_8332.jpg",
-  "/assets/IMG_8569.jpg",
-  "/assets/IMG-20250919-WA0044.jpg",
-  "/assets/IMG-20250919-WA0051.jpg",
-  "/assets/IMG_8355.jpg",
-  "/assets/IMG-20250919-WA0081.jpg",
-  "/assets/IMG-20250919-WA0099.jpg",
+const MARQUEE_ITEMS = [
+  "Street Uniform",
+  "Limited Drops",
+  "Namibia",
+  "Community First",
+  "Give Love Back",
+  "Run The City",
 ];
 
 export default function Home() {
-  const rootRef = useRef(null);
-  const [isReady, setIsReady] = useState(false);
-  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [heroSlides, setHeroSlides] = useState([]);
+
+  const campaignImage = heroSlides[0] || "/assets/hero.jpg";
+
+  const featuredProducts = useMemo(() => PRODUCTS.slice(0, 3), []);
 
   useEffect(() => {
-    const handleComplete = () => setIsReady(true);
+    let mounted = true;
 
-    if (typeof window !== "undefined") {
-      window.addEventListener("glb-loading-complete", handleComplete);
-    }
-
-    const fallback = setTimeout(handleComplete, 2600);
-
-    return () => {
-      if (typeof window !== "undefined") {
-        window.removeEventListener("glb-loading-complete", handleComplete);
+    const loadSlides = async () => {
+      try {
+        const response = await fetch("/api/hero-slideshow", { cache: "no-store" });
+        const payload = await response.json();
+        if (!mounted) return;
+        if (payload?.success && Array.isArray(payload.data)) {
+          setHeroSlides(payload.data);
+        }
+      } catch (error) {
+        console.error("Failed to load hero slides", error);
       }
-      clearTimeout(fallback);
+    };
+
+    loadSlides();
+    return () => {
+      mounted = false;
     };
   }, []);
-
-  useEffect(() => {
-    if (mobileMenuOpen) {
-      document.body.style.overflow = "hidden";
-    } else {
-      document.body.style.overflow = "";
-    }
-    return () => {
-      document.body.style.overflow = "";
-    };
-  }, [mobileMenuOpen]);
-
-  useEffect(() => {
-    document.body.classList.add("landing-page");
-    return () => document.body.classList.remove("landing-page");
-  }, []);
-
-  useEffect(() => {
-    if (!isReady) return;
-
-    const root = rootRef.current;
-    if (!root) return;
-
-    CustomEase.create(
-      "hop",
-      "M0,0 C0.355,0.022 0.448,0.079 0.5,0.5 0.542,0.846 0.615,1 1,1 "
-    );
-
-    CustomEase.create(
-      "hop2",
-      "M0,0 C0.078,0.617 0.114,0.716 0.255,0.828 0.373,0.922 0.561,1 1,1 "
-    );
-
-    const splitTarget = root.querySelector(".site-info h2");
-    const splitH2 = splitTarget
-      ? new SplitType(splitTarget, { types: "lines" })
-      : null;
-
-    if (splitH2) {
-      splitH2.lines.forEach((line) => {
-        const text = line.textContent || "";
-        const wrapper = document.createElement("div");
-        wrapper.className = "line";
-        const span = document.createElement("span");
-        span.textContent = text;
-        wrapper.appendChild(span);
-        line.parentNode?.replaceChild(wrapper, line);
-      });
-    }
-
-    const ctx = gsap.context(() => {
-      const q = gsap.utils.selector(root);
-      const mainTl = gsap.timeline();
-      const revealerTl = gsap.timeline();
-      const scaleTl = gsap.timeline();
-
-      revealerTl
-        .to(q(".r-1"), {
-          clipPath: "polygon(0% 0%, 100% 0%, 100% 0%, 0% 0%)",
-          duration: 1.5,
-          ease: "hop",
-        })
-        .to(
-          q(".r-2"),
-          {
-            clipPath: "polygon(0% 100%, 100% 100%, 100% 100%, 0% 100%)",
-            duration: 1.5,
-            ease: "hop",
-          },
-          "<"
-        );
-
-      scaleTl.to(q(".img:first-child"), {
-        scale: 1,
-        duration: 2,
-        ease: "power4.inOut",
-      });
-
-      const images = q(".img:not(:first-child)");
-      images.forEach((img) => {
-        scaleTl.to(
-          img,
-          {
-            opacity: 1,
-            scale: 1,
-            duration: 1.25,
-            ease: "power3.out",
-          },
-          ">-0.95"
-        );
-      });
-
-      mainTl
-        .add(revealerTl)
-        .add(scaleTl, "-=1.25")
-        .add(() => {
-          q(".img:not(.main)").forEach((img) => img.remove());
-
-          const state = Flip.getState(q(".main"));
-
-          const imagesContainer = q(".images")[0];
-          if (imagesContainer) {
-            imagesContainer.classList.add("stacked-container");
-          }
-
-          q(".main").forEach((img, i) => {
-            img.classList.add("stacked");
-            img.style.order = i;
-          });
-
-          gsap.set(q(".img.stacked"), {
-            clearProps: "transform,top,left",
-          });
-
-          return Flip.from(state, {
-            duration: 2,
-            ease: "hop",
-            absolute: true,
-            stagger: { amount: -0.3 },
-          });
-        })
-        .to(q(".word h1, .nav-item p, .line p, .site-info h2 .line span"), {
-          y: 0,
-          duration: 3,
-          ease: "hop2",
-          stagger: 0.1,
-          delay: 1.25,
-        })
-        .to(q(".team-img"), {
-          clipPath: "polygon(0% 100%, 100% 100%, 100% 0%, 0% 0%)",
-          duration: 2,
-          ease: "hop",
-          delay: -4.75,
-        });
-    }, root);
-
-    return () => {
-      ctx.revert();
-      splitH2?.revert();
-    };
-  }, [isReady]);
 
   return (
-    <div ref={rootRef} className="glb-landing">
-      {mobileMenuOpen && (
-        <div
-          className="mobile-menu-backdrop"
-          onClick={() => setMobileMenuOpen(false)}
-        />
-      )}
-      <div className="container">
-        <div className="revealers">
-          <div className="revealer r-1" />
-          <div className="revealer r-2" />
+    <main>
+      <section className="brand-hero relative">
+        <div className="brand-hero-media">
+          <Image src={campaignImage} alt="GLB campaign frame" fill priority className="object-cover" />
+          <div className="brand-hero-overlay" />
         </div>
 
-        <div className="images">
-          {isReady &&
-            imageStack.map((src, index) => (
-              <div
-                key={src}
-                className={`img ${index >= imageStack.length - 3 ? "main" : ""}`}
-              >
-                <img src={src} alt="GLB lookbook" />
-              </div>
+        <div className="brand-shell relative z-10 pb-12 pt-40 sm:pb-16 lg:pb-20 lg:pt-44">
+          <p className="brand-eyebrow">GLB Performance Archive 2026</p>
+          <h1 className="brand-title mt-4 max-w-4xl">Built For The Street. Driven By Heart.</h1>
+          <p className="brand-subtitle mt-6 max-w-2xl text-sm sm:text-base">
+            Inspired by global sport culture and shaped by community, GLB crafts statement essentials for the pace,
+            pressure, and pride of everyday movement.
+          </p>
+
+          <div className="mt-8 flex flex-wrap items-center gap-3">
+            <Link href="/shop" className="brand-button brand-button-primary">
+              Shop The Drop
+            </Link>
+            <Link href="/events" className="brand-button brand-button-ghost">
+              Reserve Event Access
+            </Link>
+          </div>
+
+          <div className="brand-grid mt-10">
+            <article className="brand-stat span-4">
+              <p className="brand-stat-label">Collections</p>
+              <p className="brand-stat-value">06 Capsules</p>
+            </article>
+            <article className="brand-stat span-4">
+              <p className="brand-stat-label">Community Reach</p>
+              <p className="brand-stat-value">4 Founders. 1 Movement.</p>
+            </article>
+            <article className="brand-stat span-4">
+              <p className="brand-stat-label">Current Mode</p>
+              <p className="brand-stat-value">Limited Release</p>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section className="brand-marquee">
+        <div className="brand-marquee-track" aria-hidden="true">
+          {[...MARQUEE_ITEMS, ...MARQUEE_ITEMS].map((item, index) => (
+            <span key={`${item}-${index}`} className="brand-marquee-item">
+              {item}
+            </span>
+          ))}
+        </div>
+      </section>
+
+      <section className="brand-section">
+        <div className="brand-shell">
+          <div className="flex flex-wrap items-end justify-between gap-5">
+            <div>
+              <p className="brand-eyebrow">Featured Pieces</p>
+              <h2 className="mt-3 font-display text-4xl uppercase tracking-[0.03em] text-white sm:text-5xl">
+                Performance-Ready Essentials
+              </h2>
+            </div>
+            <Link href="/shop" className="brand-button brand-button-ghost">
+              View Full Collection
+            </Link>
+          </div>
+
+          <div className="brand-grid mt-8">
+            {featuredProducts.map((product) => (
+              <article key={product.id} className="brand-media-card span-4 rounded-3xl">
+                <Link href={`/shop/${product.id}`} className="block">
+                  <div className="relative h-[380px]">
+                    <Image src={`/assets/${product.file}`} alt={product.name} fill className="object-cover" sizes="(min-width: 768px) 33vw, 100vw" />
+                  </div>
+                  <div className="p-5">
+                    <p className="brand-chip">{product.collection}</p>
+                    <h3 className="mt-4 font-display text-2xl uppercase text-white">{product.name}</h3>
+                    <div className="mt-4 flex items-center justify-between">
+                      <span className="text-sm tracking-[0.18em] text-zinc-300">{formatPrice(product.price)}</span>
+                      <span className="text-xs uppercase tracking-[0.28em] text-zinc-400">Details</span>
+                    </div>
+                  </div>
+                </Link>
+              </article>
             ))}
+          </div>
         </div>
+      </section>
 
-        <div className="hero-content">
-          <div className="site-logo">
-            <div className="word">
-              <h1>GLB</h1>
-            </div>
-            <div className="word">
-              <h1>
-                Give Love Back<sup>©</sup>
-              </h1>
-            </div>
-            <button
-              className="mobile-menu-toggle"
-              onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-              aria-label="Toggle menu"
-            >
-              <span className={mobileMenuOpen ? "open" : ""} />
-              <span className={mobileMenuOpen ? "open" : ""} />
-              <span className={mobileMenuOpen ? "open" : ""} />
-            </button>
-          </div>
-
-          <div className={`nav ${mobileMenuOpen ? "mobile-open" : ""}`}>
-            <div className="nav-item">
-              <a href="/about" onClick={() => setMobileMenuOpen(false)}>
-                <p>About</p>
-              </a>
-            </div>
-            <div className="nav-item">
-              <a href="/store" onClick={() => setMobileMenuOpen(false)}>
-                <p>Collections</p>
-              </a>
-            </div>
-            <div className="nav-item">
-              <a href="/events" onClick={() => setMobileMenuOpen(false)}>
-                <p>Events</p>
-              </a>
-            </div>
-            <div className="nav-item">
-              <a href="/contact" onClick={() => setMobileMenuOpen(false)}>
-                <p>Contact</p>
-              </a>
-            </div>
-          </div>
-
-          <div className="team-img">
-            <img src="/assets/IMG-20260201-WA0324.jpg" alt="GLB team" />
-          </div>
-
-          <div className="site-info">
-            <div className="row">
-              <div className="col">
-                <div className="line">
-                  <p>Featured Drops</p>
-                </div>
-              </div>
-              <div className="col">
-                <h2>
-                  GLB is a community-first fashion label creating timeless
-                  streetwear with purpose, care, and bold minimalism.
-                </h2>
+      <section className="brand-section pt-0">
+        <div className="brand-shell brand-panel rounded-3xl p-7 sm:p-10">
+          <div className="brand-grid items-start">
+            <div className="span-7">
+              <p className="brand-eyebrow">Movement Vision</p>
+              <h2 className="mt-3 font-display text-4xl uppercase leading-[0.95] text-white sm:text-5xl">
+                Not Just What You Wear. What You Represent.
+              </h2>
+              <p className="mt-5 max-w-2xl text-sm leading-relaxed text-zinc-300 sm:text-base">
+                GLB designs apparel as social currency for kindness, ambition, and creative identity. Each release is
+                built to perform in motion while carrying purpose in message.
+              </p>
+              <div className="mt-7 flex flex-wrap gap-3">
+                <Link href="/about" className="brand-button brand-button-primary">
+                  Read Our Story
+                </Link>
+                <Link href="/contact" className="brand-button brand-button-ghost">
+                  Partner With GLB
+                </Link>
               </div>
             </div>
 
-            <div className="row">
-              <div className="col" />
-              <div className="col">
-                <div className="address">
-                  <div className="line">
-                    <p>GLB Studio</p>
-                  </div>
-                  <div className="line">
-                    <p>Windhoek, Namibia</p>
-                  </div>
-                  <div className="line">
-                    <p>Creative District</p>
-                  </div>
-                  <div className="line">
-                    <p>+264 81 000 0000</p>
-                  </div>
-                </div>
-
-                <div className="socials">
-                  <div className="line">
-                    <p>
-                      <a href="mailto:hello@giveloveback.com">
-                        hello@giveloveback.com
-                      </a>
-                    </p>
-                  </div>
-                  <br />
-                  <div className="line">
-                    <p>
-                      <a
-                        href="https://instagram.com/glb"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                      >
-                        Instagram
-                      </a>
-                    </p>
-                  </div>
-                  <div className="line">
-                    <p>
-                      <a
-                        href="https://tiktok.com/@glb"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                      >
-                        TikTok
-                      </a>
-                    </p>
-                  </div>
-                </div>
-              </div>
+            <div className="span-5 brand-panel-soft rounded-2xl p-5 sm:p-6">
+              <p className="brand-eyebrow">Community Pulse</p>
+              <ul className="mt-4 space-y-4 text-sm text-zinc-300">
+                <li className="flex items-start justify-between gap-4 border-b border-white/10 pb-3">
+                  <span>Street Cache Exhibition</span>
+                  <span className="text-zinc-500">Live</span>
+                </li>
+                <li className="flex items-start justify-between gap-4 border-b border-white/10 pb-3">
+                  <span>Insider List</span>
+                  <span className="text-zinc-500">Open</span>
+                </li>
+                <li className="flex items-start justify-between gap-4 border-b border-white/10 pb-3">
+                  <span>Catalog 2026</span>
+                  <span className="text-zinc-500">Published</span>
+                </li>
+                <li className="flex items-start justify-between gap-4">
+                  <span>Collab Submissions</span>
+                  <span className="text-zinc-500">Reviewing</span>
+                </li>
+              </ul>
             </div>
           </div>
         </div>
-      </div>
-    </div>
+      </section>
+    </main>
   );
 }
