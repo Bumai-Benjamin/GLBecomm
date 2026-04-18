@@ -1,0 +1,14 @@
+{
+  "permissions": {
+    "allow": [
+      "WebFetch(domain:www.awwwards.com)",
+      "WebSearch",
+      "mcp__plugin_claude-mem_mcp-search__get_observations",
+      "Bash(xargs cat *)",
+      "Bash(npx tsc *)",
+      "Bash(xargs grep *)",
+      "Bash(git add *)",
+      "Bash(git commit *)"
+    ]
+  }
+}

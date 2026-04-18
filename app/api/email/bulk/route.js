@@ -2,8 +2,14 @@ import { NextResponse } from 'next/server'
 import dbConnect from '../../../../lib/mongodb'
 import Rsvp from '../../../../src/models/Rsvp'
 import { sendBulkEmail } from '../../../../lib/email'
+import { ensureAdminAccess } from '../../../../lib/apiAuth'
 
 export async function POST(request) {
+  const unauthorizedResponse = ensureAdminAccess(request)
+  if (unauthorizedResponse) {
+    return unauthorizedResponse
+  }
+
   try {
     await dbConnect()
 

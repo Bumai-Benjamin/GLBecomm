@@ -1,89 +1,79 @@
-"use client";
-
-import { motion } from "framer-motion";
 import Logo from "../../src/components/Logo";
 
+const PILLARS = [
+    {
+        title: "Purpose-Driven Design",
+        text: "Every garment carries language and structure that reinforces identity, confidence, and connection.",
+    },
+    {
+        title: "Community-Led Culture",
+        text: "We build with people, not around them. GLB creates spaces where creative voices rise together.",
+    },
+    {
+        title: "Limited Precision",
+        text: "Small-batch releases keep quality high, stories clear, and each piece meaningfully owned.",
+    },
+];
+
 export default function AboutPage() {
-  return (
-    <main className="mx-auto max-w-5xl px-6 pb-24 pt-32 sm:px-10 sm:pt-36">
-      <motion.header
-        initial={{ opacity: 0, y: 20 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.6 }}
-        className="mb-10"
-      >
-        <div className="flex flex-wrap items-center gap-2">
-          <Logo size={22} />
-          <span className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-4 py-1 text-[0.55rem] font-semibold uppercase tracking-[0.25em] text-tide/80 sm:text-[0.65rem] sm:tracking-[0.4em]">
-            About GLB
-          </span>
-        </div>
-        <h1 className="mt-4 font-display text-4xl tracking-tight text-sand sm:text-5xl">
-          More than a brand. A movement.
-        </h1>
-        <p className="mt-4 max-w-2xl text-sm leading-relaxed text-clay/75">
-          GLB started with four friends and one belief: fashion can be an act of care, connection, and self‑expression.
-          We build spaces where community shines and creativity gives love back.
-        </p>
-      </motion.header>
+    return (
+        <main className="brand-section pt-32 sm:pt-36">
+            <div className="brand-shell">
+                <header className="brand-panel rounded-3xl p-7 sm:p-10">
+                    <div className="inline-flex items-center gap-3">
+                        <Logo size={23} />
+                        <span className="brand-kicker">About GLB</span>
+                    </div>
+                    <h1 className="brand-title mt-5 max-w-5xl">Built By Friendship. Carried By Purpose.</h1>
+                    <p className="brand-subtitle mt-5 text-sm sm:text-base">
+                        GLB began with four friends and one shared belief: style can move culture when it is rooted in care,
+                        discipline, and bold self-expression.
+                    </p>
+                </header>
 
-      <section className="grid gap-6 md:grid-cols-2">
-        <motion.article
-          className="rounded-[28px] border border-white/10 bg-white/5 p-6 backdrop-blur"
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, amount: 0.4 }}
-          transition={{ duration: 0.6 }}
-        >
-          <h2 className="font-display text-2xl text-sand">Mission</h2>
-          <p className="mt-3 text-sm leading-relaxed text-clay/80">
-            To be more than a clothing brand—to become a movement that redefines fashion as an act of care, connection,
-            and self‑expression. To make a difference one garment at a time. Wearing GLB is carrying love into every
-            space you walk into.
-          </p>
-        </motion.article>
+                <section className="brand-grid mt-8">
+                    {PILLARS.map((pillar) => (
+                        <article key={pillar.title} className="brand-panel-soft span-4 rounded-3xl p-6">
+                            <p className="brand-chip">Pillar</p>
+                            <h2 className="mt-4 font-display text-3xl uppercase leading-[0.95] text-white">{pillar.title}</h2>
+                            <p className="mt-4 text-sm leading-relaxed text-zinc-300">{pillar.text}</p>
+                        </article>
+                    ))}
+                </section>
 
-        <motion.article
-          className="rounded-[28px] border border-white/10 bg-white/5 p-6 backdrop-blur"
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, amount: 0.4 }}
-          transition={{ duration: 0.6, delay: 0.05 }}
-        >
-          <h2 className="font-display text-2xl text-sand">Vision</h2>
-          <p className="mt-3 text-sm leading-relaxed text-clay/80">
-            GLB is built on collaboration and community. We don’t just create clothing—we create spaces where other
-            brands, creatives, and voices can shine too. Fashion should express individuality and make room for
-            community. Giving love back means growing together, not alone.
-          </p>
-        </motion.article>
-      </section>
+                <section className="brand-section pb-0">
+                    <div className="brand-grid items-start">
+                        <article className="brand-panel span-8 rounded-3xl p-7 sm:p-9">
+                            <p className="brand-eyebrow">Origin Story</p>
+                            <h2 className="mt-3 font-display text-4xl uppercase text-white sm:text-5xl">From A Simple Question</h2>
+                            <div className="mt-6 space-y-4 text-sm leading-relaxed text-zinc-300 sm:text-base">
+                                <p>
+                                    What can happen when creative skills, discipline, and love are pointed in the same direction? GLB is
+                                    that answer in motion.
+                                </p>
+                                <p>
+                                    We did not want another clothing logo with no soul. We wanted a living platform where people could
+                                    wear values, collaborate with confidence, and show up for one another.
+                                </p>
+                                <p>
+                                    This is not fashion as noise. It is fashion as language. Every release is designed to be worn hard,
+                                    remembered clearly, and connected to community impact.
+                                </p>
+                            </div>
+                        </article>
 
-      <motion.section
-        className="mt-6 rounded-[28px] border border-white/10 bg-white/5 p-6 backdrop-blur"
-        initial={{ opacity: 0, y: 20 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true, amount: 0.4 }}
-        transition={{ duration: 0.6, delay: 0.1 }}
-      >
-        <h2 className="font-display text-2xl text-sand">Our Story</h2>
-        <div className="mt-3 space-y-4 text-sm leading-relaxed text-clay/80">
-          <p>
-            GLB started with four friends—young men with big dreams—and one question: how can we create something
-            meaningful together? One of us loved graphic design, another told stories, another organized, and another
-            spotted opportunity.
-          </p>
-          <p>
-            We didn’t want to start just another clothing brand. We wanted something personal—something that reflected
-            who we are and what we value. A story, a shared passion, and a quality we all carry: love. We wanted to give
-            the world what we hold most dear through our creativity, skills, and dedication.
-          </p>
-          <p>
-            GLB is our story, our friendship, and our dream made real. Proof that when you combine talent with heart,
-            courage, and love, you can create something that inspires, connects, and leaves a mark on the world.
-          </p>
-        </div>
-      </motion.section>
-    </main>
-  );
+                        <article className="brand-panel-soft span-4 rounded-3xl p-6">
+                            <p className="brand-eyebrow">Brand Direction</p>
+                            <ul className="mt-4 space-y-3 text-sm text-zinc-300">
+                                <li className="border-b border-white/10 pb-2">Athletic silhouettes with streetwear precision</li>
+                                <li className="border-b border-white/10 pb-2">Message-first graphics with restrained palettes</li>
+                                <li className="border-b border-white/10 pb-2">Community events integrated with product storytelling</li>
+                                <li>Growth through collaboration, not hype alone</li>
+                            </ul>
+                        </article>
+                    </div>
+                </section>
+            </div>
+        </main>
+    );
 }

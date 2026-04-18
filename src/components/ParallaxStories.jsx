@@ -37,22 +37,25 @@ export default function ParallaxStories() {
 
   return (
     <section ref={containerRef} className="mx-auto max-w-6xl px-6 sm:px-10">
-      <div className="mb-12 flex flex-col gap-6 md:flex-row md:items-end md:justify-between">
+      <div className="bento-board mb-10">
         <motion.div
+          className="bento-tile bento-span-8 p-7"
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6, ease: [0.17, 0.67, 0.36, 0.99] }}
         >
+          <div className="bento-content">
           <span className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-4 py-1 text-[0.65rem] font-semibold uppercase tracking-[0.4em] text-tide/80">
             Field Notes
           </span>
           <h2 className="mt-4 max-w-2xl font-display text-4xl tracking-tight text-sand sm:text-5xl">
             Built on collaboration. Captured in motion.
           </h2>
+          </div>
         </motion.div>
         <motion.p
-          className="max-w-md text-sm leading-relaxed text-clay/80"
+          className="bento-tile bento-span-4 bento-content p-6 text-sm leading-relaxed text-clay/80"
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
@@ -63,7 +66,7 @@ export default function ParallaxStories() {
         </motion.p>
       </div>
 
-      <div className="grid gap-10 lg:grid-cols-3">
+      <div className="bento-board">
         {stories.map((story, index) => {
           const motionStyle = index % 2 === 0 ? { y: upward } : { y: downward };
 
@@ -71,12 +74,13 @@ export default function ParallaxStories() {
             <motion.article
               key={story.title}
               style={motionStyle}
-              className="relative overflow-hidden rounded-[32px] border border-white/10 bg-white/5 p-6 backdrop-blur"
+              className={`bento-tile p-6 ${index === 0 ? "bento-span-6" : "bento-span-3"}`}
               initial={{ opacity: 0, y: 80 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, amount: 0.4 }}
               transition={{ duration: 0.65, ease: [0.17, 0.67, 0.36, 0.99] }}
             >
+              <div className="bento-content">
               <div className="relative h-64 overflow-hidden rounded-3xl border border-white/5">
                 <Image
                   src={story.image}
@@ -92,6 +96,7 @@ export default function ParallaxStories() {
               </div>
               <h3 className="mt-5 font-display text-2xl text-sand">{story.title}</h3>
               <p className="mt-3 text-sm leading-relaxed text-clay/80">{story.body}</p>
+              </div>
             </motion.article>
           );
         })}

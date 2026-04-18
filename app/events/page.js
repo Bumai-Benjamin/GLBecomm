@@ -1,154 +1,111 @@
 "use client";
 
-import Link from "next/link";
-import { useMemo, useState } from "react";
-import RsvpModal from "../../src/components/RsvpModal";
+import { useState } from "react";
+
 import Logo from "../../src/components/Logo";
+import RsvpModal from "../../src/components/RsvpModal";
 
 const EVENT = {
-  title: "Street Cache Volume 1",
-  date: "14 November",
-  time: "5–10pm",
-  entrance: "60",
-  location: "Open-Air Venue",
-  description:
-    "A curated open-air brand exhibition blending fashion showcases, stalls, and social connection.",
-  tags: ["Exhibition", "Open Air", "Curated", "Entrance: 60"],
+    title: "Street Cache Volume 1",
+    date: "14 November",
+    time: "17:00 - 22:00",
+    entrance: "N$60",
+    location: "Open-Air Venue, Windhoek",
+    description:
+        "A curated open-air fashion experience where brands, creatives, and community come together through product, music, and shared momentum.",
+    tags: ["Open Air", "Limited Entry", "Brand Showcases", "Live Vendors"],
 };
 
+const FLOW = [
+    "17:00 - 17:30 | Arrival and Social Warmup",
+    "17:30 - 18:00 | Opening Remarks and Introductions",
+    "18:00 - 20:00 | Stalls, Networking, Product Discovery",
+    "20:00 - 21:00 | Live Brand Showcases",
+    "21:00 - 22:00 | Closing Sales and Community Sendoff",
+];
+
 export default function EventsPage() {
-  const featured = useMemo(() => [EVENT], []);
-  const [rsvpModal, setRsvpModal] = useState({ isOpen: false, event: null });
-  const [rsvpClosedMessage, setRsvpClosedMessage] = useState("");
+    const [rsvpModal, setRsvpModal] = useState({ isOpen: false, event: null });
 
-  const openRsvp = (event) => {
-    const now = new Date();
-    const closingTime = new Date(now);
-    closingTime.setHours(15, 0, 0, 0); // 3:00 PM local time
+    const openRsvp = (event) => {
+        setRsvpModal({ isOpen: true, event });
+    };
 
-    if (now >= closingTime) {
-      setRsvpClosedMessage("RSVPs for this event are now closed.");
-      setRsvpModal({ isOpen: false, event: null });
-      return;
-    }
+    return (
+        <main className="brand-section pt-32 sm:pt-36">
+            <RsvpModal isOpen={rsvpModal.isOpen} onClose={() => setRsvpModal({ isOpen: false, event: null })} event={rsvpModal.event} />
 
-    setRsvpClosedMessage("");
-    setRsvpModal({ isOpen: true, event });
-  };
+            <div className="brand-shell">
+                <header className="brand-panel rounded-3xl p-7 sm:p-10">
+                    <div className="inline-flex items-center gap-3">
+                        <Logo size={22} />
+                        <span className="brand-kicker">Live Event</span>
+                    </div>
+                    <h1 className="brand-title mt-5 max-w-4xl">{EVENT.title}</h1>
+                    <p className="brand-subtitle mt-5 text-sm sm:text-base">{EVENT.description}</p>
 
-  const closeRsvp = () => {
-    setRsvpModal({ isOpen: false, event: null });
-  };
+                    <div className="mt-6 flex flex-wrap gap-2">
+                        {EVENT.tags.map((tag) => (
+                            <span key={tag} className="brand-chip">
+                                {tag}
+                            </span>
+                        ))}
+                    </div>
 
-  return (
-    <main className="mx-auto max-w-6xl px-6 pb-24 pt-32 sm:px-10 sm:pt-36">
-      <RsvpModal isOpen={rsvpModal.isOpen} onClose={closeRsvp} event={rsvpModal.event} />
+                    <div className="mt-8 flex flex-wrap gap-3">
+                        <button type="button" className="brand-button brand-button-primary" onClick={() => openRsvp(EVENT)}>
+                            RSVP Now
+                        </button>
+                        <a href="/assets/glb-catalog.pdf" target="_blank" rel="noopener noreferrer" className="brand-button brand-button-ghost">
+                            View Catalog
+                        </a>
+                    </div>
+                </header>
 
-      {rsvpClosedMessage && (
-        <p className="mb-4 rounded-2xl border border-white/10 bg-white/5 px-4 py-3 text-xs font-semibold uppercase tracking-[0.3em] text-clay/70">
-          {rsvpClosedMessage}
-        </p>
-      )}
+                <section className="brand-grid mt-8">
+                    <article className="brand-panel-soft span-4 rounded-3xl p-6">
+                        <p className="brand-eyebrow">Date</p>
+                        <h2 className="mt-3 font-display text-3xl uppercase text-white">{EVENT.date}</h2>
+                        <p className="mt-2 text-sm text-zinc-300">{EVENT.time}</p>
+                    </article>
+                    <article className="brand-panel-soft span-4 rounded-3xl p-6">
+                        <p className="brand-eyebrow">Entrance</p>
+                        <h2 className="mt-3 font-display text-3xl uppercase text-white">{EVENT.entrance}</h2>
+                        <p className="mt-2 text-sm text-zinc-300">Per person</p>
+                    </article>
+                    <article className="brand-panel-soft span-4 rounded-3xl p-6">
+                        <p className="brand-eyebrow">Venue</p>
+                        <h2 className="mt-3 font-display text-3xl uppercase text-white">Windhoek</h2>
+                        <p className="mt-2 text-sm text-zinc-300">{EVENT.location}</p>
+                    </article>
+                </section>
 
-      <header className="max-w-3xl space-y-6">
-        <div className="flex flex-wrap items-center gap-2">
-          <Logo size={22} />
-          <span className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-4 py-1 text-[0.55rem] font-semibold uppercase tracking-[0.25em] text-tide/80 sm:text-[0.65rem] sm:tracking-[0.4em]">
-            Community Event
-          </span>
-        </div>
-        <h1 className="font-display text-4xl tracking-tight text-sand sm:text-5xl">
-          {EVENT.title}
-        </h1>
-        <p className="text-sm leading-relaxed text-clay/75">
-          More than a showcase—this is a space where brands, creatives, and friends of the movement connect, sell, and shine together.
-        </p>
-      </header>
+                <section className="brand-section pb-0">
+                    <div className="brand-grid">
+                        <article className="brand-panel span-8 rounded-3xl p-7 sm:p-9">
+                            <p className="brand-eyebrow">Program Flow</p>
+                            <h2 className="mt-3 font-display text-4xl uppercase text-white">Night Sequence</h2>
+                            <ul className="mt-6 space-y-3 text-sm text-zinc-300 sm:text-base">
+                                {FLOW.map((item) => (
+                                    <li key={item} className="border-b border-white/10 pb-3">
+                                        {item}
+                                    </li>
+                                ))}
+                            </ul>
+                        </article>
 
-      {/* Feature Card */}
-      <section className="mt-12">
-        <article className="relative overflow-hidden rounded-[36px] border border-white/10 bg-gradient-to-br from-black/60 via-charcoal/70 to-black/40 p-8 backdrop-blur">
-          <div className="flex flex-wrap items-center gap-2 text-xs uppercase tracking-[0.35em] text-pulse/80">
-            <span>{EVENT.date}</span>
-            {EVENT.time ? (<><span>•</span><span>{EVENT.time}</span></>) : null}
-            {EVENT.location ? (<><span>•</span><span>{EVENT.location}</span></>) : null}
-            {EVENT.entrance ? (<><span>•</span><span>Entrance: {EVENT.entrance}</span></>) : null}
-          </div>
-          <h2 className="mt-6 font-display text-3xl text-sand">{EVENT.title}</h2>
-          <p className="mt-4 text-sm leading-relaxed text-clay/75">{EVENT.description}</p>
-          <div className="mt-6 flex flex-wrap gap-3">
-            {EVENT.tags.map((tag) => (
-              <span key={tag} className="rounded-full border border-white/10 px-4 py-1 text-[0.6rem] uppercase tracking-[0.35em] text-sand/70">
-                {tag}
-              </span>
-            ))}
-          </div>
-          <button
-            onClick={() => openRsvp(EVENT)}
-            className="mt-8 inline-flex items-center gap-2 rounded-full bg-gradient-to-r from-flare via-pulse to-flare px-6 py-3 text-xs font-semibold uppercase tracking-[0.35em] text-ink shadow-[0_18px_32px_rgba(255,107,61,0.32)] transition hover:shadow-[0_22px_42px_rgba(255,107,61,0.42)]"
-          >
-            RSVP Now
-          </button>
-        </article>
-      </section>
-
-      {/* Details Sections */}
-      <section className="mt-14 grid gap-8 lg:grid-cols-2">
-        <article className="rounded-[28px] border border-white/10 bg-white/5 p-6 text-sm text-clay/80 backdrop-blur">
-          <h3 className="font-display text-2xl text-sand">Concept</h3>
-          <p className="mt-3 leading-relaxed">
-            GLB hosts open‑air brand exhibitions that blend fashion, stalls, and social connection—powered by food &amp; drink vendors and guided by community.
-          </p>
-        </article>
-
-        <article className="rounded-[28px] border border-white/10 bg-white/5 p-6 text-sm text-clay/80 backdrop-blur">
-          <h3 className="font-display text-2xl text-sand">Stalls &amp; Setup</h3>
-          <ul className="mt-3 list-disc space-y-2 pl-5">
-            <li>Fashion brands: one stall each for products.</li>
-            <li>Food &amp; drink vendors: paid stall placement covers venue costs.</li>
-            <li>GLB coordination: floor plan ensures even spacing and visual flow.</li>
-            <li>MC + program flow keeps the event organized and purposeful.</li>
-          </ul>
-        </article>
-
- 
-      </section>
-
-      <section className="mt-14 grid gap-8 lg:grid-cols-2">
-        <article className="rounded-[28px] border border-white/10 bg-white/5 p-6 text-sm text-clay/80 backdrop-blur">
-          <h3 className="font-display text-2xl text-sand">Event Flow</h3>
-          <ul className="mt-3 space-y-3">
-            <li>
-              <span className="text-sand">5:00 – 5:30 PM |</span> Welcome &amp; Arrival — browse stalls, light music, cocktail hour.
-            </li>
-            <li>
-              <span className="text-sand">5:30 – 6:00 PM |</span> Opening Remarks — GLB welcome; MC introduces brands.
-            </li>
-            <li>
-              <span className="text-sand">6:00 – 8:00 PM |</span> Cocktail Hour &amp; Stalls Open — socializing, shopping, food &amp; drinks.
-            </li>
-            <li>
-              <span className="text-sand">8:00 – 9:00 PM |</span> Brand Showcases — stage time with MC transitions.
-            </li>
-            <li>
-              <span className="text-sand">9:00 – 9:30 PM |</span> Networking &amp; Last Sales — encourage final purchases.
-            </li>
-            <li>
-              <span className="text-sand">9:30 – 10:00 PM |</span> Closing Remarks — thank vendors, brands, guests; photo opportunity.
-            </li>
-          </ul>
-        </article>
-
-        <article className="rounded-[28px] border border-white/10 bg-white/5 p-6 text-sm text-clay/80 backdrop-blur">
-          <h3 className="font-display text-2xl text-sand">Revenue &amp; Cost Coverage</h3>
-          <ul className="mt-3 list-disc space-y-2 pl-5">
-            <li>Brand stall fee: N$500 (includes space, MC, marketing).</li>
-            <li>Food/drink vendor fee: N$500 + (depends on size/location).</li>
-            <li>GLB handles event coordination, marketing, and program.</li>
-            <li>Ticket sales per brand help cover costs and control attendance.</li>
-          </ul>
-        </article>
-      </section>
-    </main>
-  );
+                        <article className="brand-panel-soft span-4 rounded-3xl p-6">
+                            <p className="brand-eyebrow">Operator Notes</p>
+                            <ul className="mt-4 space-y-3 text-sm text-zinc-300">
+                                <li className="border-b border-white/10 pb-2">Fashion and food vendors run parallel lanes.</li>
+                                <li className="border-b border-white/10 pb-2">MC transitions keep momentum and schedule discipline.</li>
+                                <li className="border-b border-white/10 pb-2">Limited capacity to maintain quality experience.</li>
+                                <li>RSVP confirmations are processed through GLB events backend.</li>
+                            </ul>
+                        </article>
+                    </div>
+                </section>
+            </div>
+        </main>
+    );
 }

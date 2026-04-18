@@ -4,11 +4,11 @@ import { motion } from "framer-motion";
 
 const highlights = [
   "GIVE LOVE BACK",
-  "Fashion As Care",
-  "Community Over Ego",
-  "Movement Not Just Merch",
-  "Carry Love Into Every Space",
-  "Grow Together, Not Alone",
+  "Quiet Luxury",
+  "Street Culture",
+  "Identity Over Noise",
+  "Crafted In Limited Drops",
+  "Designed To Belong",
 ];
 
 export default function HighlightMarquee() {

@@ -91,11 +91,11 @@ export default function AdminRsvpDashboard() {
   const getStatusColor = (status) => {
     switch (status) {
       case "confirmed":
-        return "text-green-400 bg-green-500/10 border-green-500/30";
+        return "text-sand bg-white/5 border-white/10";
       case "pending":
-        return "text-yellow-400 bg-yellow-500/10 border-yellow-500/30";
+        return "text-zinc-400 bg-black/20 border-white/10";
       case "cancelled":
-        return "text-red-400 bg-red-500/10 border-red-500/30";
+        return "text-zinc-500 bg-black/25 border-white/10";
       default:
         return "text-clay/60 bg-white/5 border-white/10";
     }
@@ -110,7 +110,7 @@ export default function AdminRsvpDashboard() {
   };
 
   return (
-    <main className="mx-auto max-w-7xl px-6 pb-24 pt-32 sm:px-10 sm:pt-36">
+    <main className="w-full px-6 pb-24 pt-32 sm:px-10 sm:pt-36">
       <motion.header
         className="mb-10"
         initial={{ opacity: 0, y: 20 }}
@@ -147,16 +147,16 @@ export default function AdminRsvpDashboard() {
       >
         {[
           { label: "Total RSVPs", value: stats.total, color: "sand" },
-          { label: "Pending", value: stats.pending, color: "yellow-400" },
-          { label: "Confirmed", value: stats.confirmed, color: "green-400" },
-          { label: "Cancelled", value: stats.cancelled, color: "red-400" },
-          { label: "Total Guests", value: stats.totalGuests, color: "flare" },
+          { label: "Pending", value: stats.pending, colorClass: "text-zinc-400" },
+          { label: "Confirmed", value: stats.confirmed, colorClass: "text-sand" },
+          { label: "Cancelled", value: stats.cancelled, colorClass: "text-zinc-500" },
+          { label: "Total Guests", value: stats.totalGuests, colorClass: "text-zinc-300" },
         ].map((stat, index) => (
           <div
             key={index}
             className="rounded-[28px] border border-white/10 bg-white/5 p-6 backdrop-blur"
           >
-            <div className={`text-3xl font-display text-${stat.color}`}>
+            <div className={`text-3xl font-display ${stat.colorClass}`}>
               {stat.value}
             </div>
             <div className="mt-2 text-xs uppercase tracking-[0.35em] text-clay/60">
@@ -178,11 +178,10 @@ export default function AdminRsvpDashboard() {
             <button
               key={status}
               onClick={() => setFilter(status)}
-              className={`rounded-full px-5 py-2 text-xs font-semibold uppercase tracking-[0.3em] transition ${
-                filter === status
-                  ? "bg-gradient-to-r from-flare via-pulse to-flare text-ink shadow-[0_12px_22px_rgba(255,107,61,0.32)]"
+              className={`rounded-full px-5 py-2 text-xs font-semibold uppercase tracking-[0.3em] transition ${filter === status
+                  ? "bg-gradient-to-r from-white via-zinc-300 to-white text-ink shadow-[0_12px_22px_rgba(255,255,255,0.18)]"
                   : "border border-white/10 text-sand/80 hover:border-white/30"
-              }`}
+                }`}
             >
               {status}
             </button>
@@ -210,7 +209,7 @@ export default function AdminRsvpDashboard() {
             <div className="h-12 w-12 animate-spin rounded-full border-4 border-flare border-t-transparent" />
           </div>
         ) : error ? (
-          <div className="rounded-[28px] border border-red-500/30 bg-red-500/10 p-8 text-center text-red-400">
+          <div className="rounded-[28px] border border-white/10 bg-white/5 p-8 text-center text-zinc-300">
             {error}
           </div>
         ) : filteredRsvps.length === 0 ? (
@@ -267,27 +266,27 @@ export default function AdminRsvpDashboard() {
                   <button
                     onClick={() => updateRsvpStatus(rsvp._id, "confirmed")}
                     disabled={rsvp.status === "confirmed"}
-                    className="flex-1 rounded-full border border-green-500/30 bg-green-500/10 px-4 py-2 text-xs font-semibold uppercase tracking-[0.3em] text-green-400 transition hover:bg-green-500/20 disabled:opacity-50 disabled:cursor-not-allowed lg:flex-none"
+                    className="flex-1 rounded-full border border-white/10 bg-white/5 px-4 py-2 text-xs font-semibold uppercase tracking-[0.3em] text-sand transition hover:bg-white/10 disabled:opacity-50 disabled:cursor-not-allowed lg:flex-none"
                   >
                     ✓ Confirm
                   </button>
                   <button
                     onClick={() => updateRsvpStatus(rsvp._id, "pending")}
                     disabled={rsvp.status === "pending"}
-                    className="flex-1 rounded-full border border-yellow-500/30 bg-yellow-500/10 px-4 py-2 text-xs font-semibold uppercase tracking-[0.3em] text-yellow-400 transition hover:bg-yellow-500/20 disabled:opacity-50 disabled:cursor-not-allowed lg:flex-none"
+                    className="flex-1 rounded-full border border-white/10 bg-black/20 px-4 py-2 text-xs font-semibold uppercase tracking-[0.3em] text-zinc-300 transition hover:bg-white/10 disabled:opacity-50 disabled:cursor-not-allowed lg:flex-none"
                   >
                     ⏸ Pending
                   </button>
                   <button
                     onClick={() => updateRsvpStatus(rsvp._id, "cancelled")}
                     disabled={rsvp.status === "cancelled"}
-                    className="flex-1 rounded-full border border-red-500/30 bg-red-500/10 px-4 py-2 text-xs font-semibold uppercase tracking-[0.3em] text-red-400 transition hover:bg-red-500/20 disabled:opacity-50 disabled:cursor-not-allowed lg:flex-none"
+                    className="flex-1 rounded-full border border-white/10 bg-black/25 px-4 py-2 text-xs font-semibold uppercase tracking-[0.3em] text-zinc-500 transition hover:bg-white/10 disabled:opacity-50 disabled:cursor-not-allowed lg:flex-none"
                   >
                     ✕ Cancel
                   </button>
                   <button
                     onClick={() => deleteRsvp(rsvp._id)}
-                    className="flex-1 rounded-full border border-white/10 px-4 py-2 text-xs font-semibold uppercase tracking-[0.3em] text-clay/60 transition hover:border-red-500/30 hover:bg-red-500/10 hover:text-red-400 lg:flex-none"
+                    className="flex-1 rounded-full border border-white/10 px-4 py-2 text-xs font-semibold uppercase tracking-[0.3em] text-clay/60 transition hover:border-white/30 hover:bg-white/10 hover:text-sand lg:flex-none"
                   >
                     🗑 Delete
                   </button>

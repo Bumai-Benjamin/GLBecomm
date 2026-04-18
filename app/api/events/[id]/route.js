@@ -1,6 +1,7 @@
 import { NextResponse } from 'next/server'
 import dbConnect from '../../../../lib/mongodb'
 import Event from '../../../../src/models/Event'
+import { ensureAdminAccess } from '../../../../lib/apiAuth'
 
 export async function GET(request, { params }) {
   try {
@@ -33,6 +34,11 @@ export async function GET(request, { params }) {
 }
 
 export async function PATCH(request, { params }) {
+  const unauthorizedResponse = ensureAdminAccess(request)
+  if (unauthorizedResponse) {
+    return unauthorizedResponse
+  }
+
   try {
     await dbConnect()
 
@@ -69,6 +75,11 @@ export async function PATCH(request, { params }) {
 }
 
 export async function DELETE(request, { params }) {
+  const unauthorizedResponse = ensureAdminAccess(request)
+  if (unauthorizedResponse) {
+    return unauthorizedResponse
+  }
+
   try {
     await dbConnect()
 

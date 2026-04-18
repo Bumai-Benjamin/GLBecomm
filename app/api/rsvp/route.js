@@ -2,6 +2,7 @@ import { NextResponse } from 'next/server'
 import dbConnect from '../../../lib/mongodb'
 import Rsvp from '../../../src/models/Rsvp'
 import { sendRsvpConfirmation, notifyAdminNewRsvp } from '../../../lib/email'
+import { ensureAdminAccess } from '../../../lib/apiAuth'
 
 export async function POST(request) {
   try {
@@ -91,11 +92,14 @@ export async function POST(request) {
 }
 
 export async function GET(request) {
+  const unauthorizedResponse = ensureAdminAccess(request)
+  if (unauthorizedResponse) {
+    return unauthorizedResponse
+  }
+
   try {
     await dbConnect()
 
-    // Optional: Add authentication/authorization here
-    // For now, return all RSVPs (you may want to restrict this)
     const rsvps = await Rsvp.find({}).sort({ createdAt: -1 }).limit(100)
 
     return NextResponse.json(

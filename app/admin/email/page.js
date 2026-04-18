@@ -64,7 +64,7 @@ export default function AdminEmailPage() {
   };
 
   return (
-    <main className="mx-auto max-w-4xl px-6 pb-24 pt-32 sm:px-10 sm:pt-36">
+    <main className="w-full px-6 pb-24 pt-32 sm:px-10 sm:pt-36">
       <motion.header
         className="mb-10"
         initial={{ opacity: 0, y: 20 }}
@@ -143,7 +143,7 @@ export default function AdminEmailPage() {
                 />
               </label>
 
-              <div className="rounded-2xl border border-flare/30 bg-flare/10 p-4 text-xs text-flare/80">
+              <div className="rounded-2xl border border-white/10 bg-white/5 p-4 text-xs text-zinc-300">
                 💡 <strong>Tip:</strong> You can use HTML in the message field for rich formatting.
                 Recipients will be added as BCC to protect their privacy.
               </div>
@@ -152,11 +152,10 @@ export default function AdminEmailPage() {
 
           {result && (
             <div
-              className={`rounded-2xl border px-5 py-3 text-sm ${
-                result.type === "success"
-                  ? "border-green-500/30 bg-green-500/10 text-green-400"
-                  : "border-red-500/30 bg-red-500/10 text-red-400"
-              }`}
+              className={`rounded-2xl border px-5 py-3 text-sm ${result.type === "success"
+                  ? "border-white/15 bg-white/5 text-zinc-200"
+                  : "border-white/15 bg-black/30 text-zinc-300"
+                }`}
             >
               {result.message}
             </div>
@@ -181,7 +180,7 @@ export default function AdminEmailPage() {
             <button
               type="submit"
               disabled={sending}
-              className="inline-flex items-center gap-2 rounded-full bg-gradient-to-r from-flare via-pulse to-flare px-8 py-3 text-xs font-semibold uppercase tracking-[0.35em] text-ink shadow-[0_18px_32px_rgba(255,107,61,0.32)] transition hover:shadow-[0_22px_42px_rgba(255,107,61,0.42)] disabled:opacity-50 disabled:cursor-not-allowed"
+              className="inline-flex items-center gap-2 rounded-full bg-gradient-to-r from-white via-zinc-300 to-white px-8 py-3 text-xs font-semibold uppercase tracking-[0.35em] text-ink shadow-[0_18px_32px_rgba(255,255,255,0.18)] transition hover:shadow-[0_22px_42px_rgba(255,255,255,0.26)] disabled:opacity-50 disabled:cursor-not-allowed"
             >
               {sending ? "Sending..." : "📧 Send Email"}
             </button>

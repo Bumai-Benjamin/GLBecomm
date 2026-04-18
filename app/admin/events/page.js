@@ -134,20 +134,20 @@ export default function AdminEventsPage() {
   const getStatusColor = (status) => {
     switch (status) {
       case "published":
-        return "text-green-400 bg-green-500/10 border-green-500/30";
+        return "text-sand bg-white/5 border-white/10";
       case "draft":
-        return "text-yellow-400 bg-yellow-500/10 border-yellow-500/30";
+        return "text-zinc-400 bg-black/20 border-white/10";
       case "cancelled":
-        return "text-red-400 bg-red-500/10 border-red-500/30";
+        return "text-zinc-500 bg-black/25 border-white/10";
       case "completed":
-        return "text-blue-400 bg-blue-500/10 border-blue-500/30";
+        return "text-zinc-300 bg-white/5 border-white/10";
       default:
         return "text-clay/60 bg-white/5 border-white/10";
     }
   };
 
   return (
-    <main className="mx-auto max-w-7xl px-6 pb-24 pt-32 sm:px-10 sm:pt-36">
+    <main className="w-full px-6 pb-24 pt-32 sm:px-10 sm:pt-36">
       <motion.header
         className="mb-10 flex items-center justify-between"
         initial={{ opacity: 0, y: 20 }}
@@ -164,7 +164,7 @@ export default function AdminEventsPage() {
         </div>
         <button
           onClick={() => openModal()}
-          className="rounded-full bg-gradient-to-r from-flare via-pulse to-flare px-6 py-3 text-xs font-semibold uppercase tracking-[0.35em] text-ink shadow-[0_18px_32px_rgba(255,107,61,0.32)] transition hover:shadow-[0_22px_42px_rgba(255,107,61,0.42)]"
+          className="rounded-full bg-gradient-to-r from-white via-zinc-300 to-white px-6 py-3 text-xs font-semibold uppercase tracking-[0.35em] text-ink shadow-[0_18px_32px_rgba(255,255,255,0.18)] transition hover:shadow-[0_22px_42px_rgba(255,255,255,0.26)]"
         >
           + Create Event
         </button>
@@ -182,7 +182,7 @@ export default function AdminEventsPage() {
             <div className="h-12 w-12 animate-spin rounded-full border-4 border-flare border-t-transparent" />
           </div>
         ) : error ? (
-          <div className="rounded-[28px] border border-red-500/30 bg-red-500/10 p-8 text-center text-red-400">
+          <div className="rounded-[28px] border border-white/10 bg-white/5 p-8 text-center text-zinc-300">
             {error}
           </div>
         ) : events.length === 0 ? (
@@ -201,7 +201,7 @@ export default function AdminEventsPage() {
                     <div>
                       <h3 className="font-display text-2xl text-sand">{event.title}</h3>
                       {event.featured && (
-                        <span className="mt-2 inline-block rounded-full border border-flare/30 bg-flare/10 px-3 py-1 text-[0.6rem] uppercase tracking-[0.35em] text-flare">
+                        <span className="mt-2 inline-block rounded-full border border-white/10 bg-white/5 px-3 py-1 text-[0.6rem] uppercase tracking-[0.35em] text-sand">
                           ⭐ Featured
                         </span>
                       )}
@@ -249,7 +249,7 @@ export default function AdminEventsPage() {
                   </button>
                   <button
                     onClick={() => deleteEvent(event._id)}
-                    className="flex-1 rounded-full border border-red-500/30 bg-red-500/10 px-4 py-2 text-xs font-semibold uppercase tracking-[0.3em] text-red-400 transition hover:bg-red-500/20 lg:flex-none"
+                    className="flex-1 rounded-full border border-white/10 bg-white/5 px-4 py-2 text-xs font-semibold uppercase tracking-[0.3em] text-zinc-300 transition hover:bg-white/10 lg:flex-none"
                   >
                     🗑 Delete
                   </button>
@@ -417,7 +417,7 @@ export default function AdminEventsPage() {
                   </button>
                   <button
                     type="submit"
-                    className="rounded-full bg-gradient-to-r from-flare via-pulse to-flare px-8 py-3 text-xs font-semibold uppercase tracking-[0.35em] text-ink shadow-[0_18px_32px_rgba(255,107,61,0.32)] transition hover:shadow-[0_22px_42px_rgba(255,107,61,0.42)]"
+                    className="rounded-full bg-gradient-to-r from-white via-zinc-300 to-white px-6 py-3 text-xs font-semibold uppercase tracking-[0.35em] text-ink shadow-[0_18px_32px_rgba(255,255,255,0.18)] transition hover:shadow-[0_22px_42px_rgba(255,255,255,0.26)]"
                   >
                     {editingEvent ? "Update Event" : "Create Event"}
                   </button>

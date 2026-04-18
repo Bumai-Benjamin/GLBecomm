@@ -28,43 +28,46 @@ const collections = [
 export default function SignatureCollections() {
   return (
     <section className="mx-auto max-w-6xl px-6 sm:px-10">
-      <div className="mb-12 flex flex-col gap-6 sm:flex-row sm:items-end sm:justify-between">
+      <div className="bento-board mb-10">
         <motion.div
+          className="bento-tile bento-span-8 p-7"
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6, ease: [0.17, 0.67, 0.36, 0.99] }}
         >
+          <div className="bento-content">
           <span className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-4 py-1 text-[0.65rem] font-semibold uppercase tracking-[0.4em] text-flare/80">
             Collections
           </span>
           <h2 className="mt-4 font-display text-4xl tracking-tight text-sand sm:text-5xl">
-            Signature edits built on community and care.
+            Curated collections for identity-led dressing.
           </h2>
+          </div>
         </motion.div>
         <motion.p
-          className="max-w-xl text-sm leading-relaxed text-clay/80"
+          className="bento-tile bento-span-4 bento-content p-6 text-sm leading-relaxed text-clay/80"
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ delay: 0.1, duration: 0.6 }}
         >
-          Each release is crafted in limited batches with responsibly sourced materials and the help of our community.
-          Expect considered details, textural pairings, and silhouettes that carry love into every space—from open‑air
-          pop‑ups to late nights in the city.
+          Limited quantities, refined cuts, and quiet statement graphics. Built to move from daytime confidence to
+          after-dark culture without changing who you are.
         </motion.p>
       </div>
 
-      <div className="grid gap-8 lg:grid-cols-3">
+      <div className="bento-board">
         {collections.map((collection, index) => (
           <motion.article
             key={collection.title}
-            className="group relative overflow-hidden rounded-[32px] border border-white/10 bg-charcoal/60 p-6 backdrop-blur"
+            className={`group bento-tile p-6 ${index === 0 ? "bento-span-6" : "bento-span-3"}`}
             initial={{ opacity: 0, y: 40 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, amount: 0.4 }}
             transition={{ delay: index * 0.08, duration: 0.6, ease: [0.17, 0.67, 0.36, 0.99] }}
           >
+            <div className="bento-content">
             <div className="relative h-64 overflow-hidden rounded-3xl border border-white/5">
               <Image
                 src={collection.image}
@@ -87,6 +90,7 @@ export default function SignatureCollections() {
             </div>
             <h3 className="mt-4 font-display text-2xl text-sand">{collection.title}</h3>
             <p className="mt-3 text-sm leading-relaxed text-clay/75">{collection.copy}</p>
+            </div>
           </motion.article>
         ))}
       </div>

@@ -4,41 +4,44 @@ import Link from 'next/link'
 import { formatPrice } from '../lib/pricing'
 import { useCart } from '../state/CartContext'
 
-export default function ProductCard({ p }) {
+export default function ProductCard({ p, className = '' }) {
   const { add } = useCart()
 
   return (
-    <article className="group relative flex flex-col overflow-hidden rounded-[28px] border border-white/5 bg-white/5 backdrop-blur transition hover:border-white/30 hover:bg-white/10">
-      <Link href={`/store/${p.id}`} className="relative h-72 overflow-hidden">
+    <article className={`group relative flex flex-col overflow-hidden border border-black/10 bg-white transition hover:-translate-y-1 hover:shadow-[0_20px_50px_rgba(0,0,0,0.08)] ${className}`}>
+      <Link href={`/store/${p.id}`} className="relative h-[270px] overflow-hidden bg-white/5">
         <Image
           src={`/assets/${p.file}`}
           alt={p.name}
           fill
           sizes="(min-width: 1024px) 23vw, (min-width: 768px) 45vw, 90vw"
-          className="object-cover transition duration-700 group-hover:scale-105"
+          className="object-contain p-4 transition duration-500 group-hover:scale-[1.03]"
         />
-        <span className="absolute left-4 top-4 rounded-full border border-white/10 bg-black/40 px-3 py-1 text-[0.6rem] uppercase tracking-[0.35em] text-sand/80">
+        <span className="absolute left-4 top-4 rounded-full border border-black/10 bg-white/95 px-3 py-1 text-[0.58rem] uppercase tracking-[0.28em] text-black">
+          {p.collection}
+        </span>
+        <span className="absolute right-4 top-4 rounded-full border border-black/10 bg-white/95 px-3 py-1 text-[0.58rem] uppercase tracking-[0.24em] text-black">
           {formatPrice(p.price)}
         </span>
       </Link>
 
-      <div className="flex flex-1 flex-col gap-4 p-6">
+      <div className="flex flex-1 flex-col gap-4 p-5">
         <header>
-          <h3 className="font-display text-xl text-sand">{p.name}</h3>
-          <p className="mt-2 text-sm leading-relaxed text-clay/75">{p.description}</p>
+          <h3 className="font-display text-lg uppercase leading-tight text-black">{p.name}</h3>
+          <p className="mt-2 text-sm leading-relaxed text-zinc-600">{p.description}</p>
         </header>
 
-        <footer className="mt-auto flex flex-col gap-3 sm:flex-row">
+        <footer className="mt-auto flex items-center justify-between gap-3">
           <button
             type="button"
             onClick={() => add(p.id)}
-            className="inline-flex flex-1 items-center justify-center rounded-full bg-gradient-to-r from-flare via-pulse to-flare px-6 py-3 text-xs font-semibold uppercase tracking-[0.35em] text-ink shadow-[0_14px_24px_rgba(255,107,61,0.32)] transition hover:shadow-[0_18px_32px_rgba(255,107,61,0.42)]"
+            className="inline-flex items-center justify-center rounded-full border border-black/15 bg-black px-4 py-2 text-[0.62rem] font-semibold uppercase tracking-[0.18em] text-white transition hover:bg-zinc-800"
           >
-            Add To Cart
+            Add
           </button>
           <Link
             href={`/store/${p.id}`}
-            className="inline-flex flex-1 items-center justify-center rounded-full border border-white/10 px-6 py-3 text-xs font-semibold uppercase tracking-[0.3em] text-sand/80 transition hover:border-white/40"
+            className="inline-flex items-center justify-center rounded-full border border-black/15 px-4 py-2 text-[0.62rem] font-semibold uppercase tracking-[0.18em] text-black transition hover:border-black/40"
           >
             Details
           </Link>

@@ -1,6 +1,7 @@
 import { NextResponse } from 'next/server'
 import dbConnect from '../../../lib/mongodb'
 import Event from '../../../src/models/Event'
+import { ensureAdminAccess } from '../../../lib/apiAuth'
 
 export async function GET(request) {
   try {
@@ -34,6 +35,11 @@ export async function GET(request) {
 }
 
 export async function POST(request) {
+  const unauthorizedResponse = ensureAdminAccess(request)
+  if (unauthorizedResponse) {
+    return unauthorizedResponse
+  }
+
   try {
     await dbConnect()
 

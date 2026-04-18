@@ -1,5 +1,5 @@
 import type { Metadata, Viewport } from 'next'
-import { Inter, Cormorant_Garamond, JetBrains_Mono } from 'next/font/google'
+import { Outfit, Cormorant_Garamond, JetBrains_Mono } from 'next/font/google'
 import { Suspense } from 'react'
 
 import Navbar from '@/components/Navbar'
@@ -8,9 +8,9 @@ import Providers from './providers'
 
 import './globals.css'
 
-const sans = Inter({
+const sans = Outfit({
   subsets: ['latin'],
-  weight: ['400', '500', '600', '700'],
+  weight: ['300', '400', '500', '600', '700'],
   variable: '--font-sans',
   display: 'swap',
 })
@@ -81,7 +81,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       className={`${display.variable} ${sans.variable} ${mono.variable}`}
       suppressHydrationWarning
     >
-      <body className="bg-ink text-sand font-sans antialiased">
+      <body className="bg-parchment text-obsidian font-sans antialiased">
         <a
           href="#main"
           className="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-50 focus:rounded-md focus:bg-ivory focus:px-4 focus:py-2 focus:text-ink"

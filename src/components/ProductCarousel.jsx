@@ -37,34 +37,36 @@ export default function ProductCarousel() {
 
   return (
     <section className="mx-auto flex w-full max-w-6xl flex-col gap-10 px-6 sm:px-10">
-      <div className="flex flex-col items-start justify-between gap-6 md:flex-row md:items-end">
+      <div className="bento-board">
         <motion.div
+          className="bento-tile bento-span-8 p-7"
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6, ease: [0.17, 0.67, 0.36, 0.99] }}
         >
+          <div className="bento-content">
           <span className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-4 py-1 text-[0.65rem] font-semibold uppercase tracking-[0.4em] text-tide/80">
-            Product Showcase
+            Best Sellers
           </span>
           <h2 className="mt-4 font-display text-4xl tracking-tight text-sand sm:text-5xl">
-            Explore the collection.
+            Most wanted, right now.
           </h2>
+          </div>
         </motion.div>
         <motion.p
-          className="max-w-md text-sm leading-relaxed text-clay/80"
+          className="bento-tile bento-span-4 bento-content p-6 text-sm leading-relaxed text-clay/80"
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ delay: 0.1, duration: 0.6 }}
         >
-          Browse our featured pieces with smooth transitions. Navigate using the arrows or dots below to discover each
-          item.
+          These are the pieces customers come back for: expressive essentials with elevated fit and finish.
         </motion.p>
       </div>
 
       <motion.div
-        className="relative overflow-hidden rounded-[36px] border border-white/10 bg-gradient-to-br from-black/60 via-charcoal/70 to-black/40 shadow-[0_30px_60px_rgba(0,0,0,0.55)]"
+        className="bento-tile relative bento-content overflow-hidden rounded-[36px] border border-white/10 bg-gradient-to-br from-black/60 via-charcoal/70 to-black/40 shadow-[0_30px_60px_rgba(0,0,0,0.55)]"
         initial={{ opacity: 0, y: 60 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true, amount: 0.35 }}

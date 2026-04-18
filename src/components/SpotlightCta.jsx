@@ -1,9 +1,13 @@
 "use client";
 
 import Link from "next/link";
+import { useState } from "react";
 import { motion } from "framer-motion";
 
 export default function SpotlightCta() {
+  const [status, setStatus] = useState({ type: "idle", message: "" });
+  const [isSubmitting, setIsSubmitting] = useState(false);
+
   return (
     <section className="mx-auto max-w-5xl px-6 sm:px-10">
       <motion.div
@@ -25,14 +29,37 @@ export default function SpotlightCta() {
         </p>
         <form
           className="mx-auto mt-8 flex max-w-md flex-col gap-4 sm:flex-row"
-          onSubmit={(event) => {
+          onSubmit={async (event) => {
             event.preventDefault();
             const form = event.currentTarget;
             const emailField = form.elements.namedItem("email");
             const email = typeof emailField?.value === "string" ? emailField.value : "";
             if (email) {
-              window.location.href = `mailto:hello@giveloveback.com?subject=Newsletter%20Signup&body=${encodeURIComponent(`Please add ${email} to the insider list.`)}`;
-              form.reset();
+              setStatus({ type: "idle", message: "" });
+              setIsSubmitting(true);
+              try {
+                const response = await fetch("/api/contact", {
+                  method: "POST",
+                  headers: { "Content-Type": "application/json" },
+                  body: JSON.stringify({ type: "newsletter", email }),
+                });
+                const result = await response.json();
+                if (!response.ok || !result?.success) {
+                  setStatus({
+                    type: "error",
+                    message: result?.error || "Signup failed. Please try again.",
+                  });
+                  return;
+                }
+
+                setStatus({ type: "success", message: "You are on the insider list." });
+                form.reset();
+              } catch (error) {
+                console.error("Newsletter signup error:", error);
+                setStatus({ type: "error", message: "Network issue. Please retry shortly." });
+              } finally {
+                setIsSubmitting(false);
+              }
             }
           }}
         >
@@ -45,11 +72,22 @@ export default function SpotlightCta() {
           />
           <button
             type="submit"
-            className="rounded-full bg-gradient-to-r from-flare via-pulse to-flare px-8 py-3 text-xs font-semibold uppercase tracking-[0.35em] text-ink shadow-[0_18px_32px_rgba(255,107,61,0.22)] transition hover:shadow-[0_24px_42px_rgba(255,107,61,0.32)]"
+            disabled={isSubmitting}
+            className="rounded-full bg-gradient-to-r from-white via-zinc-300 to-white px-8 py-3 text-xs font-semibold uppercase tracking-[0.35em] text-ink shadow-[0_18px_32px_rgba(255,255,255,0.14)] transition hover:shadow-[0_24px_42px_rgba(255,255,255,0.22)]"
           >
-            Join
+            {isSubmitting ? "Joining..." : "Join"}
           </button>
         </form>
+        {status.type !== "idle" && (
+          <p
+            className={`mx-auto mt-4 max-w-md rounded-2xl border px-4 py-3 text-sm ${status.type === "success"
+              ? "border-green-500/30 bg-green-500/10 text-green-300"
+              : "border-red-500/30 bg-red-500/10 text-red-300"
+              }`}
+          >
+            {status.message}
+          </p>
+        )}
         <Link
           href="/store"
           className="mt-6 inline-flex items-center gap-2 text-xs uppercase tracking-[0.35em] text-sand/70 transition hover:text-flare"

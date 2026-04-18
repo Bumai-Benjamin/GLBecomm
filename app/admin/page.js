@@ -107,20 +107,6 @@ export default function AdminDashboardPage() {
     URL.revokeObjectURL(url);
   };
 
-  const exportRsvpsXlsx = async () => {
-    if (!rsvps.length) {
-      alert("No RSVP data available to export yet.");
-      return;
-    }
-
-    const { utils, writeFile } = await import("xlsx");
-    const records = buildRsvpRecords();
-    const worksheet = utils.json_to_sheet(records, { header: rsvpHeaders });
-    const workbook = utils.book_new();
-    utils.book_append_sheet(workbook, worksheet, "RSVPs");
-    writeFile(workbook, `glb-rsvps-${new Date().toISOString().split("T")[0]}.xlsx`);
-  };
-
   const stats = useMemo(() => {
     const statusCount = events.reduce(
       (acc, event) => {
@@ -169,7 +155,7 @@ export default function AdminDashboardPage() {
 
   if (loading) {
     return (
-      <main className="mx-auto flex h-screen max-w-7xl items-center justify-center px-6">
+      <main className="flex h-screen w-full items-center justify-center px-6">
         <div className="h-12 w-12 animate-spin rounded-full border-4 border-flare border-t-transparent" />
       </main>
     );
@@ -177,7 +163,7 @@ export default function AdminDashboardPage() {
 
   if (error) {
     return (
-      <main className="mx-auto flex h-screen max-w-3xl flex-col items-center justify-center px-6 text-center">
+      <main className="flex h-screen w-full flex-col items-center justify-center px-6 text-center">
         <p className="mb-6 text-sm text-clay/70">{error}</p>
         <button
           onClick={() => window.location.reload()}
@@ -190,7 +176,7 @@ export default function AdminDashboardPage() {
   }
 
   return (
-    <main className="mx-auto max-w-7xl px-6 pb-24 pt-32 sm:px-10 sm:pt-36">
+    <main className="w-full px-6 pb-24 pt-32 sm:px-10 sm:pt-36">
       <motion.header
         className="mb-12"
         initial={{ opacity: 0, y: 20 }}
@@ -210,12 +196,6 @@ export default function AdminDashboardPage() {
               className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-5 py-2 text-[0.6rem] font-semibold uppercase tracking-[0.3em] text-sand transition hover:border-white/30 hover:bg-white/10"
             >
               ⬇︎ Export CSV
-            </button>
-            <button
-              onClick={exportRsvpsXlsx}
-              className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-5 py-2 text-[0.6rem] font-semibold uppercase tracking-[0.3em] text-sand transition hover:border-white/30 hover:bg-white/10"
-            >
-              ⬇︎ Export XLSX
             </button>
           </div>
         </div>
@@ -250,13 +230,13 @@ export default function AdminDashboardPage() {
             label: "Total Guests",
             value: stats.totalGuests,
             sublabel: "Across all events",
-            accent: "text-green-400",
+            accent: "text-zinc-400",
           },
           {
             label: "Fulfilment Rate",
             value: `${stats.fulfilmentRate}%`,
             sublabel: "Confirmed vs submitted RSVPs",
-            accent: "text-blue-400",
+            accent: "text-zinc-500",
           },
         ].map((item) => (
           <div
@@ -283,7 +263,7 @@ export default function AdminDashboardPage() {
             <h2 className="font-display text-2xl text-sand">Recent RSVPs</h2>
             <Link
               href="/admin/rsvp"
-              className="text-xs uppercase tracking-[0.35em] text-flare transition hover:text-flare/80"
+              className="text-xs uppercase tracking-[0.35em] text-white/70 transition hover:text-white"
             >
               View all →
             </Link>
@@ -350,7 +330,7 @@ export default function AdminDashboardPage() {
             <h2 className="font-display text-2xl text-sand">Event Pipeline</h2>
             <Link
               href="/admin/events"
-              className="text-xs uppercase tracking-[0.35em] text-flare transition hover:text-flare/80"
+              className="text-xs uppercase tracking-[0.35em] text-white/70 transition hover:text-white"
             >
               Manage →
             </Link>
@@ -394,7 +374,7 @@ export default function AdminDashboardPage() {
           </p>
           <Link
             href="/admin/email"
-            className="mt-6 inline-flex items-center justify-center gap-2 rounded-full bg-gradient-to-r from-flare via-pulse to-flare px-6 py-3 text-xs font-semibold uppercase tracking-[0.35em] text-ink shadow-[0_18px_32px_rgba(255,107,61,0.28)] transition hover:shadow-[0_22px_42px_rgba(255,107,61,0.4)]"
+            className="mt-6 inline-flex items-center justify-center gap-2 rounded-full bg-gradient-to-r from-white via-zinc-300 to-white px-6 py-3 text-xs font-semibold uppercase tracking-[0.35em] text-ink shadow-[0_18px_32px_rgba(255,255,255,0.18)] transition hover:shadow-[0_22px_42px_rgba(255,255,255,0.26)]"
           >
             Compose message
           </Link>

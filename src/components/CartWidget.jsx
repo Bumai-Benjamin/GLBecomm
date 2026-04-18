@@ -67,11 +67,10 @@ export default function CartWidget({ isLight = false }) {
         onClick={() => setOpen((value) => !value)}
         aria-haspopup="dialog"
         aria-expanded={open}
-        className={`relative flex h-11 w-11 items-center justify-center rounded-full border transition ${
-          isLight
-            ? "border-black/10 bg-white/40 text-black hover:border-black/30"
-            : "border-white/10 bg-black/40 text-sand hover:border-white/30"
-        }`}
+        className={`relative flex h-11 w-11 items-center justify-center rounded-full border transition ${isLight
+          ? "border-black/20 bg-white/60 text-black hover:border-black/40"
+          : "border-white/20 bg-black/55 text-white hover:border-white/45"
+          }`}
       >
         <svg
           xmlns="http://www.w3.org/2000/svg"
@@ -86,7 +85,7 @@ export default function CartWidget({ isLight = false }) {
           <circle cx="17" cy="19" r="1" />
         </svg>
         {count > 0 && (
-          <span className="absolute -right-1 -top-1 flex h-5 min-w-[20px] items-center justify-center rounded-full bg-gradient-to-r from-flare to-pulse px-1 text-[10px] font-semibold text-ink shadow-glow">
+          <span className="absolute -right-1 -top-1 flex h-5 min-w-[20px] items-center justify-center rounded-full bg-white px-1 text-[10px] font-semibold text-black">
             {count}
           </span>
         )}
@@ -101,15 +100,15 @@ export default function CartWidget({ isLight = false }) {
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -8 }}
             transition={{ duration: 0.18, ease: "easeOut" }}
-            className="absolute right-0 top-12 z-40 w-80 rounded-3xl border border-white/10 bg-black/75 p-5 text-sm text-sand shadow-[0_24px_65px_rgba(0,0,0,0.55)] backdrop-blur-xl"
+            className="absolute right-0 top-12 z-40 w-[22rem] rounded-3xl border border-white/15 bg-[#0b0b0b]/95 p-5 text-sm text-white shadow-[0_22px_60px_rgba(0,0,0,0.65)] backdrop-blur-xl"
           >
-            <header className="flex items-center justify-between text-xs uppercase tracking-[0.35em] text-clay/70">
+            <header className="flex items-center justify-between text-[0.62rem] uppercase tracking-[0.22em] text-zinc-400">
               <span>Cart</span>
               <span>{count} items</span>
             </header>
             <div className="mt-4 space-y-4 max-h-64 overflow-y-auto pr-1 scrollbar-thin">
               {cart.length === 0 && (
-                <p className="rounded-2xl border border-white/5 bg-white/5 px-4 py-6 text-center text-xs uppercase tracking-[0.35em] text-clay/60">
+                <p className="rounded-2xl border border-white/10 bg-black/50 px-4 py-6 text-center text-[0.62rem] uppercase tracking-[0.22em] text-zinc-400">
                   Cart is empty
                 </p>
               )}
@@ -120,7 +119,7 @@ export default function CartWidget({ isLight = false }) {
                 return (
                   <div
                     key={item.id}
-                    className="flex gap-3 rounded-2xl border border-white/5 bg-white/5 p-3 backdrop-blur"
+                    className="flex gap-3 rounded-2xl border border-white/10 bg-black/50 p-3"
                   >
                     <div className="relative h-16 w-16 overflow-hidden rounded-xl">
                       <Image
@@ -132,27 +131,27 @@ export default function CartWidget({ isLight = false }) {
                       />
                     </div>
                     <div className="flex flex-1 flex-col gap-1">
-                      <span className="text-xs uppercase tracking-[0.32em] text-sand/80">{product.name}</span>
-                      <span className="text-xs text-clay/70">{formatPrice(product.price)}</span>
+                      <span className="text-[0.62rem] uppercase tracking-[0.2em] text-zinc-100">{product.name}</span>
+                      <span className="text-xs text-zinc-400">{formatPrice(product.price)}</span>
                       <div className="flex items-center gap-2">
                         <button
                           type="button"
-                          className="flex h-7 w-7 items-center justify-center rounded-full border border-white/10 text-xs"
+                          className="flex h-7 w-7 items-center justify-center rounded-full border border-white/20 text-xs"
                           onClick={() => change(item.id, -1)}
                         >
                           –
                         </button>
-                        <span className="text-xs tracking-[0.35em] text-sand/70">{item.qty}</span>
+                        <span className="text-xs tracking-[0.28em] text-zinc-200">{item.qty}</span>
                         <button
                           type="button"
-                          className="flex h-7 w-7 items-center justify-center rounded-full border border-white/10 text-xs"
+                          className="flex h-7 w-7 items-center justify-center rounded-full border border-white/20 text-xs"
                           onClick={() => change(item.id, 1)}
                         >
                           +
                         </button>
                         <button
                           type="button"
-                          className="ml-auto text-[10px] uppercase tracking-[0.32em] text-clay/60 hover:text-flare"
+                          className="ml-auto text-[0.58rem] uppercase tracking-[0.2em] text-zinc-500 hover:text-black"
                           onClick={() => remove(item.id)}
                         >
                           Remove
@@ -164,26 +163,26 @@ export default function CartWidget({ isLight = false }) {
               })}
             </div>
 
-            <footer className="mt-5 space-y-3 border-t border-white/5 pt-4 text-xs">
-              <div className="flex items-center justify-between uppercase tracking-[0.35em] text-clay/70">
+            <footer className="mt-5 space-y-3 border-t border-white/10 pt-4 text-xs">
+              <div className="flex items-center justify-between uppercase tracking-[0.2em] text-zinc-400">
                 <span>Subtotal</span>
-                <span>{formatPrice(subtotal)}</span>
+                <span className="text-zinc-100">{formatPrice(subtotal)}</span>
               </div>
               <div className="flex gap-2">
                 <Link
                   href="/store"
-                  className="flex-1 rounded-full border border-white/10 px-4 py-2 text-center uppercase tracking-[0.32em] text-sand/80 transition hover:border-white/30"
+                  className="flex-1 rounded-full border border-white/20 px-4 py-2 text-center text-[0.62rem] uppercase tracking-[0.2em] text-zinc-100 transition hover:border-white/50"
                   onClick={() => setOpen(false)}
                 >
                   View Store
                 </Link>
-                <button
-                  type="button"
-                  className="flex-1 rounded-full bg-gradient-to-r from-flare via-pulse to-flare px-4 py-2 text-center uppercase tracking-[0.32em] text-ink shadow-[0_12px_22px_rgba(255,107,61,0.32)]"
-                  onClick={() => alert('Checkout coming soon')}
+                <Link
+                  href="/contact"
+                  className="flex-1 rounded-full bg-white px-4 py-2 text-center text-[0.62rem] uppercase tracking-[0.2em] text-black"
+                  onClick={() => setOpen(false)}
                 >
-                  Checkout
-                </button>
+                  Checkout Help
+                </Link>
               </div>
             </footer>
           </motion.div>
