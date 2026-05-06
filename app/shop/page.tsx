@@ -6,14 +6,11 @@ import { Container } from '@/components/ui/Container'
 import { Input } from '@/components/ui/Input'
 import { Select } from '@/components/ui/Select'
 import { Button } from '@/components/ui/Button'
-import { Badge } from '@/components/ui/Badge'
 import { Skeleton } from '@/components/ui/Skeleton'
 import { Breadcrumbs } from '@/components/ui/Breadcrumbs'
 import { ProductCard, type ProductCardData } from '@/components/commerce/ProductCard'
 import { useDebounce } from '@/hooks/useDebounce'
 import { useMediaQuery } from '@/hooks/useMediaQuery'
-
-import type { Metadata } from 'next'
 
 type Facets = {
   sizes: string[]
@@ -25,10 +22,17 @@ type Facets = {
 const SORT_OPTIONS = [
   { value: 'featured', label: 'Featured' },
   { value: 'new', label: 'Newest' },
-  { value: 'price-asc', label: 'Price: Low → High' },
-  { value: 'price-desc', label: 'Price: High → Low' },
-  { value: 'best-selling', label: 'Best Selling' },
+  { value: 'price-asc', label: 'Price · low to high' },
+  { value: 'price-desc', label: 'Price · high to low' },
+  { value: 'best-selling', label: 'Best selling' },
 ]
+
+const pillBase =
+  'border px-3 py-1 font-mono text-[0.62rem] uppercase tracking-[0.18em] transition'
+
+const pillIdle =
+  'border-hairline text-graphite hover:text-ink hover:border-ink'
+const pillActive = 'border-ink bg-ink text-paper'
 
 export default function ShopPage() {
   const router = useRouter()
@@ -119,23 +123,23 @@ export default function ShopPage() {
   }, [collection, selectedSizes, selectedColors, inStockOnly])
 
   const filterPanel = (
-    <div className="space-y-6">
+    <div className="space-y-7">
       <Input
         value={q}
         onChange={(e) => setQ(e.target.value)}
-        placeholder="Search products…"
+        placeholder="Search the catalogue…"
         label="Search"
       />
 
       {facets && facets.collections.length > 0 && (
         <div>
-          <p className="mb-2 text-[0.6rem] font-semibold uppercase tracking-[0.28em] text-tide">Collections</p>
+          <p className="mb-3 font-mono text-[0.6rem] font-medium uppercase tracking-[0.22em] text-vermillion">
+            Capsules
+          </p>
           <div className="flex flex-wrap gap-2">
             <button
               onClick={() => setCollection('')}
-              className={`rounded-full border px-3 py-1 text-[0.65rem] uppercase tracking-[0.2em] transition ${
-                !collection ? 'border-ivory bg-ivory text-ink' : 'border-white/15 text-clay hover:text-sand'
-              }`}
+              className={`${pillBase} ${!collection ? pillActive : pillIdle}`}
             >
               All
             </button>
@@ -143,9 +147,7 @@ export default function ShopPage() {
               <button
                 key={c}
                 onClick={() => setCollection(collection === c ? '' : c)}
-                className={`rounded-full border px-3 py-1 text-[0.65rem] uppercase tracking-[0.2em] transition ${
-                  collection === c ? 'border-ivory bg-ivory text-ink' : 'border-white/15 text-clay hover:text-sand'
-                }`}
+                className={`${pillBase} ${collection === c ? pillActive : pillIdle}`}
               >
                 {c}
               </button>
@@ -156,14 +158,18 @@ export default function ShopPage() {
 
       {facets && facets.sizes.length > 0 && (
         <div>
-          <p className="mb-2 text-[0.6rem] font-semibold uppercase tracking-[0.28em] text-tide">Sizes</p>
+          <p className="mb-3 font-mono text-[0.6rem] font-medium uppercase tracking-[0.22em] text-vermillion">
+            Sizes
+          </p>
           <div className="flex flex-wrap gap-2">
             {facets.sizes.map((s) => (
               <button
                 key={s}
                 onClick={() => toggleSize(s)}
-                className={`flex h-9 min-w-9 items-center justify-center rounded-full border text-[0.65rem] font-medium uppercase transition ${
-                  selectedSizes.has(s) ? 'border-ivory bg-ivory text-ink' : 'border-white/15 text-clay hover:text-sand'
+                className={`flex h-9 min-w-9 items-center justify-center border font-mono text-[0.65rem] tracking-[0.12em] uppercase transition ${
+                  selectedSizes.has(s)
+                    ? 'border-ink bg-ink text-paper'
+                    : 'border-hairline text-graphite hover:text-ink hover:border-ink'
                 }`}
               >
                 {s}
@@ -175,15 +181,15 @@ export default function ShopPage() {
 
       {facets && facets.colors.length > 0 && (
         <div>
-          <p className="mb-2 text-[0.6rem] font-semibold uppercase tracking-[0.28em] text-tide">Colors</p>
+          <p className="mb-3 font-mono text-[0.6rem] font-medium uppercase tracking-[0.22em] text-vermillion">
+            Colours
+          </p>
           <div className="flex flex-wrap gap-2">
             {facets.colors.map((c) => (
               <button
                 key={c}
                 onClick={() => toggleColor(c)}
-                className={`rounded-full border px-3 py-1 text-[0.65rem] uppercase tracking-[0.2em] transition ${
-                  selectedColors.has(c) ? 'border-ivory bg-ivory text-ink' : 'border-white/15 text-clay hover:text-sand'
-                }`}
+                className={`${pillBase} ${selectedColors.has(c) ? pillActive : pillIdle}`}
               >
                 {c}
               </button>
@@ -192,98 +198,135 @@ export default function ShopPage() {
         </div>
       )}
 
-      <label className="flex items-center gap-2 text-sm text-clay">
+      <label className="flex items-center gap-3 text-sm text-ink-soft">
         <input
           type="checkbox"
           checked={inStockOnly}
           onChange={(e) => setInStockOnly(e.target.checked)}
-          className="h-4 w-4 accent-ivory"
+          className="h-4 w-4 accent-vermillion"
         />
-        In stock only
+        <span className="font-mono text-[0.7rem] tracking-[0.18em] uppercase">In stock only</span>
       </label>
 
       {activeFilterCount > 0 && (
-        <button onClick={clearFilters} className="text-xs text-clay underline hover:text-sand">
-          Clear all filters ({activeFilterCount})
+        <button
+          onClick={clearFilters}
+          className="font-mono text-[0.62rem] tracking-[0.22em] uppercase text-vermillion underline underline-offset-4 hover:text-ink"
+        >
+          Clear filters ({activeFilterCount})
         </button>
       )}
     </div>
   )
 
   return (
-    <Container className="pb-24 pt-32">
-      <Breadcrumbs items={[{ href: '/', label: 'Home' }, { label: 'Shop' }]} className="mb-6" />
-
-      <div className="mb-8 flex flex-wrap items-end justify-between gap-4">
-        <div>
-          <h1 className="font-display text-display-lg uppercase text-sand">Shop</h1>
-          <p className="mt-1 text-sm text-clay">
-            {loading ? '…' : `${total} product${total === 1 ? '' : 's'}`}
-          </p>
-        </div>
-        <div className="flex items-center gap-3">
-          <Select
-            value={sort}
-            onChange={(e) => setSort(e.target.value)}
-            options={SORT_OPTIONS}
-            className="min-w-[180px]"
-          />
-          {!isDesktop && (
-            <Button
-              variant="secondary"
-              size="sm"
-              onClick={() => setFiltersOpen(!filtersOpen)}
-            >
-              Filters{activeFilterCount > 0 ? ` (${activeFilterCount})` : ''}
-            </Button>
-          )}
-        </div>
-      </div>
-
-      <div className="flex gap-10">
-        {isDesktop && (
-          <aside className="sticky top-28 w-64 shrink-0 self-start">
-            {filterPanel}
-          </aside>
-        )}
-
-        {!isDesktop && filtersOpen && (
-          <div className="mb-6 w-full rounded-2xl border border-white/10 bg-white/[0.02] p-5">
-            {filterPanel}
+    <main className="bg-paper text-ink">
+      <section className="glb-hero pb-0">
+        <div className="glb-shell">
+          <div className="flex items-center justify-between border-b border-ink pb-4">
+            <span className="glb-caption uppercase tracking-[0.22em]">
+              Letter № 03 · Catalogue
+            </span>
+            <span className="glb-eyebrow-stamp">In Print</span>
           </div>
-        )}
 
-        <div className="flex-1">
-          {loading && (
-            <div className="grid grid-cols-2 gap-4 sm:grid-cols-2 md:grid-cols-3">
-              {Array.from({ length: 6 }).map((_, i) => (
-                <div key={i}>
-                  <Skeleton className="aspect-[4/5] w-full rounded-2xl" />
-                  <Skeleton className="mt-3 h-4 w-3/4" />
-                  <Skeleton className="mt-2 h-4 w-1/2" />
-                </div>
-              ))}
+          <div className="grid grid-cols-12 gap-6 mt-12 items-end">
+            <div className="col-span-12 lg:col-span-8">
+              <p className="glb-num">All pieces, currently in print</p>
+              <h1 className="glb-display mt-4 text-[clamp(2.4rem,7vw,6rem)]">
+                The <em>catalogue.</em>
+              </h1>
             </div>
-          )}
+            <div className="col-span-12 lg:col-span-4">
+              <p className="glb-lede">
+                Filter by capsule, size, or colour. Pieces appear in small
+                batches and disappear when the print runs out.
+              </p>
+            </div>
+          </div>
 
-          {!loading && products.length === 0 && (
-            <div className="py-24 text-center">
-              <p className="text-lg text-clay">No products match your filters.</p>
-              <button onClick={clearFilters} className="mt-4 text-sm text-ivory underline">
-                Clear filters
-              </button>
-            </div>
-          )}
-
-          {!loading && products.length > 0 && (
-            <div className="grid grid-cols-2 gap-x-4 gap-y-8 sm:grid-cols-2 md:grid-cols-3">
-              {products.map((p, i) => (
-                <ProductCard key={p.id} product={p} priority={i < 4} />
-              ))}
-            </div>
-          )}
+          <Breadcrumbs
+            items={[{ href: '/', label: 'Home' }, { label: 'Shop' }]}
+            className="mt-10"
+          />
         </div>
-      </div>
-    </Container>
+      </section>
+
+      <Container className="pb-24 pt-10">
+        <div className="mb-8 flex flex-wrap items-end justify-between gap-4 border-b border-ink pb-4">
+          <p className="font-mono text-[0.7rem] tracking-[0.18em] uppercase text-graphite">
+            {loading ? '…' : `${total} piece${total === 1 ? '' : 's'} in print`}
+          </p>
+          <div className="flex items-center gap-3">
+            <Select
+              value={sort}
+              onChange={(e) => setSort(e.target.value)}
+              options={SORT_OPTIONS}
+              className="min-w-[200px]"
+            />
+            {!isDesktop && (
+              <Button
+                variant="secondary"
+                size="sm"
+                onClick={() => setFiltersOpen(!filtersOpen)}
+              >
+                Filters{activeFilterCount > 0 ? ` (${activeFilterCount})` : ''}
+              </Button>
+            )}
+          </div>
+        </div>
+
+        <div className="flex gap-12">
+          {isDesktop && (
+            <aside className="sticky top-28 w-64 shrink-0 self-start">
+              <p className="glb-num mb-5">№ — Filter the print run</p>
+              {filterPanel}
+            </aside>
+          )}
+
+          {!isDesktop && filtersOpen && (
+            <div className="mb-6 w-full border border-ink bg-paper-warm p-6">
+              {filterPanel}
+            </div>
+          )}
+
+          <div className="flex-1">
+            {loading && (
+              <div className="grid grid-cols-2 gap-4 sm:grid-cols-2 md:grid-cols-3">
+                {Array.from({ length: 6 }).map((_, i) => (
+                  <div key={i}>
+                    <Skeleton className="aspect-[4/5] w-full" />
+                    <Skeleton className="mt-3 h-4 w-3/4" />
+                    <Skeleton className="mt-2 h-4 w-1/2" />
+                  </div>
+                ))}
+              </div>
+            )}
+
+            {!loading && products.length === 0 && (
+              <div className="py-24 text-center border border-ink bg-paper-warm">
+                <p className="font-display text-3xl italic">
+                  No pieces match your letter.
+                </p>
+                <button
+                  onClick={clearFilters}
+                  className="mt-5 font-mono text-[0.7rem] tracking-[0.22em] uppercase text-vermillion underline underline-offset-4"
+                >
+                  Clear all filters
+                </button>
+              </div>
+            )}
+
+            {!loading && products.length > 0 && (
+              <div className="grid grid-cols-2 gap-x-5 gap-y-10 sm:grid-cols-2 md:grid-cols-3">
+                {products.map((p, i) => (
+                  <ProductCard key={p.id} product={p} priority={i < 4} />
+                ))}
+              </div>
+            )}
+          </div>
+        </div>
+      </Container>
+    </main>
   )
 }

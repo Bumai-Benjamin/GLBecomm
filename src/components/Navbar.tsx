@@ -52,7 +52,7 @@ export default function Navbar() {
         className="fixed inset-x-0 top-0 z-[80] transition-all duration-500"
         style={{
           background: scrolled
-            ? 'rgba(245, 240, 232, 0.94)'
+            ? 'rgba(242, 235, 221, 0.94)'
             : isHeroPage
               ? 'transparent'
               : 'var(--brand-bg)',

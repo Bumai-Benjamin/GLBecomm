@@ -1,5 +1,5 @@
 import type { Metadata, Viewport } from 'next'
-import { Outfit, Cormorant_Garamond, JetBrains_Mono } from 'next/font/google'
+import { Fraunces, Inter_Tight, JetBrains_Mono } from 'next/font/google'
 import { Suspense } from 'react'
 
 import Navbar from '@/components/Navbar'
@@ -8,16 +8,16 @@ import Providers from './providers'
 
 import './globals.css'
 
-const sans = Outfit({
+const sans = Inter_Tight({
   subsets: ['latin'],
   weight: ['300', '400', '500', '600', '700'],
   variable: '--font-sans',
   display: 'swap',
 })
 
-const display = Cormorant_Garamond({
+const display = Fraunces({
   subsets: ['latin'],
-  weight: ['400', '500', '600', '700'],
+  style: ['normal', 'italic'],
   variable: '--font-display',
   display: 'swap',
 })
@@ -69,7 +69,7 @@ export const metadata: Metadata = {
 }
 
 export const viewport: Viewport = {
-  themeColor: '#080808',
+  themeColor: '#F2EBDD',
   width: 'device-width',
   initialScale: 1,
 }
@@ -81,10 +81,10 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       className={`${display.variable} ${sans.variable} ${mono.variable}`}
       suppressHydrationWarning
     >
-      <body className="bg-parchment text-obsidian font-sans antialiased">
+      <body className="bg-paper text-ink font-sans antialiased">
         <a
           href="#main"
-          className="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-50 focus:rounded-md focus:bg-ivory focus:px-4 focus:py-2 focus:text-ink"
+          className="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-50 focus:bg-ink focus:px-4 focus:py-2 focus:text-paper"
         >
           Skip to content
         </a>
